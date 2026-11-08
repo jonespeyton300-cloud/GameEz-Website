@@ -9,7 +9,7 @@
 *{box-sizing:border-box}
 :root{--bg:#080b14;--panel:#111827;--purple:#a855f7;--cyan:#22d3ee;--muted:#9ba7bd}
 body{margin:0;background:var(--bg);color:#f4f5ff;font-family:Arial,sans-serif}
-button,input{font:inherit}
+button,input,select{font:inherit}
 button{cursor:pointer}
 header{height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#0d1220;border-bottom:1px solid #263147;position:sticky;top:0;z-index:5}
 .logo{font-size:28px;font-weight:900}.logo span{color:var(--cyan)}
@@ -43,9 +43,11 @@ h2{margin:0 0 8px}
 .game-info button{width:100%;margin-top:8px}
 .tag{font-size:10px;padding:5px 8px;background:#282044;color:#d8b4fe;border-radius:5px}
 .panel{background:var(--panel);border:1px solid #263147;border-radius:12px;padding:20px}
-.leader-row{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #263147}
+.leader-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #263147}
 .leader-row:last-child{border:0}
 .rank{color:var(--cyan);font-weight:bold;margin-right:12px}
+.leader-score{color:var(--cyan);font-weight:bold}
+.leader-select{min-width:210px;padding:12px;background:#141d2e;border:1px solid #46536a;color:white;border-radius:8px}
 .community{padding:32px;background:linear-gradient(120deg,#25134b,#102b43);border:1px solid #493778;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .modal{display:none;position:fixed;inset:0;background:#000c;z-index:20;align-items:center;justify-content:center;padding:15px}
 .modal.open{display:flex}
@@ -62,14 +64,18 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 </style>
 </head>
 <body>
+
 <header>
  <div class="logo">GAME<span>EZ</span></div>
  <nav>
-  <a href="#home">Home</a><a href="#games">Games</a>
-  <a href="#leaderboard">Leaderboard</a><a href="#community">Community</a>
+  <a href="#home">Home</a>
+  <a href="#games">Games</a>
+  <a href="#leaderboard">Leaderboard</a>
+  <a href="#community">Community</a>
   <button class="btn" id="accountButton" onclick="openAccount()">Sign In</button>
  </nav>
 </header>
+
 <div class="hero" id="home">
  <div>
   <span class="tag">WELCOME TO GAMEEZ</span>
@@ -79,49 +85,89 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  </div>
  <div class="hero-art">🎮</div>
 </div>
+
 <main class="container">
+
 <section id="games">
  <div class="heading">
-  <div><h2>🎮 Game Library</h2><p class="muted">Choose your next challenge.</p></div>
+  <div>
+   <h2>🎮 Game Library</h2>
+   <p class="muted">Choose your next challenge.</p>
+  </div>
   <input class="search" id="search" placeholder="🔍 Search games..." oninput="renderGames()">
  </div>
  <div class="categories" id="categories"></div>
  <div class="games" id="gamesGrid"></div>
  <p id="noGames" class="muted" hidden>No games found.</p>
 </section>
+
 <section id="leaderboard">
  <div class="heading">
-  <div><h2>🏆 Real Player Leaderboard</h2><p class="muted">Scores from registered GameEz players only.</p></div>
+  <div>
+   <h2>🏆 Game Leaderboards</h2>
+   <p class="muted">Compete separately in each game.</p>
+  </div>
   <button class="btn secondary" onclick="loadLeaderboard()">↻ Refresh</button>
  </div>
- <div class="panel" id="leaderboardList"><p class="muted">Loading real player scores...</p></div>
- <p class="muted">Only registered accounts appear. No sample players or bots are preloaded.</p>
+
+ <div class="panel">
+  <label for="leaderboardGame" class="muted">SELECT A GAME</label>
+  <br><br>
+  <select id="leaderboardGame" class="leader-select" onchange="loadLeaderboard()">
+   <option value="clicker">🟣 Neon Clicker</option>
+   <option value="reaction">⚡ Reaction Rush</option>
+   <option value="guess">🔢 Number Hunter</option>
+   <option value="memory">🧠 Memory Match</option>
+  </select>
+
+  <h3 id="leaderboardTitle" style="margin-top:24px">🟣 Neon Clicker Rankings</h3>
+  <div id="leaderboardList">
+   <p class="muted">Loading scores...</p>
+  </div>
+ </div>
+
+ <p class="muted">Each player is listed once per game, using their highest recorded score.</p>
 </section>
+
 <section id="community">
  <div class="community">
-  <div><h2>💬 Join the GameEz Community</h2><p class="muted">Meet players, share scores and find people to play with.</p></div>
-  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer"><button class="btn">JOIN DISCORD →</button></a>
+  <div>
+   <h2>💬 Join the GameEz Community</h2>
+   <p class="muted">Meet players, share scores and find people to play with.</p>
+  </div>
+  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer">
+   <button class="btn">JOIN DISCORD →</button>
+  </a>
  </div>
 </section>
+
 </main>
 
 <footer>
  <div class="logo">GAME<span>EZ</span></div>
  <p>© 2026 GameEz. Play Without Limits.</p>
 </footer>
+
 <div class="modal" id="accountModal">
  <div class="modal-box">
-  <div class="modal-top"><h2>👤 GameEz Account</h2><button class="close" onclick="closeModal('accountModal')">✕</button></div>
+  <div class="modal-top">
+   <h2>👤 GameEz Account</h2>
+   <button class="close" onclick="closeModal('accountModal')">✕</button>
+  </div>
   <div id="accountContent"></div>
  </div>
 </div>
 
 <div class="modal" id="gameModal">
  <div class="modal-box">
-  <div class="modal-top"><h2 id="gameTitle">Game</h2><button class="close" onclick="closeModal('gameModal')">✕</button></div>
+  <div class="modal-top">
+   <h2 id="gameTitle">Game</h2>
+   <button class="close" onclick="closeModal('gameModal')">✕</button>
+  </div>
   <div class="game-area" id="gameArea"></div>
  </div>
 </div>
+
 <script>
 // ==========================================
 // GAMEEZ CONNECTION
@@ -138,35 +184,55 @@ const games=[
  {id:"clicker",name:"Neon Clicker",category:"Arcade",emoji:"🟣",description:"Click as fast as you can in 10 seconds!",featured:true},
  {id:"reaction",name:"Reaction Rush",category:"Arcade",emoji:"⚡",description:"Test your reaction speed.",featured:true},
  {id:"guess",name:"Number Hunter",category:"Puzzle",emoji:"🔢",description:"Find the secret number.",featured:true},
- {id:"memory",name:"Memory Match",category:"Puzzle",emoji:"🧠",description:"Match the symbols."},
+ {id:"memory",name:"Memory Match",category:"Puzzle",emoji:"🧠",description:"Coming soon!"},
  {id:"racer",name:"Street Racer",category:"Racing",emoji:"🏎️",description:"Coming soon!"},
  {id:"city",name:"City Simulator",category:"Simulation",emoji:"🏙️",description:"Coming soon!"},
  {id:"space",name:"Space Battle",category:"Action",emoji:"🚀",description:"Coming soon!"},
  {id:"zombie",name:"Zombie Survival",category:"Action",emoji:"🧟",description:"Coming soon!"}
 ];
+
 const categories=["All","Arcade","Puzzle","Racing","Simulation","Action"];
 let activeCategory="All";
 let currentUser=null;
+
+const gameNames={
+ clicker:"🟣 Neon Clicker",
+ reaction:"⚡ Reaction Rush",
+ guess:"🔢 Number Hunter",
+ memory:"🧠 Memory Match"
+};
 
 function renderCategories(){
  document.getElementById("categories").innerHTML=categories.map(c=>
  `<button class="category ${activeCategory===c?"active":""}" onclick="setCategory('${c}')">${c}</button>`
  ).join("");
 }
-function setCategory(c){activeCategory=c;renderCategories();renderGames();}
+
+function setCategory(c){
+ activeCategory=c;
+ renderCategories();
+ renderGames();
+}
+
 function renderGames(){
  const q=document.getElementById("search").value.toLowerCase();
- const list=games.filter(g=>(activeCategory==="All"||g.category===activeCategory)&&
- (g.name.toLowerCase().includes(q)||g.category.toLowerCase().includes(q)));
+ const list=games.filter(g=>
+  (activeCategory==="All"||g.category===activeCategory)&&
+  (g.name.toLowerCase().includes(q)||g.category.toLowerCase().includes(q))
+ );
+
  document.getElementById("gamesGrid").innerHTML=list.map(g=>`
  <div class="game-card">
   <div class="game-art">${g.emoji}</div>
   <div class="game-info">
    ${g.featured?'<span class="tag">FEATURED</span>':''}
-   <h3>${g.name}</h3><p>${g.description}</p><p>📁 ${g.category}</p>
+   <h3>${g.name}</h3>
+   <p>${g.description}</p>
+   <p>📁 ${g.category}</p>
    <button class="btn" onclick="launchGame('${g.id}')">${["racer","city","space","zombie"].includes(g.id)?"COMING SOON":"PLAY NOW →"}</button>
   </div>
  </div>`).join("");
+
  document.getElementById("noGames").hidden=list.length!==0;
 }
 
@@ -175,28 +241,38 @@ function renderGames(){
 // ==========================================
 function openAccount(){
  const box=document.getElementById("accountContent");
+
  if(currentUser){
-  box.innerHTML=`<p>Welcome, <strong>${escapeHTML(currentUser.username)}</strong>!</p>
-  <p class="muted">${escapeHTML(currentUser.email)}</p>
-  <button class="btn" onclick="logout()">LOG OUT</button>`;
+  box.innerHTML=`
+   <p>Welcome, <strong>${escapeHTML(currentUser.username)}</strong>!</p>
+   <p class="muted">${escapeHTML(currentUser.email)}</p>
+   <button class="btn" onclick="logout()">LOG OUT</button>`;
  }else{
   box.innerHTML=`
-  <p class="muted">Create an account or sign in to play and compete.</p>
-  <label>Username (for registration)</label>
-  <input id="username" maxlength="20" placeholder="Choose a username">
-  <label>Email address</label>
-  <input id="email" type="email" placeholder="you@example.com">
-  <label>Password</label>
-  <input id="password" type="password" placeholder="At least 8 characters">
-  <button class="btn" onclick="register()">CREATE ACCOUNT</button>
-  <button class="btn secondary" onclick="login()">SIGN IN</button>
-  <p id="authMessage" class="status"></p>
-  <p class="muted">Registration may require email verification before you can sign in.</p>`;
+   <p class="muted">Create an account or sign in to play and compete.</p>
+   <label>Username (for registration)</label>
+   <input id="username" maxlength="20" placeholder="Choose a username">
+   <label>Email address</label>
+   <input id="email" type="email" placeholder="you@example.com">
+   <label>Password</label>
+   <input id="password" type="password" placeholder="At least 8 characters">
+   <button class="btn" onclick="register()">CREATE ACCOUNT</button>
+   <button class="btn secondary" onclick="login()">SIGN IN</button>
+   <p id="authMessage" class="status"></p>
+   <p class="muted">Registration may require email verification before you can sign in.</p>`;
  }
+
  document.getElementById("accountModal").classList.add("open");
 }
-function authMessage(msg){const el=document.getElementById("authMessage");if(el)el.textContent=msg;}
-function validUsername(s){return /^[a-zA-Z0-9_]{3,20}$/.test(s);}
+
+function authMessage(msg){
+ const el=document.getElementById("authMessage");
+ if(el)el.textContent=msg;
+}
+
+function validUsername(s){
+ return /^[a-zA-Z0-9_]{3,20}$/.test(s);
+}
 
 async function register(){
  const username=document.getElementById("username").value.trim();
@@ -207,6 +283,7 @@ async function register(){
   authMessage("Username must be 3–20 letters, numbers or underscores.");
   return;
  }
+
  if(!email||password.length<8){
   authMessage("Enter a valid email and a password of at least 8 characters.");
   return;
@@ -239,54 +316,136 @@ async function register(){
 async function login(){
  const email=document.getElementById("email").value.trim();
  const password=document.getElementById("password").value;
- if(!email||!password){authMessage("Enter your email and password.");return;}
+
+ if(!email||!password){
+  authMessage("Enter your email and password.");
+  return;
+ }
+
  authMessage("Signing in...");
+
  const {error}=await db.auth.signInWithPassword({email,password});
- if(error){authMessage(error.message);return;}
+
+ if(error){
+  authMessage(error.message);
+  return;
+ }
+
  await refreshUser();
  openAccount();
 }
+
 async function logout(){
  await db.auth.signOut();
  currentUser=null;
  updateAccountButton();
  closeModal("accountModal");
 }
+
 async function refreshUser(){
  const {data:{user}}=await db.auth.getUser();
- if(!user){currentUser=null;updateAccountButton();return;}
- const {data:profile}=await db.from("profiles").select("username").eq("id",user.id).maybeSingle();
- currentUser={id:user.id,email:user.email,username:profile?.username||"Player"};
+
+ if(!user){
+  currentUser=null;
+  updateAccountButton();
+  return;
+ }
+
+ const {data:profile}=await db.from("profiles")
+  .select("username")
+  .eq("id",user.id)
+  .maybeSingle();
+
+ currentUser={
+  id:user.id,
+  email:user.email,
+  username:profile?.username||"Player"
+ };
+
  updateAccountButton();
 }
+
 function updateAccountButton(){
- document.getElementById("accountButton").textContent=currentUser?currentUser.username:"Sign In";
+ document.getElementById("accountButton").textContent=
+  currentUser?currentUser.username:"Sign In";
 }
 
 // ==========================================
-// REAL ONLINE LEADERBOARD
+// SEPARATE GAME LEADERBOARDS
 // ==========================================
 async function loadLeaderboard(){
  const box=document.getElementById("leaderboardList");
- box.innerHTML='<p class="muted">Loading scores...</p>';
+ const selector=document.getElementById("leaderboardGame");
+ const selectedGame=selector.value;
+ const gameName=gameNames[selectedGame]||"Game";
+
+ document.getElementById("leaderboardTitle").textContent=
+  gameName+" Rankings";
+
+ box.innerHTML='<p class="muted">Loading '+gameName+' scores...</p>';
+
+ // Only retrieve scores belonging to the selected game.
  const {data,error}=await db.from("scores")
- .select("score,game_id,created_at,profiles(username)")
- .order("score",{ascending:false}).limit(100);
- if(error){box.innerHTML='<p class="muted">Could not load leaderboard: '+escapeHTML(error.message)+'</p>';return;}
- if(!data||!data.length){box.innerHTML='<p class="muted">No real player scores yet. Be the first to play!</p>';return;}
- box.innerHTML=data.slice(0,10).map((s,i)=>`
- <div class="leader-row">
-  <span><span class="rank">#${i+1}</span>${escapeHTML(s.profiles?.username||"Player")}</span>
-  <strong>${Number(s.score).toLocaleString()} pts</strong>
- </div>`).join("");
+  .select("user_id,score,game_id,created_at,profiles(username)")
+  .eq("game_id",selectedGame)
+  .order("score",{ascending:false})
+  .limit(500);
+
+ if(error){
+  box.innerHTML='<p class="muted">Could not load leaderboard: '+
+   escapeHTML(error.message)+'</p>';
+  return;
+ }
+
+ if(!data||data.length===0){
+  box.innerHTML='<p class="muted">No scores for '+gameName+' yet. Be the first to play!</p>';
+  return;
+ }
+
+ // Keep only each player's highest score in this game.
+ const bestScores=new Map();
+
+ data.forEach(entry=>{
+  const existing=bestScores.get(entry.user_id);
+
+  if(!existing||Number(entry.score)>Number(existing.score)){
+   bestScores.set(entry.user_id,entry);
+  }
+ });
+
+ // Sort players from highest score to lowest.
+ const rankings=Array.from(bestScores.values())
+  .sort((a,b)=>Number(b.score)-Number(a.score))
+  .slice(0,10);
+
+ box.innerHTML=rankings.map((s,i)=>`
+  <div class="leader-row">
+   <span>
+    <span class="rank">#${i+1}</span>
+    ${escapeHTML(s.profiles?.username||"Player")}
+   </span>
+   <strong class="leader-score">${Number(s.score).toLocaleString()} pts</strong>
+  </div>
+ `).join("");
 }
 
-// Scores are submitted to a server-side Edge Function.
-// It verifies the logged-in user and applies game-specific limits.
+// ==========================================
+// SAVE SCORES
+// ==========================================
 async function submitScore(gameId,score){
- if(!currentUser){alert("Please create an account or sign in before saving scores.");openAccount();return;}
+ if(!currentUser){
+  alert("Please create an account or sign in before saving scores.");
+  openAccount();
+  return;
+ }
+
  const {data:{session}}=await db.auth.getSession();
- if(!session){alert("Your session expired. Please sign in again.");return;}
+
+ if(!session){
+  alert("Your session expired. Please sign in again.");
+  return;
+ }
+
  const response=await fetch(SUPABASE_URL+"/functions/v1/submit-score",{
   method:"POST",
   headers:{
@@ -296,9 +455,18 @@ async function submitScore(gameId,score){
   },
   body:JSON.stringify({game_id:gameId,score})
  });
+
  const result=await response.json().catch(()=>({error:"Unexpected server response"}));
- if(!response.ok){alert(result.error||"Score could not be saved.");return;}
+
+ if(!response.ok){
+  alert(result.error||"Score could not be saved.");
+  return;
+ }
+
  alert("Score saved to the GameEz leaderboard!");
+
+ // Refresh the leaderboard for the game that was just played.
+ document.getElementById("leaderboardGame").value=gameId;
  loadLeaderboard();
 }
 
@@ -306,119 +474,255 @@ async function submitScore(gameId,score){
 // GAMES
 // ==========================================
 function launchGame(id){
- if(!["clicker","reaction","guess","memory"].includes(id)){alert("This game is coming soon!");return;}
- document.getElementById("gameTitle").textContent=games.find(g=>g.id===id).name;
+ if(!["clicker","reaction","guess","memory"].includes(id)){
+  alert("This game is coming soon!");
+  return;
+ }
+
+ document.getElementById("gameTitle").textContent=
+  games.find(g=>g.id===id).name;
+
  document.getElementById("gameModal").classList.add("open");
+
  if(id==="clicker")startClicker();
  if(id==="reaction")startReaction();
  if(id==="guess")startGuess();
  if(id==="memory")startMemory();
 }
+
 function startClicker(){
  let score=0,remaining=10,interval=null,started=false;
  const area=document.getElementById("gameArea");
- area.innerHTML=`<h2>🟣 NEON CLICKER</h2><h2 id="clickScore">0</h2><p id="clickTime">10 seconds</p><button class="btn" id="clickButton">START CLICKING!</button>`;
+
+ area.innerHTML=`
+  <h2>🟣 NEON CLICKER</h2>
+  <h2 id="clickScore">0</h2>
+  <p id="clickTime">10 seconds</p>
+  <button class="btn" id="clickButton">START CLICKING!</button>`;
+
  document.getElementById("clickButton").onclick=()=>{
   if(!started){
    started=true;
+
    interval=setInterval(()=>{
     remaining--;
     document.getElementById("clickTime").textContent=remaining+" seconds";
+
     if(remaining<=0){
      clearInterval(interval);
-     area.innerHTML=`<h2>TIME'S UP!</h2><p>Your score: ${score}</p><button class="btn" onclick="submitScore('clicker',${score})">SAVE SCORE</button><button class="btn secondary" onclick="startClicker()">PLAY AGAIN</button>`;
+
+     area.innerHTML=`
+      <h2>TIME'S UP!</h2>
+      <p>Your score: ${score}</p>
+      <button class="btn" onclick="submitScore('clicker',${score})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startClicker()">PLAY AGAIN</button>`;
     }
    },1000);
   }
+
   score++;
   document.getElementById("clickScore").textContent=score;
  };
 }
+
 function startReaction(){
  let state="ready",timer,start;
  const area=document.getElementById("gameArea");
+
  function reset(){
-  clearTimeout(timer);state="ready";
-  area.innerHTML=`<h2>⚡ REACTION RUSH</h2><p>Wait for green, then click!</p><button class="btn" id="reactionStart">START</button>`;
+  clearTimeout(timer);
+  state="ready";
+
+  area.innerHTML=`
+   <h2>⚡ REACTION RUSH</h2>
+   <p>Wait for green, then click!</p>
+   <button class="btn" id="reactionStart">START</button>`;
+
   document.getElementById("reactionStart").onclick=()=>{
    state="waiting";
-   area.innerHTML=`<h2>WAIT...</h2><button class="btn secondary" id="waitButton">WAIT</button>`;
+
+   area.innerHTML=`
+    <h2>WAIT...</h2>
+    <button class="btn secondary" id="waitButton">WAIT</button>`;
+
    document.getElementById("waitButton").onclick=()=>{
     if(state!=="waiting")return;
-    clearTimeout(timer);state="ready";area.innerHTML=`<h2>TOO EARLY!</h2><button class="btn" onclick="startReaction()">TRY AGAIN</button>`;
+
+    clearTimeout(timer);
+    state="ready";
+
+    area.innerHTML=`
+     <h2>TOO EARLY!</h2>
+     <button class="btn" onclick="startReaction()">TRY AGAIN</button>`;
    };
+
    timer=setTimeout(()=>{
     if(state!=="waiting")return;
-    state="go";start=performance.now();
-    area.innerHTML=`<h2 style="color:#22c55e">🟢 CLICK NOW!</h2><button class="btn" id="goButton">CLICK!</button>`;
+
+    state="go";
+    start=performance.now();
+
+    area.innerHTML=`
+     <h2 style="color:#22c55e">🟢 CLICK NOW!</h2>
+     <button class="btn" id="goButton">CLICK!</button>`;
+
     document.getElementById("goButton").onclick=()=>{
      if(state!=="go")return;
+
      state="done";
+
      const ms=Math.round(performance.now()-start);
      const points=Math.max(1,1000-ms);
-     area.innerHTML=`<h2>${ms} MS</h2><p>${points} points</p><button class="btn" onclick="submitScore('reaction',${points})">SAVE SCORE</button><button class="btn secondary" onclick="startReaction()">AGAIN</button>`;
+
+     area.innerHTML=`
+      <h2>${ms} MS</h2>
+      <p>${points} points</p>
+      <button class="btn" onclick="submitScore('reaction',${points})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startReaction()">AGAIN</button>`;
     };
    },1200+Math.random()*2500);
   };
  }
+
  reset();
 }
+
 function startGuess(){
  let secret=Math.floor(Math.random()*100)+1,tries=0;
  const area=document.getElementById("gameArea");
- area.innerHTML=`<h2>🔢 NUMBER HUNTER</h2><p>Guess a number between 1 and 100. You have 10 tries.</p><input id="guessInput" type="number" min="1" max="100" placeholder="Your guess"><button class="btn" id="guessButton">GUESS</button><p id="guessMessage"></p>`;
+
+ area.innerHTML=`
+  <h2>🔢 NUMBER HUNTER</h2>
+  <p>Guess a number between 1 and 100. You have 10 tries.</p>
+  <input id="guessInput" type="number" min="1" max="100" placeholder="Your guess">
+  <button class="btn" id="guessButton">GUESS</button>
+  <p id="guessMessage"></p>`;
+
  document.getElementById("guessButton").onclick=()=>{
   const value=Number(document.getElementById("guessInput").value);
   const msg=document.getElementById("guessMessage");
-  if(!Number.isInteger(value)||value<1||value>100){msg.textContent="Enter a number from 1 to 100.";return;}
+
+  if(!Number.isInteger(value)||value<1||value>100){
+   msg.textContent="Enter a number from 1 to 100.";
+   return;
+  }
+
   tries++;
+
   if(value===secret){
    const points=Math.max(100,1100-tries*100);
    msg.textContent="You won! "+points+" points!";
    document.getElementById("guessButton").disabled=true;
-   const b=document.createElement("button");b.className="btn";b.textContent="SAVE SCORE";b.onclick=()=>submitScore("guess",points);area.appendChild(b);
-  }else if(tries>=10){msg.textContent="Game over! The number was "+secret+".";document.getElementById("guessButton").disabled=true;}
-  else msg.textContent=(value<secret?"Too low! ⬆️":"Too high! ⬇️")+" Attempts left: "+(10-tries);
+
+   const b=document.createElement("button");
+   b.className="btn";
+   b.textContent="SAVE SCORE";
+   b.onclick=()=>submitScore("guess",points);
+   area.appendChild(b);
+
+  }else if(tries>=10){
+   msg.textContent="Game over! The number was "+secret+".";
+   document.getElementById("guessButton").disabled=true;
+
+  }else{
+   msg.textContent=(value<secret?"Too low! ⬆️":"Too high! ⬇️")+
+    " Attempts left: "+(10-tries);
+  }
  };
 }
+
 function startMemory(){
  const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"].sort(()=>Math.random()-.5);
  let selected=[],matched=[],moves=0,locked=false;
  const area=document.getElementById("gameArea");
+
  function draw(){
-  area.innerHTML=`<h2>🧠 MEMORY MATCH</h2><p>Moves: ${moves}</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${symbols.map((s,i)=>`<button class="btn secondary" data-i="${i}" style="height:60px;font-size:24px">${matched.includes(i)||selected.includes(i)?s:"❔"}</button>`).join("")}</div>`;
-  area.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>pick(Number(b.dataset.i)));
+  area.innerHTML=`
+   <h2>🧠 MEMORY MATCH</h2>
+   <p>Moves: ${moves}</p>
+   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+    ${symbols.map((s,i)=>`
+     <button class="btn secondary" data-i="${i}" style="height:60px;font-size:24px">
+      ${matched.includes(i)||selected.includes(i)?s:"❔"}
+     </button>`).join("")}
+   </div>`;
+
+  area.querySelectorAll("[data-i]").forEach(b=>
+   b.onclick=()=>pick(Number(b.dataset.i))
+  );
  }
+
  function pick(i){
   if(locked||matched.includes(i)||selected.includes(i))return;
-  selected.push(i);draw();
+
+  selected.push(i);
+  draw();
+
   if(selected.length===2){
-   moves++;locked=true;
+   moves++;
+   locked=true;
+
    const [a,b]=selected;
+
    if(symbols[a]===symbols[b]){
-    matched.push(a,b);selected=[];locked=false;draw();
+    matched.push(a,b);
+    selected=[];
+    locked=false;
+    draw();
+
     if(matched.length===symbols.length){
      const points=Math.max(100,1000-moves*50);
-     area.innerHTML=`<h2>YOU WON! 🎉</h2><p>${moves} moves · ${points} points</p><button class="btn" onclick="submitScore('memory',${points})">SAVE SCORE</button><button class="btn secondary" onclick="startMemory()">PLAY AGAIN</button>`;
+
+     area.innerHTML=`
+      <h2>YOU WON! 🎉</h2>
+      <p>${moves} moves · ${points} points</p>
+      <button class="btn" onclick="submitScore('memory',${points})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startMemory()">PLAY AGAIN</button>`;
     }
-   }else setTimeout(()=>{selected=[];locked=false;draw();},800);
+
+   }else{
+    setTimeout(()=>{
+     selected=[];
+     locked=false;
+     draw();
+    },800);
+   }
   }
  }
+
  draw();
 }
 
 // ==========================================
 // UTILITIES AND STARTUP
 // ==========================================
-function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
-function closeModal(id){document.getElementById(id).classList.remove("open");}
-renderCategories();renderGames();
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+function closeModal(id){
+ document.getElementById(id).classList.remove("open");
+}
+
+renderCategories();
+renderGames();
+
 db.auth.onAuthStateChange((_event,session)=>{
  setTimeout(async()=>{
   if(session)await refreshUser();
-  else{currentUser=null;updateAccountButton();}
+  else{
+   currentUser=null;
+   updateAccountButton();
+  }
  },0);
 });
+
 (async()=>{
  await refreshUser();
  loadLeaderboard();
