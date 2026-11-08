@@ -70,7 +70,6 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <button class="btn" id="accountButton" onclick="openAccount()">Sign In</button>
  </nav>
 </header>
-
 <div class="hero" id="home">
  <div>
   <span class="tag">WELCOME TO GAMEEZ</span>
@@ -80,7 +79,6 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  </div>
  <div class="hero-art">🎮</div>
 </div>
-
 <main class="container">
 <section id="games">
  <div class="heading">
@@ -91,7 +89,6 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  <div class="games" id="gamesGrid"></div>
  <p id="noGames" class="muted" hidden>No games found.</p>
 </section>
-
 <section id="leaderboard">
  <div class="heading">
   <div><h2>🏆 Real Player Leaderboard</h2><p class="muted">Scores from registered GameEz players only.</p></div>
@@ -100,7 +97,6 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  <div class="panel" id="leaderboardList"><p class="muted">Loading real player scores...</p></div>
  <p class="muted">Only registered accounts appear. No sample players or bots are preloaded.</p>
 </section>
-
 <section id="community">
  <div class="community">
   <div><h2>💬 Join the GameEz Community</h2><p class="muted">Meet players, share scores and find people to play with.</p></div>
@@ -113,7 +109,6 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  <div class="logo">GAME<span>EZ</span></div>
  <p>© 2026 GameEz. Play Without Limits.</p>
 </footer>
-
 <div class="modal" id="accountModal">
  <div class="modal-box">
   <div class="modal-top"><h2>👤 GameEz Account</h2><button class="close" onclick="closeModal('accountModal')">✕</button></div>
@@ -127,7 +122,6 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <div class="game-area" id="gameArea"></div>
  </div>
 </div>
-
 <script>
 // ==========================================
 // GAMEEZ CONNECTION
@@ -203,18 +197,45 @@ function openAccount(){
 }
 function authMessage(msg){const el=document.getElementById("authMessage");if(el)el.textContent=msg;}
 function validUsername(s){return /^[a-zA-Z0-9_]{3,20}$/.test(s);}
+
 async function register(){
  const username=document.getElementById("username").value.trim();
  const email=document.getElementById("email").value.trim();
  const password=document.getElementById("password").value;
- if(!validUsername(username)){authMessage("Username must be 3–20 letters, numbers or underscores.");return;}
- if(!email||password.length<8){authMessage("Enter a valid email and a password of at least 8 characters.");return;}
+
+ if(!validUsername(username)){
+  authMessage("Username must be 3–20 letters, numbers or underscores.");
+  return;
+ }
+ if(!email||password.length<8){
+  authMessage("Enter a valid email and a password of at least 8 characters.");
+  return;
+ }
+
  authMessage("Creating your account...");
- const {data,error}=await db.auth.signUp({email,password,options:{data:{username}}});
- if(error){authMessage(error.message);return;}
- if(data.session){await refreshUser();authMessage("Account created! Welcome to GameEz.");}
- else{authMessage("Check your email for a verification link. Then sign in.");}
+
+ const {data,error}=await db.auth.signUp({
+  email:email,
+  password:password,
+  options:{
+   data:{username:username},
+   emailRedirectTo:"https://jonespeyton300-cloud.github.io/GameEz-Website/"
+  }
+ });
+
+ if(error){
+  authMessage(error.message);
+  return;
+ }
+
+ if(data.session){
+  await refreshUser();
+  authMessage("Account created! Welcome to GameEz.");
+ }else{
+  authMessage("Check your email for a verification link. Then sign in.");
+ }
 }
+
 async function login(){
  const email=document.getElementById("email").value.trim();
  const password=document.getElementById("password").value;
@@ -392,7 +413,6 @@ function startMemory(){
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function closeModal(id){document.getElementById(id).classList.remove("open");}
 renderCategories();renderGames();
-
 db.auth.onAuthStateChange((_event,session)=>{
  setTimeout(async()=>{
   if(session)await refreshUser();
