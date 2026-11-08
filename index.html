@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,25 +17,16 @@
  --muted:#9ba7bd;
 }
 body{
- margin:0;
- background:var(--bg);
- color:#f4f5ff;
- font-family:Arial,sans-serif;
+ margin:0;background:var(--bg);color:#f4f5ff;
+ font-family:Arial,sans-serif
 }
-button,input,select{font:inherit}
+button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 header{
- min-height:72px;
- padding:12px 5%;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:15px;
- background:#0d1220;
- border-bottom:1px solid #263147;
- position:sticky;
- top:0;
- z-index:5;
+ min-height:72px;padding:12px 5%;display:flex;
+ align-items:center;justify-content:space-between;
+ gap:15px;background:#0d1220;border-bottom:1px solid #263147;
+ position:sticky;top:0;z-index:5
 }
 .logo{font-size:28px;font-weight:900}
 .logo span{color:var(--cyan)}
@@ -43,366 +35,175 @@ nav a{color:#cbd5e1;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--cyan)}
 .btn{
  background:linear-gradient(100deg,#9333ea,#2563eb);
- color:white;
- border:0;
- border-radius:8px;
- padding:12px 18px;
- font-weight:bold;
+ color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold
 }
 .btn:hover{filter:brightness(1.2)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .secondary{background:#202b40;border:1px solid #34445e}
 .danger{background:#7f1d1d;border:1px solid #b91c1c}
-.admin-btn{
- background:linear-gradient(100deg,#7c3aed,#0891b2);
- border:1px solid #22d3ee;
-}
+.admin-btn{background:linear-gradient(100deg,#7c3aed,#0891b2);border:1px solid #22d3ee}
 .container{width:90%;max-width:1200px;margin:auto}
 .hero{
- padding:75px 7%;
- min-height:360px;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:25px;
+ padding:75px 7%;min-height:360px;display:flex;
+ justify-content:space-between;align-items:center;gap:25px;
  background:
  radial-gradient(ellipse at 80% 40%,#5722a855,transparent 45%),
- radial-gradient(ellipse at 20% 80%,#087caa33,transparent 45%),
- #101728;
+ radial-gradient(ellipse at 20% 80%,#087caa33,transparent 45%),#101728
 }
 .hero h1{font-size:clamp(42px,6vw,70px);margin:12px 0}
 .hero h1 span{
  background:linear-gradient(90deg,#c084fc,#22d3ee);
- background-clip:text;
- color:transparent;
+ background-clip:text;color:transparent
 }
 .hero p{color:#bac6da;line-height:1.7;max-width:520px}
 .hero-art{font-size:130px;filter:drop-shadow(0 0 30px #a855f788)}
 section{padding:38px 0}
 .heading{
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:15px;
- flex-wrap:wrap;
- margin-bottom:20px;
+ display:flex;align-items:center;justify-content:space-between;
+ gap:15px;flex-wrap:wrap;margin-bottom:20px
 }
 h2{margin:0 0 8px}
 .muted{color:var(--muted);font-size:13px}
 .search{
- width:100%;
- max-width:330px;
- padding:13px;
- background:#141d2e;
- border:1px solid #334155;
- color:white;
- border-radius:8px;
+ width:100%;max-width:330px;padding:13px;background:#141d2e;
+ border:1px solid #334155;color:white;border-radius:8px
 }
 .categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
 .category{
- padding:9px 15px;
- border:1px solid #34445e;
- background:#141d2e;
- color:#cbd5e1;
- border-radius:30px;
+ padding:9px 15px;border:1px solid #34445e;background:#141d2e;
+ color:#cbd5e1;border-radius:30px
 }
 .category.active,.category:hover{border-color:var(--cyan);color:var(--cyan)}
-.games{
- display:grid;
- grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
- gap:18px;
-}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
 .game-card{
- background:var(--panel);
- border:1px solid #263147;
- border-radius:12px;
- overflow:hidden;
- transition:.2s;
+ background:var(--panel);border:1px solid #263147;
+ border-radius:12px;overflow:hidden;transition:.2s
 }
 .game-card:hover{border-color:var(--purple);transform:translateY(-3px)}
 .game-art{
- height:135px;
- display:grid;
- place-items:center;
- font-size:65px;
- background:linear-gradient(135deg,#282052,#102b42);
+ height:135px;display:grid;place-items:center;font-size:65px;
+ background:linear-gradient(135deg,#282052,#102b42)
 }
 .game-info{padding:15px}
 .game-info h3{margin:8px 0}
 .game-info p{font-size:12px;color:var(--muted)}
 .game-info button{width:100%;margin-top:8px}
-.tag{
- font-size:10px;
- padding:5px 8px;
- background:#282044;
- color:#d8b4fe;
- border-radius:5px;
-}
-.panel{
- background:var(--panel);
- border:1px solid #263147;
- border-radius:12px;
- padding:20px;
-}
+.tag{font-size:10px;padding:5px 8px;background:#282044;color:#d8b4fe;border-radius:5px}
+.panel{background:var(--panel);border:1px solid #263147;border-radius:12px;padding:20px}
 .leader-row{
- display:flex;
- justify-content:space-between;
- align-items:center;
- padding:14px;
- border-bottom:1px solid #263147;
- gap:10px;
+ display:flex;justify-content:space-between;align-items:center;
+ padding:14px;border-bottom:1px solid #263147;gap:10px
 }
 .leader-row:last-child{border:0}
 .rank{color:var(--cyan);font-weight:bold;margin-right:12px}
 .leader-score{color:var(--cyan);font-weight:bold}
 .leader-select{
- min-width:210px;
- padding:12px;
- background:#141d2e;
- border:1px solid #46536a;
- color:white;
- border-radius:8px;
+ min-width:210px;padding:12px;background:#141d2e;
+ border:1px solid #46536a;color:white;border-radius:8px
 }
 .player-link{
- border:0;
- background:none;
- color:#e9d5ff;
- padding:0;
- text-align:left;
- font-weight:bold;
+ border:0;background:none;color:#e9d5ff;padding:0;
+ text-align:left;font-weight:bold
 }
 .player-link:hover{color:var(--cyan);text-decoration:underline}
 .avatar{
- width:54px;
- height:54px;
- border-radius:50%;
- display:grid;
- place-items:center;
- background:#282044;
- border:2px solid #a855f7;
- font-size:30px;
- flex-shrink:0;
+ width:54px;height:54px;border-radius:50%;display:grid;
+ place-items:center;background:#282044;border:2px solid #a855f7;
+ font-size:30px;flex-shrink:0
 }
 .profile-top{display:flex;align-items:center;gap:15px;margin:18px 0}
-.stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:10px;
- margin:20px 0;
-}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
 .stat{
- background:#182338;
- border:1px solid #2d3b53;
- padding:15px;
- border-radius:9px;
- text-align:center;
+ background:#182338;border:1px solid #2d3b53;
+ padding:15px;border-radius:9px;text-align:center
 }
-.stat strong{
- display:block;
- font-size:23px;
- color:var(--cyan);
- margin-bottom:5px;
-}
+.stat strong{display:block;font-size:23px;color:var(--cyan);margin-bottom:5px}
 .stat span{font-size:11px;color:var(--muted)}
 .avatar-picker{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
 .avatar-choice{
- width:43px;
- height:43px;
- font-size:23px;
- border-radius:9px;
- border:1px solid #46536a;
- background:#202b40;
+ width:43px;height:43px;font-size:23px;border-radius:9px;
+ border:1px solid #46536a;background:#202b40
 }
-.avatar-choice.selected{
- border:2px solid var(--cyan);
- background:#283b55;
-}
+.avatar-choice.selected{border:2px solid var(--cyan);background:#283b55}
 .community{
- padding:32px;
- background:linear-gradient(120deg,#25134b,#102b43);
- border:1px solid #493778;
- border-radius:14px;
- display:flex;
- align-items:center;
- justify-content:space-between;
- gap:20px;
- flex-wrap:wrap;
+ padding:32px;background:linear-gradient(120deg,#25134b,#102b43);
+ border:1px solid #493778;border-radius:14px;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap
 }
 .modal{
- display:none;
- position:fixed;
- inset:0;
- background:#000c;
- z-index:20;
- align-items:center;
- justify-content:center;
- padding:15px;
+ display:none;position:fixed;inset:0;background:#000c;z-index:20;
+ align-items:center;justify-content:center;padding:15px
 }
 .modal.open{display:flex}
 .modal-box{
- width:100%;
- max-width:550px;
- max-height:90vh;
- overflow:auto;
- background:#111827;
- border:1px solid #6542a5;
- border-radius:14px;
- padding:24px;
+ width:100%;max-width:550px;max-height:90vh;overflow:auto;
+ background:#111827;border:1px solid #6542a5;border-radius:14px;padding:24px
 }
-.modal-box.wide{max-width:1050px}
-.modal-top{
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:12px;
+.modal-box.wide{max-width:1100px}
+.modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.close{background:#293449;color:white;border:0;border-radius:7px;padding:9px}
+.modal input,.modal select,.modal textarea,.game-area input{
+ width:100%;padding:12px;margin:8px 0 15px;background:#202b40;
+ border:1px solid #46536a;border-radius:7px;color:white
 }
-.close{
- background:#293449;
- color:white;
- border:0;
- border-radius:7px;
- padding:9px;
-}
-.modal input,.game-area input{
- width:100%;
- padding:12px;
- margin:8px 0 15px;
- background:#202b40;
- border:1px solid #46536a;
- border-radius:7px;
- color:white;
-}
+.modal textarea{min-height:90px;resize:vertical}
 .modal label{font-size:13px;color:#cbd5e1}
 .game-area{
- background:#080b14;
- border-radius:10px;
- padding:20px;
- text-align:center;
- margin-top:15px;
- min-height:190px;
+ background:#080b14;border-radius:10px;padding:20px;
+ text-align:center;margin-top:15px;min-height:190px
 }
 .game-area button{margin:6px}
 .status{font-size:13px;color:var(--cyan);margin:12px 0}
-.best-row{
- display:flex;
- justify-content:space-between;
- gap:10px;
- padding:11px 4px;
- border-bottom:1px solid #263147;
-}
+.best-row{display:flex;justify-content:space-between;gap:10px;padding:11px 4px;border-bottom:1px solid #263147}
 .best-row:last-child{border:0}
 
 /* ADMIN DASHBOARD */
 .admin-header{
- display:flex;
- justify-content:space-between;
- align-items:center;
- flex-wrap:wrap;
- gap:12px;
- margin:18px 0;
+ display:flex;justify-content:space-between;align-items:center;
+ flex-wrap:wrap;gap:12px;margin:18px 0
 }
-.admin-stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px;
- margin:20px 0;
-}
-.admin-stat{
- background:#182338;
- border:1px solid #34445e;
- border-radius:10px;
- padding:17px;
-}
-.admin-stat strong{
- display:block;
- font-size:26px;
- color:var(--cyan);
- margin-bottom:5px;
-}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.admin-stat{background:#182338;border:1px solid #34445e;border-radius:10px;padding:17px}
+.admin-stat strong{display:block;font-size:26px;color:var(--cyan);margin-bottom:5px}
 .admin-stat span{font-size:12px;color:var(--muted)}
-.admin-tabs{
- display:flex;
- gap:8px;
- flex-wrap:wrap;
- margin:20px 0;
-}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
 .admin-tab{
- background:#202b40;
- border:1px solid #46536a;
- color:#cbd5e1;
- padding:10px 15px;
- border-radius:7px;
+ background:#202b40;border:1px solid #46536a;color:#cbd5e1;
+ padding:10px 15px;border-radius:7px
 }
-.admin-tab.active{
- border-color:var(--cyan);
- color:var(--cyan);
-}
+.admin-tab.active{border-color:var(--cyan);color:var(--cyan)}
 .admin-search{
- width:100%;
- padding:12px;
- margin:10px 0 15px;
- background:#202b40;
- border:1px solid #46536a;
- border-radius:7px;
- color:white;
+ width:100%;padding:12px;margin:10px 0 15px;background:#202b40;
+ border:1px solid #46536a;border-radius:7px;color:white
 }
-.admin-table-wrap{
- overflow-x:auto;
- border:1px solid #263147;
- border-radius:9px;
-}
-.admin-table{
- width:100%;
- border-collapse:collapse;
- min-width:600px;
- font-size:13px;
-}
-.admin-table th,.admin-table td{
- text-align:left;
- padding:12px;
- border-bottom:1px solid #263147;
-}
-.admin-table th{
- color:var(--cyan);
- background:#182338;
-}
+.admin-table-wrap{overflow-x:auto;border:1px solid #263147;border-radius:9px}
+.admin-table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px}
+.admin-table th,.admin-table td{text-align:left;padding:12px;border-bottom:1px solid #263147}
+.admin-table th{color:var(--cyan);background:#182338}
 .admin-table tr:last-child td{border-bottom:0}
 .admin-table td{color:#dbe3f1}
 .admin-empty{padding:20px;color:var(--muted);text-align:center}
 .admin-note{
- padding:12px;
- background:#172b3c;
- border:1px solid #24516a;
- border-radius:8px;
- color:#bae6fd;
- font-size:12px;
- margin:15px 0;
+ padding:12px;background:#172b3c;border:1px solid #24516a;
+ border-radius:8px;color:#bae6fd;font-size:12px;margin:15px 0
 }
 .admin-section{display:none}
 .admin-section.active{display:block}
-.admin-delete{
- padding:7px 10px;
- border:0;
- border-radius:6px;
- background:#7f1d1d;
- color:white;
- font-size:12px;
+.admin-delete,.small-danger,.small-action{
+ padding:7px 10px;border:0;border-radius:6px;color:white;font-size:12px;margin:2px
 }
-footer{
- text-align:center;
- padding:30px;
- color:var(--muted);
- border-top:1px solid #263147;
- font-size:13px;
-}
-@media(max-width:650px){
- nav{gap:8px}
- nav a{display:none}
- .hero-art{font-size:75px}
- .hero{padding:55px 7%}
- .stats,.admin-stats{grid-template-columns:1fr}
+.admin-delete,.small-danger{background:#7f1d1d}
+.small-action{background:#174c68}
+.ban-pill{font-size:11px;color:#fecaca;background:#571c28;padding:5px 8px;border-radius:5px}
+.good-pill{font-size:11px;color:#bbf7d0;background:#14532d;padding:5px 8px;border-radius:5px}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #263147;font-size:13px}
+@media(max-width:750px){
+ nav{gap:8px}nav a{display:none}.hero-art{font-size:75px}
+ .hero{padding:55px 7%}.stats,.admin-stats{grid-template-columns:repeat(2,1fr)}
  .modal-box{padding:17px}
 }
+@media(max-width:430px){.stats,.admin-stats{grid-template-columns:1fr}}
 </style>
 </head>
 
@@ -415,15 +216,7 @@ footer{
   <a href="#games">Games</a>
   <a href="#leaderboard">Leaderboard</a>
   <a href="#community">Community</a>
-
-  <button
-   class="btn admin-btn"
-   id="adminButton"
-   onclick="openAdmin()"
-   style="display:none">
-   🛡️ ADMIN
-  </button>
-
+  <button class="btn admin-btn" id="adminButton" onclick="openAdmin()" style="display:none">🛡️ ADMIN</button>
   <button class="btn" id="accountButton" onclick="openAccount()">Sign In</button>
  </nav>
 </header>
@@ -433,24 +226,17 @@ footer{
   <span class="tag">WELCOME TO GAMEEZ</span>
   <h1>PLAY MORE.<br><span>WIN BIGGER.</span></h1>
   <p>Discover browser games, challenge yourself, climb the leaderboards and join the GameEz community.</p>
-  <button class="btn" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
-   EXPLORE GAMES →
-  </button>
+  <button class="btn" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">EXPLORE GAMES →</button>
  </div>
  <div class="hero-art">🎮</div>
 </div>
 
 <main class="container">
-
 <section id="games">
  <div class="heading">
-  <div>
-   <h2>🎮 Game Library</h2>
-   <p class="muted">Choose your next challenge.</p>
-  </div>
+  <div><h2>🎮 Game Library</h2><p class="muted">Choose your next challenge.</p></div>
   <input class="search" id="search" placeholder="🔍 Search games..." oninput="renderGames()">
  </div>
-
  <div class="categories" id="categories"></div>
  <div class="games" id="gamesGrid"></div>
  <p id="noGames" class="muted" hidden>No games found.</p>
@@ -458,46 +244,29 @@ footer{
 
 <section id="leaderboard">
  <div class="heading">
-  <div>
-   <h2>🏆 Game Leaderboards</h2>
-   <p class="muted">Compete separately in each game.</p>
-  </div>
+  <div><h2>🏆 Game Leaderboards</h2><p class="muted">Compete separately in each game.</p></div>
   <button class="btn secondary" onclick="loadLeaderboard()">↻ Refresh</button>
  </div>
-
  <div class="panel">
-  <label for="leaderboardGame" class="muted">SELECT A GAME</label>
-  <br><br>
-
+  <label for="leaderboardGame" class="muted">SELECT A GAME</label><br><br>
   <select id="leaderboardGame" class="leader-select" onchange="loadLeaderboard()">
    <option value="clicker">🟣 Neon Clicker</option>
    <option value="reaction">⚡ Reaction Rush</option>
    <option value="guess">🔢 Number Hunter</option>
    <option value="memory">🧠 Memory Match</option>
   </select>
-
   <h3 id="leaderboardTitle" style="margin-top:24px">🟣 Neon Clicker Rankings</h3>
   <div id="leaderboardList"><p class="muted">Loading scores...</p></div>
  </div>
-
- <p class="muted">
-  Each player appears once per game, using their highest recorded score.
-  Click a player's name to view their profile.
- </p>
+ <p class="muted">Each player appears once per game, using their highest recorded score. Click a player's name to view their profile.</p>
 </section>
 
 <section id="community">
  <div class="community">
-  <div>
-   <h2>💬 Join the GameEz Community</h2>
-   <p class="muted">Meet players, share scores and find people to play with.</p>
-  </div>
-  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer">
-   <button class="btn">JOIN DISCORD →</button>
-  </a>
+  <div><h2>💬 Join the GameEz Community</h2><p class="muted">Meet players, share scores and find people to play with.</p></div>
+  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer"><button class="btn">JOIN DISCORD →</button></a>
  </div>
 </section>
-
 </main>
 
 <footer>
@@ -508,10 +277,7 @@ footer{
 <!-- ACCOUNT MODAL -->
 <div class="modal" id="accountModal">
  <div class="modal-box">
-  <div class="modal-top">
-   <h2>👤 GameEz Account</h2>
-   <button class="close" onclick="closeModal('accountModal')">✕</button>
-  </div>
+  <div class="modal-top"><h2>👤 GameEz Account</h2><button class="close" onclick="closeModal('accountModal')">✕</button></div>
   <div id="accountContent"></div>
  </div>
 </div>
@@ -519,10 +285,7 @@ footer{
 <!-- PROFILE MODAL -->
 <div class="modal" id="profileModal">
  <div class="modal-box">
-  <div class="modal-top">
-   <h2>🎮 Player Profile</h2>
-   <button class="close" onclick="closeModal('profileModal')">✕</button>
-  </div>
+  <div class="modal-top"><h2>🎮 Player Profile</h2><button class="close" onclick="closeModal('profileModal')">✕</button></div>
   <div id="profileContent"><p class="muted">Loading profile...</p></div>
  </div>
 </div>
@@ -530,105 +293,101 @@ footer{
 <!-- GAME MODAL -->
 <div class="modal" id="gameModal">
  <div class="modal-box">
-  <div class="modal-top">
-   <h2 id="gameTitle">Game</h2>
-   <button class="close" onclick="closeModal('gameModal')">✕</button>
-  </div>
+  <div class="modal-top"><h2 id="gameTitle">Game</h2><button class="close" onclick="closeModal('gameModal')">✕</button></div>
   <div class="game-area" id="gameArea"></div>
  </div>
 </div>
 
-<!-- ADMIN DASHBOARD MODAL -->
+<!-- BAN PLAYER MODAL -->
+<div class="modal" id="banModal">
+ <div class="modal-box">
+  <div class="modal-top"><h2>🚫 Ban Player</h2><button class="close" onclick="closeModal('banModal')">✕</button></div>
+  <p class="muted" id="banTargetName">Select a player</p>
+  <input type="hidden" id="banTargetId">
+  <label for="banDuration">Ban duration</label>
+  <select id="banDuration">
+   <option value="1h">1 hour</option>
+   <option value="24h">24 hours</option>
+   <option value="7d">7 days</option>
+   <option value="30d">30 days</option>
+   <option value="permanent">Permanent</option>
+  </select>
+  <label for="banReason">Reason for ban</label>
+  <textarea id="banReason" maxlength="500" placeholder="Explain why this player is being banned..."></textarea>
+  <p class="muted">The reason is saved in the moderation history. Maximum 500 characters.</p>
+  <div class="modal-actions">
+   <button class="btn danger" id="confirmBanButton" onclick="confirmBan()">CONFIRM BAN</button>
+   <button class="btn secondary" onclick="closeModal('banModal')">CANCEL</button>
+  </div>
+  <p id="banMessage" class="status"></p>
+ </div>
+</div>
+
+<!-- ADMIN DASHBOARD -->
 <div class="modal" id="adminModal">
  <div class="modal-box wide">
   <div class="modal-top">
-   <div>
-    <h2>🛡️ GameEz Admin Dashboard</h2>
-    <p class="muted">Owner control panel</p>
-   </div>
+   <div><h2>🛡️ GameEz Admin Dashboard</h2><p class="muted">Owner control panel</p></div>
    <button class="close" onclick="closeModal('adminModal')">✕</button>
   </div>
 
   <div class="admin-note">
-   Owner-only dashboard. Only your authorized GameEz account should have access.
-   Changes to leaderboard scores are permanent.
+   Owner-only dashboard. Ban actions are processed through your secured Supabase Edge Function. Score deletions are permanent.
   </div>
 
   <div class="admin-header">
-   <div>
-    <strong id="adminWelcome">Administrator</strong>
-    <p class="muted">GameEz control center</p>
-   </div>
+   <div><strong id="adminWelcome">Administrator</strong><p class="muted">GameEz control center</p></div>
    <button class="btn secondary" onclick="loadAdminDashboard()">↻ Refresh Dashboard</button>
   </div>
 
   <div class="admin-stats">
-   <div class="admin-stat">
-    <strong id="adminPlayerCount">—</strong>
-    <span>PLAYERS LOADED</span>
-   </div>
-   <div class="admin-stat">
-    <strong id="adminScoreCount">—</strong>
-    <span>SCORES LOADED</span>
-   </div>
-   <div class="admin-stat">
-    <strong id="adminGameCount">4</strong>
-    <span>PLAYABLE GAMES</span>
-   </div>
+   <div class="admin-stat"><strong id="adminPlayerCount">—</strong><span>PLAYERS LOADED</span></div>
+   <div class="admin-stat"><strong id="adminScoreCount">—</strong><span>SCORES LOADED</span></div>
+   <div class="admin-stat"><strong id="adminBanCount">—</strong><span>ACTIVE BANS</span></div>
+   <div class="admin-stat"><strong>4</strong><span>PLAYABLE GAMES</span></div>
   </div>
 
   <div class="admin-tabs">
    <button class="admin-tab active" onclick="showAdminTab('players',this)">👥 Players</button>
    <button class="admin-tab" onclick="showAdminTab('scores',this)">🏆 Scores</button>
+   <button class="admin-tab" onclick="showAdminTab('bans',this)">🚫 Moderation History</button>
   </div>
 
+  <!-- PLAYERS -->
   <div id="adminPlayersSection" class="admin-section active">
    <h3>Player Management</h3>
-   <p class="muted">View registered GameEz player profiles.</p>
-   <input
-    class="admin-search"
-    id="adminPlayerSearch"
-    placeholder="Search players..."
-    oninput="filterAdminTables()">
+   <p class="muted">Search accounts, inspect profiles, and manage player bans.</p>
+   <input class="admin-search" id="adminPlayerSearch" placeholder="Search players by username or ID..." oninput="filterAdminTables()">
    <div class="admin-table-wrap">
     <table class="admin-table">
-     <thead>
-      <tr>
-       <th>Username</th>
-       <th>Player ID</th>
-       <th>Avatar</th>
-       <th>Joined</th>
-      </tr>
-     </thead>
-     <tbody id="adminPlayersBody">
-      <tr><td colspan="4" class="admin-empty">Loading players...</td></tr>
-     </tbody>
+     <thead><tr><th>Username</th><th>Player ID</th><th>Avatar</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+     <tbody id="adminPlayersBody"><tr><td colspan="6" class="admin-empty">Loading players...</td></tr></tbody>
     </table>
    </div>
   </div>
 
+  <!-- SCORES -->
   <div id="adminScoresSection" class="admin-section">
    <h3>Leaderboard Management</h3>
    <p class="muted">Review scores and remove individual leaderboard entries.</p>
-   <input
-    class="admin-search"
-    id="adminScoreSearch"
-    placeholder="Search scores, players, or games..."
-    oninput="filterAdminTables()">
+   <input class="admin-search" id="adminScoreSearch" placeholder="Search scores, players, or games..." oninput="filterAdminTables()">
    <div class="admin-table-wrap">
     <table class="admin-table">
-     <thead>
-      <tr>
-       <th>Player</th>
-       <th>Game</th>
-       <th>Score</th>
-       <th>Date</th>
-       <th>Action</th>
-      </tr>
-     </thead>
-     <tbody id="adminScoresBody">
-      <tr><td colspan="5" class="admin-empty">Loading scores...</td></tr>
-     </tbody>
+     <thead><tr><th>Player</th><th>Game</th><th>Score</th><th>Date</th><th>Action</th></tr></thead>
+     <tbody id="adminScoresBody"><tr><td colspan="5" class="admin-empty">Loading scores...</td></tr></tbody>
+    </table>
+   </div>
+  </div>
+
+  <!-- MODERATION HISTORY -->
+  <div id="adminBansSection" class="admin-section">
+   <h3>Moderation History</h3>
+   <p class="muted">Review active bans, expired bans, and bans that have been lifted.</p>
+   <input class="admin-search" id="adminBanSearch" placeholder="Search moderation history..." oninput="filterAdminTables()">
+   <div class="admin-table-wrap">
+    <table class="admin-table">
+     <thead><tr><th>Player</th><th>Reason</th><th>Duration</th><th>Issued</th><th>Expires</th><th>Status</th><th>Action</th></tr></thead>
+     <tbody id="adminBansBody"><tr><td colspan="7" class="admin-empty">Loading moderation history...</td></tr></tbody>
     </table>
    </div>
   </div>
@@ -644,76 +403,23 @@ footer{
 
 const SUPABASE_URL="https://aadceyhpnrpgnjnsepqx.supabase.co";
 const SUPABASE_KEY="sb_publishable_7_3z855GbffIY3jqJcN9Pg_f87NbNiS";
+const GAMEEZ_OWNER_ID="a3ea315e-c551-4212-9f49-363b3b392f95";
 
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-
-// This is the only account authorized as the GameEz owner.
-const GAMEEZ_OWNER_ID="a3ea315e-c551-4212-9f49-363b3b392f95";
 
 // ==========================================
 // GAME DATA
 // ==========================================
 
 const games=[
- {
-  id:"clicker",
-  name:"Neon Clicker",
-  category:"Arcade",
-  emoji:"🟣",
-  description:"Click as fast as you can in 10 seconds!",
-  featured:true
- },
- {
-  id:"reaction",
-  name:"Reaction Rush",
-  category:"Arcade",
-  emoji:"⚡",
-  description:"Test your reaction speed.",
-  featured:true
- },
- {
-  id:"guess",
-  name:"Number Hunter",
-  category:"Puzzle",
-  emoji:"🔢",
-  description:"Find the secret number.",
-  featured:true
- },
- {
-  id:"memory",
-  name:"Memory Match",
-  category:"Puzzle",
-  emoji:"🧠",
-  description:"Match the symbols."
- },
- {
-  id:"racer",
-  name:"Street Racer",
-  category:"Racing",
-  emoji:"🏎️",
-  description:"Coming soon!"
- },
- {
-  id:"city",
-  name:"City Simulator",
-  category:"Simulation",
-  emoji:"🏙️",
-  description:"Coming soon!"
- },
- {
-  id:"space",
-  name:"Space Battle",
-  category:"Action",
-  emoji:"🚀",
-  description:"Coming soon!"
- },
- {
-  id:"zombie",
-  name:"Zombie Survival",
-  category:"Action",
-  emoji:"🧟",
-  description:"Coming soon!"
- }
+ {id:"clicker",name:"Neon Clicker",category:"Arcade",emoji:"🟣",description:"Click as fast as you can in 10 seconds!",featured:true},
+ {id:"reaction",name:"Reaction Rush",category:"Arcade",emoji:"⚡",description:"Test your reaction speed.",featured:true},
+ {id:"guess",name:"Number Hunter",category:"Puzzle",emoji:"🔢",description:"Find the secret number.",featured:true},
+ {id:"memory",name:"Memory Match",category:"Puzzle",emoji:"🧠",description:"Match the symbols."},
+ {id:"racer",name:"Street Racer",category:"Racing",emoji:"🏎️",description:"Coming soon!"},
+ {id:"city",name:"City Simulator",category:"Simulation",emoji:"🏙️",description:"Coming soon!"},
+ {id:"space",name:"Space Battle",category:"Action",emoji:"🚀",description:"Coming soon!"},
+ {id:"zombie",name:"Zombie Survival",category:"Action",emoji:"🧟",description:"Coming soon!"}
 ];
 
 const categories=["All","Arcade","Puzzle","Racing","Simulation","Action"];
@@ -725,18 +431,14 @@ const gameNames={
  memory:"🧠 Memory Match"
 };
 
-const avatars=[
- "🎮","👾","🚀","🐉","🦊","🐼","🐸","🤖",
- "👻","🐺","🦄","🔥","⚡","🧙","🦖","🐱"
-];
+const avatars=["🎮","👾","🚀","🐉","🦊","🐼","🐸","🤖","👻","🐺","🦄","🔥","⚡","🧙","🦖","🐱"];
 
 let activeCategory="All";
 let currentUser=null;
-let selectedAvatar="🎮";
 let isGameEzAdmin=false;
-
 let adminPlayers=[];
 let adminScores=[];
+let adminBans=[];
 
 // ==========================================
 // GAME LIBRARY
@@ -744,8 +446,7 @@ let adminScores=[];
 
 function renderCategories(){
  document.getElementById("categories").innerHTML=categories.map(c=>
-  `<button class="category ${activeCategory===c?"active":""}"
-   onclick="setCategory('${c}')">${c}</button>`
+  `<button class="category ${activeCategory===c?"active":""}" onclick="setCategory('${c}')">${c}</button>`
  ).join("");
 }
 
@@ -757,7 +458,6 @@ function setCategory(c){
 
 function renderGames(){
  const q=document.getElementById("search").value.toLowerCase();
-
  const list=games.filter(g=>
   (activeCategory==="All"||g.category===activeCategory)&&
   (g.name.toLowerCase().includes(q)||g.category.toLowerCase().includes(q))
@@ -768,9 +468,7 @@ function renderGames(){
    <div class="game-art">${g.emoji}</div>
    <div class="game-info">
     ${g.featured?'<span class="tag">FEATURED</span>':''}
-    <h3>${g.name}</h3>
-    <p>${g.description}</p>
-    <p>📁 ${g.category}</p>
+    <h3>${g.name}</h3><p>${g.description}</p><p>📁 ${g.category}</p>
     <button class="btn" onclick="launchGame('${g.id}')">
      ${["racer","city","space","zombie"].includes(g.id)?"COMING SOON":"PLAY NOW →"}
     </button>
@@ -792,31 +490,22 @@ function openAccount(){
   box.innerHTML=`
    <div class="profile-top">
     <div class="avatar">${escapeHTML(currentUser.avatar)}</div>
-    <div>
-     <strong>${escapeHTML(currentUser.username)}</strong>
-     <p class="muted">${escapeHTML(currentUser.email)}</p>
-    </div>
+    <div><strong>${escapeHTML(currentUser.username)}</strong><p class="muted">${escapeHTML(currentUser.email)}</p></div>
    </div>
-
    <button class="btn" onclick="showProfile(currentUser.id)">VIEW MY PROFILE</button>
    <button class="btn secondary" onclick="logout()">LOG OUT</button>
   `;
  }else{
   box.innerHTML=`
    <p class="muted">Create an account or sign in to play and compete.</p>
-
    <label>Username (for registration)</label>
    <input id="username" maxlength="20" placeholder="Choose a username">
-
    <label>Email address</label>
    <input id="email" type="email" placeholder="you@example.com">
-
    <label>Password</label>
    <input id="password" type="password" placeholder="At least 8 characters">
-
    <button class="btn" onclick="register()">CREATE ACCOUNT</button>
    <button class="btn secondary" onclick="login()">SIGN IN</button>
-
    <p id="authMessage" class="status"></p>
    <p class="muted">Registration may require email verification before you can sign in.</p>
   `;
@@ -843,7 +532,6 @@ async function register(){
   authMessage("Username must be 3–20 letters, numbers or underscores.");
   return;
  }
-
  if(!email||password.length<8){
   authMessage("Enter a valid email and a password of at least 8 characters.");
   return;
@@ -852,18 +540,14 @@ async function register(){
  authMessage("Creating your account...");
 
  const {data,error}=await db.auth.signUp({
-  email,
-  password,
+  email,password,
   options:{
    data:{username},
    emailRedirectTo:"https://jonespeyton300-cloud.github.io/GameEz-Website/"
   }
  });
 
- if(error){
-  authMessage(error.message);
-  return;
- }
+ if(error){authMessage(error.message);return;}
 
  if(data.session){
   await refreshUser();
@@ -877,19 +561,13 @@ async function login(){
  const email=document.getElementById("email").value.trim();
  const password=document.getElementById("password").value;
 
- if(!email||!password){
-  authMessage("Enter your email and password.");
-  return;
- }
+ if(!email||!password){authMessage("Enter your email and password.");return;}
 
  authMessage("Signing in...");
 
  const {error}=await db.auth.signInWithPassword({email,password});
 
- if(error){
-  authMessage(error.message);
-  return;
- }
+ if(error){authMessage(error.message);return;}
 
  await refreshUser();
  openAccount();
@@ -897,12 +575,9 @@ async function login(){
 
 async function logout(){
  await db.auth.signOut();
-
  currentUser=null;
  isGameEzAdmin=false;
-
  updateAccountButton();
-
  closeModal("accountModal");
  closeModal("profileModal");
  closeModal("adminModal");
@@ -923,9 +598,7 @@ async function refreshUser(){
   .eq("id",user.id)
   .maybeSingle();
 
- if(profileError){
-  console.error("Profile lookup:",profileError.message);
- }
+ if(profileError)console.error("Profile lookup:",profileError.message);
 
  currentUser={
   id:user.id,
@@ -934,20 +607,13 @@ async function refreshUser(){
   avatar:profile?.avatar_emoji||"🎮"
  };
 
- // Verify admin membership using the protected admin table.
- // The owner ID is also checked as an additional restriction.
  isGameEzAdmin=false;
 
  if(user.id===GAMEEZ_OWNER_ID){
   const {data:adminRecord,error:adminError}=await db.from("gameez_admins")
-   .select("user_id")
-   .eq("user_id",user.id)
-   .maybeSingle();
+   .select("user_id").eq("user_id",user.id).maybeSingle();
 
-  if(adminError){
-   console.error("Admin lookup:",adminError.message);
-  }
-
+  if(adminError)console.error("Admin lookup:",adminError.message);
   isGameEzAdmin=!!adminRecord;
  }
 
@@ -958,13 +624,8 @@ function updateAccountButton(){
  const accountButton=document.getElementById("accountButton");
  const adminButton=document.getElementById("adminButton");
 
- if(accountButton){
-  accountButton.textContent=currentUser?currentUser.username:"Sign In";
- }
-
- if(adminButton){
-  adminButton.style.display=isGameEzAdmin?"inline-block":"none";
- }
+ if(accountButton)accountButton.textContent=currentUser?currentUser.username:"Sign In";
+ if(adminButton)adminButton.style.display=isGameEzAdmin?"inline-block":"none";
 }
 
 // ==========================================
@@ -984,14 +645,8 @@ async function showProfile(userId){
   {data:profile,error:profileError},
   {data:scores,error:scoreError}
  ]=await Promise.all([
-  db.from("profiles")
-   .select("id,username,avatar_emoji,created_at")
-   .eq("id",userId)
-   .maybeSingle(),
-
-  db.from("scores")
-   .select("score,game_id,created_at")
-   .eq("user_id",userId)
+  db.from("profiles").select("id,username,avatar_emoji,created_at").eq("id",userId).maybeSingle(),
+  db.from("scores").select("score,game_id,created_at").eq("user_id",userId)
  ]);
 
  if(profileError||!profile){
@@ -1000,37 +655,23 @@ async function showProfile(userId){
  }
 
  if(scoreError){
-  box.innerHTML='<p class="muted">Could not load player statistics: '+
-   escapeHTML(scoreError.message)+'</p>';
+  box.innerHTML='<p class="muted">Could not load player statistics: '+escapeHTML(scoreError.message)+'</p>';
   return;
  }
 
  const rows=scores||[];
  const totalGames=rows.length;
-
- const totalPoints=rows.reduce(
-  (sum,s)=>sum+Number(s.score||0),
-  0
- );
-
+ const totalPoints=rows.reduce((sum,s)=>sum+Number(s.score||0),0);
  const bestByGame={};
 
  rows.forEach(s=>{
-  if(
-   !bestByGame[s.game_id]||
-   Number(s.score)>Number(bestByGame[s.game_id])
-  ){
+  if(!bestByGame[s.game_id]||Number(s.score)>Number(bestByGame[s.game_id])){
    bestByGame[s.game_id]=Number(s.score);
   }
  });
 
  const bestRows=Object.entries(gameNames).map(([id,name])=>`
-  <div class="best-row">
-   <span>${name}</span>
-   <strong>
-    ${bestByGame[id]===undefined?"—":bestByGame[id].toLocaleString()+" pts"}
-   </strong>
-  </div>
+  <div class="best-row"><span>${name}</span><strong>${bestByGame[id]===undefined?"—":bestByGame[id].toLocaleString()+" pts"}</strong></div>
  `).join("");
 
  const isOwnProfile=currentUser&&currentUser.id===userId;
@@ -1045,54 +686,28 @@ async function showProfile(userId){
     <p class="muted">Joined ${new Date(profile.created_at).toLocaleDateString()}</p>
    </div>
   </div>
-
   ${isOwnProfile?`
    <h3>Choose your avatar</h3>
    <p class="muted">Pick an emoji to represent your player profile.</p>
-
    <div class="avatar-picker">
-    ${avatars.map(a=>`
-     <button
-      class="avatar-choice ${a===avatar?"selected":""}"
-      onclick="updateAvatar('${a}')"
-      title="Choose ${a}">
-      ${a}
-     </button>
-    `).join("")}
+    ${avatars.map(a=>`<button class="avatar-choice ${a===avatar?"selected":""}" onclick="updateAvatar('${a}')" title="Choose ${a}">${a}</button>`).join("")}
    </div>
-
    <p id="avatarMessage" class="status"></p>
   `:""}
-
   <div class="stats">
-   <div class="stat">
-    <strong>${totalGames}</strong>
-    <span>GAMES PLAYED</span>
-   </div>
-   <div class="stat">
-    <strong>${totalPoints.toLocaleString()}</strong>
-    <span>TOTAL POINTS</span>
-   </div>
-   <div class="stat">
-    <strong>${Object.keys(bestByGame).length}</strong>
-    <span>GAMES SCORED IN</span>
-   </div>
+   <div class="stat"><strong>${totalGames}</strong><span>GAMES PLAYED</span></div>
+   <div class="stat"><strong>${totalPoints.toLocaleString()}</strong><span>TOTAL POINTS</span></div>
+   <div class="stat"><strong>${Object.keys(bestByGame).length}</strong><span>GAMES SCORED IN</span></div>
   </div>
-
-  <h3>🏆 Personal Bests</h3>
-  ${bestRows}
+  <h3>🏆 Personal Bests</h3>${bestRows}
  `;
 
- if(isOwnProfile){
-  currentUser.avatar=avatar;
- }
+ if(isOwnProfile)currentUser.avatar=avatar;
 }
 
 async function updateAvatar(avatar){
  if(!currentUser)return;
-
  const message=document.getElementById("avatarMessage");
-
  if(message)message.textContent="Saving avatar...";
 
  const {error}=await db.from("profiles")
@@ -1116,26 +731,21 @@ function closeModal(id){
  document.getElementById(id).classList.remove("open");
 }
 
-// Close a modal if the user clicks its dark background.
 document.querySelectorAll(".modal").forEach(modal=>{
  modal.addEventListener("click",event=>{
-  if(event.target===modal){
-   modal.classList.remove("open");
-  }
+  if(event.target===modal)modal.classList.remove("open");
  });
 });
 
 // ==========================================
-// GAME-SPECIFIC LEADERBOARD
+// GAME LEADERBOARD
 // ==========================================
 
 async function loadLeaderboard(){
  const box=document.getElementById("leaderboardList");
  const selectedGame=document.getElementById("leaderboardGame").value;
 
- document.getElementById("leaderboardTitle").textContent=
-  (gameNames[selectedGame]||"Game")+" Rankings";
-
+ document.getElementById("leaderboardTitle").textContent=(gameNames[selectedGame]||"Game")+" Rankings";
  box.innerHTML='<p class="muted">Loading scores...</p>';
 
  const {data,error}=await db.from("scores")
@@ -1145,8 +755,7 @@ async function loadLeaderboard(){
   .limit(500);
 
  if(error){
-  box.innerHTML='<p class="muted">Could not load leaderboard: '+
-   escapeHTML(error.message)+'</p>';
+  box.innerHTML='<p class="muted">Could not load leaderboard: '+escapeHTML(error.message)+'</p>';
   return;
  }
 
@@ -1159,24 +768,18 @@ async function loadLeaderboard(){
 
  data.forEach(entry=>{
   const old=bestScores.get(entry.user_id);
-
-  if(!old||Number(entry.score)>Number(old.score)){
-   bestScores.set(entry.user_id,entry);
-  }
+  if(!old||Number(entry.score)>Number(old.score))bestScores.set(entry.user_id,entry);
  });
 
  const rankings=Array.from(bestScores.values())
-  .sort((a,b)=>Number(b.score)-Number(a.score))
-  .slice(0,10);
+  .sort((a,b)=>Number(b.score)-Number(a.score)).slice(0,10);
 
  box.innerHTML=rankings.map((s,i)=>`
   <div class="leader-row">
    <span style="display:flex;align-items:center;gap:9px">
     <span class="rank">#${i+1}</span>
     <span>${escapeHTML(s.profiles?.avatar_emoji||"🎮")}</span>
-    <button class="player-link" onclick="showProfile('${s.user_id}')">
-     ${escapeHTML(s.profiles?.username||"Player")}
-    </button>
+    <button class="player-link" onclick="showProfile('${s.user_id}')">${escapeHTML(s.profiles?.username||"Player")}</button>
    </span>
    <strong class="leader-score">${Number(s.score).toLocaleString()} pts</strong>
   </div>
@@ -1201,25 +804,17 @@ async function submitScore(gameId,score){
   return;
  }
 
- const response=await fetch(
-  SUPABASE_URL+"/functions/v1/submit-score",
-  {
-   method:"POST",
-   headers:{
-    "Content-Type":"application/json",
-    "Authorization":"Bearer "+session.access_token,
-    "apikey":SUPABASE_KEY
-   },
-   body:JSON.stringify({
-    game_id:gameId,
-    score
-   })
-  }
- );
+ const response=await fetch(SUPABASE_URL+"/functions/v1/submit-score",{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "Authorization":"Bearer "+session.access_token,
+   "apikey":SUPABASE_KEY
+  },
+  body:JSON.stringify({game_id:gameId,score})
+ });
 
- const result=await response.json().catch(()=>({
-  error:"Unexpected server response"
- }));
+ const result=await response.json().catch(()=>({error:"Unexpected server response"}));
 
  if(!response.ok){
   alert(result.error||"Score could not be saved.");
@@ -1227,55 +822,43 @@ async function submitScore(gameId,score){
  }
 
  alert("Score saved to the GameEz leaderboard!");
-
  document.getElementById("leaderboardGame").value=gameId;
  loadLeaderboard();
 }
 
 // ==========================================
-// GAMEEZ ADMIN DASHBOARD
+// ADMIN SECURITY
 // ==========================================
 
-async function openAdmin(){
- if(!currentUser){
-  alert("Please sign in first.");
-  return;
- }
+async function verifyAdmin(){
+ if(!currentUser||currentUser.id!==GAMEEZ_OWNER_ID||!isGameEzAdmin)return false;
 
- if(currentUser.id!==GAMEEZ_OWNER_ID||!isGameEzAdmin){
-  alert("Access denied. You are not authorized to use the admin dashboard.");
-  return;
- }
-
- // Verify the user's current session before opening the dashboard.
  const {data:{user},error:userError}=await db.auth.getUser();
-
- if(userError||!user||user.id!==GAMEEZ_OWNER_ID){
-  alert("Your administrator session could not be verified. Please sign in again.");
-  return;
- }
+ if(userError||!user||user.id!==GAMEEZ_OWNER_ID)return false;
 
  const {data:adminRecord,error:adminError}=await db.from("gameez_admins")
-  .select("user_id")
-  .eq("user_id",user.id)
-  .maybeSingle();
+  .select("user_id").eq("user_id",user.id).maybeSingle();
 
- if(adminError||!adminRecord){
-  alert("Admin verification failed. Check your Supabase admin setup.");
-  isGameEzAdmin=false;
-  updateAccountButton();
+ return !adminError&&!!adminRecord;
+}
+
+async function openAdmin(){
+ if(!await verifyAdmin()){
+  alert("Access denied. Administrator verification failed.");
   return;
  }
 
  document.getElementById("adminModal").classList.add("open");
- document.getElementById("adminWelcome").textContent=
-  "Welcome, "+currentUser.username;
-
+ document.getElementById("adminWelcome").textContent="Welcome, "+currentUser.username;
  await loadAdminDashboard();
 }
 
+// ==========================================
+// ADMIN DASHBOARD DATA
+// ==========================================
+
 async function loadAdminDashboard(){
- if(!isGameEzAdmin||!currentUser||currentUser.id!==GAMEEZ_OWNER_ID){
+ if(!await verifyAdmin()){
   alert("Admin access denied.");
   closeModal("adminModal");
   return;
@@ -1284,83 +867,100 @@ async function loadAdminDashboard(){
  const status=document.getElementById("adminStatus");
  status.textContent="Loading dashboard data...";
 
- document.getElementById("adminPlayersBody").innerHTML=
-  '<tr><td colspan="4" class="admin-empty">Loading players...</td></tr>';
-
- document.getElementById("adminScoresBody").innerHTML=
-  '<tr><td colspan="5" class="admin-empty">Loading scores...</td></tr>';
+ document.getElementById("adminPlayersBody").innerHTML='<tr><td colspan="6" class="admin-empty">Loading players...</td></tr>';
+ document.getElementById("adminScoresBody").innerHTML='<tr><td colspan="5" class="admin-empty">Loading scores...</td></tr>';
+ document.getElementById("adminBansBody").innerHTML='<tr><td colspan="7" class="admin-empty">Loading moderation history...</td></tr>';
 
  const [
   {data:players,error:playerError},
-  {data:scores,error:scoreError}
+  {data:scores,error:scoreError},
+  {data:bans,error:banError}
  ]=await Promise.all([
-  db.from("profiles")
-   .select("id,username,avatar_emoji,created_at")
-   .order("created_at",{ascending:false})
-   .limit(1000),
-
-  db.from("scores")
-   .select("id,user_id,game_id,score,created_at,profiles(username)")
-   .order("created_at",{ascending:false})
-   .limit(1000)
+  db.from("profiles").select("id,username,avatar_emoji,created_at").order("created_at",{ascending:false}).limit(1000),
+  db.from("scores").select("id,user_id,game_id,score,created_at,profiles(username)").order("created_at",{ascending:false}).limit(1000),
+  db.from("player_bans").select("id,user_id,banned_by,reason,ban_type,expires_at,is_active,created_at,lifted_at,lifted_by").order("created_at",{ascending:false}).limit(1000)
  ]);
 
- if(playerError){
-  status.textContent="Could not load players: "+playerError.message;
-  document.getElementById("adminPlayersBody").innerHTML=
-   `<tr><td colspan="4" class="admin-empty">${escapeHTML(playerError.message)}</td></tr>`;
-  adminPlayers=[];
- }else{
-  adminPlayers=players||[];
- }
+ adminPlayers=playerError?[]:(players||[]);
+ adminScores=scoreError?[]:(scores||[]);
+ adminBans=banError?[]:(bans||[]);
 
- if(scoreError){
-  status.textContent="Could not load scores: "+scoreError.message;
-  document.getElementById("adminScoresBody").innerHTML=
-   `<tr><td colspan="5" class="admin-empty">${escapeHTML(scoreError.message)}</td></tr>`;
-  adminScores=[];
- }else{
-  adminScores=scores||[];
- }
+ if(playerError)status.textContent="Player loading error: "+playerError.message;
+ else if(scoreError)status.textContent="Score loading error: "+scoreError.message;
+ else if(banError)status.textContent="Moderation loading error: "+banError.message;
 
- document.getElementById("adminPlayerCount").textContent=
-  adminPlayers.length.toLocaleString();
-
- document.getElementById("adminScoreCount").textContent=
-  adminScores.length.toLocaleString();
+ document.getElementById("adminPlayerCount").textContent=adminPlayers.length.toLocaleString();
+ document.getElementById("adminScoreCount").textContent=adminScores.length.toLocaleString();
+ document.getElementById("adminBanCount").textContent=getActiveBans().length.toLocaleString();
 
  renderAdminPlayers();
  renderAdminScores();
+ renderAdminBans();
 
- if(!playerError&&!scoreError){
-  status.textContent=
-   "Dashboard loaded. Showing up to 1,000 player profiles and 1,000 score records.";
+ if(!playerError&&!scoreError&&!banError){
+  status.textContent="Dashboard loaded. Showing up to 1,000 players, scores, and moderation records.";
  }
 }
+
+function getActiveBans(){
+ const now=Date.now();
+ return adminBans.filter(b=>{
+  if(!b.is_active)return false;
+  if(b.expires_at&&new Date(b.expires_at).getTime()<=now)return false;
+  return true;
+ });
+}
+
+function findActiveBan(userId){
+ const now=Date.now();
+ return adminBans.find(b=>
+  b.user_id===userId&&
+  b.is_active&&
+  (!b.expires_at||new Date(b.expires_at).getTime()>now)
+ );
+}
+
+// ==========================================
+// ADMIN PLAYER TABLE
+// ==========================================
 
 function renderAdminPlayers(){
  const body=document.getElementById("adminPlayersBody");
 
  if(!adminPlayers.length){
-  body.innerHTML='<tr><td colspan="4" class="admin-empty">No players found.</td></tr>';
+  body.innerHTML='<tr><td colspan="6" class="admin-empty">No players found.</td></tr>';
   return;
  }
 
- body.innerHTML=adminPlayers.map(player=>`
-  <tr class="admin-player-row"
-      data-search="${escapeHTML(
-       (player.username||"").toLowerCase()+" "+
-       player.id.toLowerCase()
-      )}">
-   <td><strong>${escapeHTML(player.username||"Player")}</strong></td>
-   <td>${escapeHTML(player.id)}</td>
-   <td>${escapeHTML(player.avatar_emoji||"🎮")}</td>
-   <td>${player.created_at?new Date(player.created_at).toLocaleDateString():"—"}</td>
-  </tr>
- `).join("");
+ body.innerHTML=adminPlayers.map(player=>{
+  const ban=findActiveBan(player.id);
+  const status=ban?'<span class="ban-pill">BANNED</span>':'<span class="good-pill">ACTIVE</span>';
+
+  const action=ban
+   ?`<button class="small-action" onclick="adminUnban('${player.id}')">UNBAN</button>`
+   :`<button class="small-danger" onclick="openBanModal('${player.id}')">BAN</button>`;
+
+  return `
+   <tr class="admin-player-row" data-search="${escapeHTML((player.username||"").toLowerCase()+" "+player.id.toLowerCase())}">
+    <td><strong>${escapeHTML(player.username||"Player")}</strong></td>
+    <td>${escapeHTML(player.id)}</td>
+    <td>${escapeHTML(player.avatar_emoji||"🎮")}</td>
+    <td>${player.created_at?new Date(player.created_at).toLocaleDateString():"—"}</td>
+    <td>${status}</td>
+    <td>
+     <button class="small-action" onclick="showProfile('${player.id}')">PROFILE</button>
+     ${action}
+    </td>
+   </tr>
+  `;
+ }).join("");
 
  filterAdminTables();
 }
+
+// ==========================================
+// ADMIN SCORE TABLE
+// ==========================================
 
 function renderAdminScores(){
  const body=document.getElementById("adminScoresBody");
@@ -1375,24 +975,12 @@ function renderAdminScores(){
   const gameName=gameNames[score.game_id]||score.game_id;
 
   return `
-   <tr class="admin-score-row"
-       data-search="${escapeHTML(
-        username.toLowerCase()+" "+
-        gameName.toLowerCase()+" "+
-        String(score.score)+" "+
-        String(score.user_id).toLowerCase()
-       )}">
+   <tr class="admin-score-row" data-search="${escapeHTML(username.toLowerCase()+" "+gameName.toLowerCase()+" "+String(score.score)+" "+String(score.user_id).toLowerCase())}">
     <td>${escapeHTML(username)}</td>
     <td>${escapeHTML(gameName)}</td>
     <td><strong>${Number(score.score).toLocaleString()}</strong></td>
     <td>${score.created_at?new Date(score.created_at).toLocaleDateString():"—"}</td>
-    <td>
-     <button
-      class="admin-delete"
-      onclick="adminDeleteScore('${String(score.id)}')">
-      DELETE
-     </button>
-    </td>
+    <td><button class="admin-delete" onclick="adminDeleteScore('${String(score.id)}')">DELETE</button></td>
    </tr>
   `;
  }).join("");
@@ -1400,42 +988,235 @@ function renderAdminScores(){
  filterAdminTables();
 }
 
-function showAdminTab(tab,button){
- document.querySelectorAll(".admin-tab").forEach(b=>
-  b.classList.remove("active")
- );
+// ==========================================
+// MODERATION HISTORY TABLE
+// ==========================================
 
- document.querySelectorAll(".admin-section").forEach(s=>
-  s.classList.remove("active")
- );
+function renderAdminBans(){
+ const body=document.getElementById("adminBansBody");
+
+ if(!adminBans.length){
+  body.innerHTML='<tr><td colspan="7" class="admin-empty">No moderation records yet.</td></tr>';
+  return;
+ }
+
+ const playerMap=new Map(adminPlayers.map(p=>[p.id,p.username||"Player"]));
+
+ body.innerHTML=adminBans.map(ban=>{
+  const username=playerMap.get(ban.user_id)||"Unknown Player";
+  const expired=ban.expires_at&&new Date(ban.expires_at).getTime()<=Date.now();
+  const active=ban.is_active&&!expired;
+  const status=active
+   ?'<span class="ban-pill">ACTIVE</span>'
+   :expired
+    ?'<span class="good-pill">EXPIRED</span>'
+    :'<span class="good-pill">LIFTED</span>';
+
+  const duration=ban.ban_type==="permanent"?"Permanent":formatDuration(ban.created_at,ban.expires_at);
+  const action=active
+   ?`<button class="small-action" onclick="adminUnban('${ban.user_id}')">UNBAN</button>`
+   :"—";
+
+  return `
+   <tr class="admin-ban-row" data-search="${escapeHTML((username+" "+ban.reason+" "+ban.user_id+" "+ban.ban_type).toLowerCase())}">
+    <td>${escapeHTML(username)}</td>
+    <td>${escapeHTML(ban.reason)}</td>
+    <td>${escapeHTML(duration)}</td>
+    <td>${ban.created_at?new Date(ban.created_at).toLocaleString():"—"}</td>
+    <td>${ban.expires_at?new Date(ban.expires_at).toLocaleString():"Never"}</td>
+    <td>${status}</td>
+    <td>${action}</td>
+   </tr>
+  `;
+ }).join("");
+
+ filterAdminTables();
+}
+
+function formatDuration(start,end){
+ if(!end)return "Permanent";
+ const hours=Math.max(0,Math.round((new Date(end)-new Date(start))/3600000));
+ if(hours<24)return hours+" hour(s)";
+ const days=Math.round(hours/24);
+ return days+" day(s)";
+}
+
+// ==========================================
+// ADMIN TABS AND SEARCH
+// ==========================================
+
+function showAdminTab(tab,button){
+ document.querySelectorAll(".admin-tab").forEach(b=>b.classList.remove("active"));
+ document.querySelectorAll(".admin-section").forEach(s=>s.classList.remove("active"));
 
  button.classList.add("active");
 
- if(tab==="players"){
-  document.getElementById("adminPlayersSection").classList.add("active");
- }else{
-  document.getElementById("adminScoresSection").classList.add("active");
- }
+ const section=document.getElementById(
+  tab==="players"?"adminPlayersSection":
+  tab==="scores"?"adminScoresSection":"adminBansSection"
+ );
+ section.classList.add("active");
 }
 
 function filterAdminTables(){
- const playerSearch=
-  (document.getElementById("adminPlayerSearch")?.value||"").toLowerCase();
-
- const scoreSearch=
-  (document.getElementById("adminScoreSearch")?.value||"").toLowerCase();
+ const playerSearch=(document.getElementById("adminPlayerSearch")?.value||"").toLowerCase();
+ const scoreSearch=(document.getElementById("adminScoreSearch")?.value||"").toLowerCase();
+ const banSearch=(document.getElementById("adminBanSearch")?.value||"").toLowerCase();
 
  document.querySelectorAll(".admin-player-row").forEach(row=>{
   row.style.display=row.dataset.search.includes(playerSearch)?"":"none";
  });
-
  document.querySelectorAll(".admin-score-row").forEach(row=>{
   row.style.display=row.dataset.search.includes(scoreSearch)?"":"none";
  });
+ document.querySelectorAll(".admin-ban-row").forEach(row=>{
+  row.style.display=row.dataset.search.includes(banSearch)?"":"none";
+ });
 }
 
-async function adminDeleteScore(scoreId){
+// ==========================================
+// SECURE EDGE FUNCTION REQUEST
+// ==========================================
+
+async function callModerationFunction(payload){
+ if(!await verifyAdmin()){
+  throw new Error("Administrator verification failed.");
+ }
+
+ const {data:{session},error:sessionError}=await db.auth.getSession();
+
+ if(sessionError||!session){
+  throw new Error("Your login session has expired. Sign in again.");
+ }
+
+ const response=await fetch(SUPABASE_URL+"/functions/v1/admin-manage-player",{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "Authorization":"Bearer "+session.access_token,
+   "apikey":SUPABASE_KEY
+  },
+  body:JSON.stringify(payload)
+ });
+
+ const result=await response.json().catch(()=>({error:"Unexpected server response."}));
+
+ if(!response.ok||!result.success){
+  throw new Error(result.error||"The moderation request failed.");
+ }
+
+ return result;
+}
+
+// ==========================================
+// BAN PLAYER
+// ==========================================
+
+function openBanModal(userId){
  if(!isGameEzAdmin||!currentUser||currentUser.id!==GAMEEZ_OWNER_ID){
+  alert("Admin access denied.");
+  return;
+ }
+
+ const player=adminPlayers.find(p=>p.id===userId);
+
+ if(!player){
+  alert("Player could not be found.");
+  return;
+ }
+
+ if(userId===GAMEEZ_OWNER_ID){
+  alert("You cannot ban your own owner account.");
+  return;
+ }
+
+ document.getElementById("banTargetId").value=userId;
+ document.getElementById("banTargetName").textContent="Banning: "+(player.username||"Player");
+ document.getElementById("banDuration").value="24h";
+ document.getElementById("banReason").value="";
+ document.getElementById("banMessage").textContent="";
+ document.getElementById("confirmBanButton").disabled=false;
+ document.getElementById("banModal").classList.add("open");
+}
+
+async function confirmBan(){
+ const targetUserId=document.getElementById("banTargetId").value;
+ const duration=document.getElementById("banDuration").value;
+ const reason=document.getElementById("banReason").value.trim();
+ const message=document.getElementById("banMessage");
+ const button=document.getElementById("confirmBanButton");
+
+ if(!reason){
+  message.textContent="You must enter a reason for the ban.";
+  return;
+ }
+
+ if(reason.length>500){
+  message.textContent="The reason must be 500 characters or fewer.";
+  return;
+ }
+
+ if(!confirm("Are you sure you want to ban this player?"))return;
+
+ button.disabled=true;
+ message.textContent="Applying ban...";
+
+ try{
+  const result=await callModerationFunction({
+   action:"ban",
+   targetUserId,
+   duration,
+   reason
+  });
+
+  message.textContent=result.message||"Player banned successfully.";
+  await loadAdminDashboard();
+
+  setTimeout(()=>closeModal("banModal"),900);
+ }catch(error){
+  message.textContent=error.message;
+  button.disabled=false;
+ }
+}
+
+// ==========================================
+// UNBAN PLAYER
+// ==========================================
+
+async function adminUnban(targetUserId){
+ if(!await verifyAdmin()){
+  alert("Admin access denied.");
+  return;
+ }
+
+ const player=adminPlayers.find(p=>p.id===targetUserId);
+ const username=player?.username||"this player";
+
+ if(!confirm("Are you sure you want to unban "+username+"?"))return;
+
+ const status=document.getElementById("adminStatus");
+ status.textContent="Removing ban...";
+
+ try{
+  const result=await callModerationFunction({
+   action:"unban",
+   targetUserId
+  });
+
+  status.textContent=result.message||"Player unbanned successfully.";
+  await loadAdminDashboard();
+ }catch(error){
+  status.textContent="Unban failed: "+error.message;
+  alert(error.message);
+ }
+}
+
+// ==========================================
+// DELETE LEADERBOARD SCORE
+// ==========================================
+
+async function adminDeleteScore(scoreId){
+ if(!await verifyAdmin()){
   alert("You are not authorized to delete scores.");
   return;
  }
@@ -1443,17 +1224,13 @@ async function adminDeleteScore(scoreId){
  const confirmed=confirm(
   "Are you sure you want to permanently delete this score?\n\nThis cannot be undone."
  );
-
  if(!confirmed)return;
 
  const status=document.getElementById("adminStatus");
  status.textContent="Deleting score...";
 
- // The existing scores.id column is BIGINT.
- // Do not change its database type.
- const {error}=await db.from("scores")
-  .delete()
-  .eq("id",scoreId);
+ // scores.id is BIGINT in the existing database.
+ const {error}=await db.from("scores").delete().eq("id",scoreId);
 
  if(error){
   status.textContent="Could not delete score: "+error.message;
@@ -1462,7 +1239,6 @@ async function adminDeleteScore(scoreId){
  }
 
  status.textContent="Score deleted successfully.";
-
  await loadAdminDashboard();
  await loadLeaderboard();
 }
@@ -1477,9 +1253,7 @@ function launchGame(id){
   return;
  }
 
- document.getElementById("gameTitle").textContent=
-  games.find(g=>g.id===id).name;
-
+ document.getElementById("gameTitle").textContent=games.find(g=>g.id===id).name;
  document.getElementById("gameModal").classList.add("open");
 
  if(id==="clicker")startClicker();
@@ -1493,11 +1267,7 @@ function launchGame(id){
 // ==========================================
 
 function startClicker(){
- let score=0;
- let remaining=10;
- let interval=null;
- let started=false;
-
+ let score=0,remaining=10,interval=null,started=false;
  const area=document.getElementById("gameArea");
 
  area.innerHTML=`
@@ -1510,25 +1280,17 @@ function startClicker(){
  document.getElementById("clickButton").onclick=()=>{
   if(!started){
    started=true;
-
    interval=setInterval(()=>{
     remaining--;
-
-    document.getElementById("clickTime").textContent=
-     remaining+" seconds";
+    document.getElementById("clickTime").textContent=remaining+" seconds";
 
     if(remaining<=0){
      clearInterval(interval);
-
      area.innerHTML=`
       <h2>TIME'S UP!</h2>
       <p>Your score: ${score}</p>
-      <button class="btn" onclick="submitScore('clicker',${score})">
-       SAVE SCORE
-      </button>
-      <button class="btn secondary" onclick="startClicker()">
-       PLAY AGAIN
-      </button>
+      <button class="btn" onclick="submitScore('clicker',${score})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startClicker()">PLAY AGAIN</button>
      `;
     }
    },1000);
@@ -1544,10 +1306,7 @@ function startClicker(){
 // ==========================================
 
 function startReaction(){
- let state="ready";
- let timer;
- let start;
-
+ let state="ready",timer,start;
  const area=document.getElementById("gameArea");
 
  area.innerHTML=`
@@ -1559,51 +1318,33 @@ function startReaction(){
  document.getElementById("reactionStart").onclick=()=>{
   state="waiting";
 
-  area.innerHTML=`
-   <h2>WAIT...</h2>
-   <button class="btn secondary" id="waitButton">WAIT</button>
-  `;
+  area.innerHTML=`<h2>WAIT...</h2><button class="btn secondary" id="waitButton">WAIT</button>`;
 
   document.getElementById("waitButton").onclick=()=>{
    if(state!=="waiting")return;
-
    clearTimeout(timer);
    state="ready";
-
-   area.innerHTML=`
-    <h2>TOO EARLY!</h2>
-    <button class="btn" onclick="startReaction()">TRY AGAIN</button>
-   `;
+   area.innerHTML=`<h2>TOO EARLY!</h2><button class="btn" onclick="startReaction()">TRY AGAIN</button>`;
   };
 
   timer=setTimeout(()=>{
    if(state!=="waiting")return;
-
    state="go";
    start=performance.now();
 
-   area.innerHTML=`
-    <h2 style="color:#22c55e">🟢 CLICK NOW!</h2>
-    <button class="btn" id="goButton">CLICK!</button>
-   `;
+   area.innerHTML=`<h2 style="color:#22c55e">🟢 CLICK NOW!</h2><button class="btn" id="goButton">CLICK!</button>`;
 
    document.getElementById("goButton").onclick=()=>{
     if(state!=="go")return;
-
     state="done";
 
     const ms=Math.round(performance.now()-start);
     const points=Math.max(1,1000-ms);
 
     area.innerHTML=`
-     <h2>${ms} MS</h2>
-     <p>${points} points</p>
-     <button class="btn" onclick="submitScore('reaction',${points})">
-      SAVE SCORE
-     </button>
-     <button class="btn secondary" onclick="startReaction()">
-      AGAIN
-     </button>
+     <h2>${ms} MS</h2><p>${points} points</p>
+     <button class="btn" onclick="submitScore('reaction',${points})">SAVE SCORE</button>
+     <button class="btn secondary" onclick="startReaction()">AGAIN</button>
     `;
    };
   },1200+Math.random()*2500);
@@ -1615,9 +1356,7 @@ function startReaction(){
 // ==========================================
 
 function startGuess(){
- let secret=Math.floor(Math.random()*100)+1;
- let tries=0;
-
+ let secret=Math.floor(Math.random()*100)+1,tries=0;
  const area=document.getElementById("gameArea");
 
  area.innerHTML=`
@@ -1641,26 +1380,19 @@ function startGuess(){
 
   if(value===secret){
    const points=Math.max(100,1100-tries*100);
-
    msg.textContent="You won! "+points+" points!";
-
    document.getElementById("guessButton").disabled=true;
 
    const b=document.createElement("button");
-   b.className="btn";
-   b.textContent="SAVE SCORE";
+   b.className="btn";b.textContent="SAVE SCORE";
    b.onclick=()=>submitScore("guess",points);
-
    area.appendChild(b);
 
   }else if(tries>=10){
    msg.textContent="Game over! The number was "+secret+".";
    document.getElementById("guessButton").disabled=true;
-
   }else{
-   msg.textContent=
-    (value<secret?"Too low! ⬆️":"Too high! ⬇️")+
-    " Attempts left: "+(10-tries);
+   msg.textContent=(value<secret?"Too low! ⬆️":"Too high! ⬇️")+" Attempts left: "+(10-tries);
   }
  };
 }
@@ -1670,38 +1402,24 @@ function startGuess(){
 // ==========================================
 
 function startMemory(){
- const symbols=[
-  "🎮","🚀","👾","⚡",
-  "🎮","🚀","👾","⚡"
- ].sort(()=>Math.random()-.5);
-
- let selected=[];
- let matched=[];
- let moves=0;
- let locked=false;
-
+ const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"].sort(()=>Math.random()-.5);
+ let selected=[],matched=[],moves=0,locked=false;
  const area=document.getElementById("gameArea");
 
  function draw(){
   area.innerHTML=`
    <h2>🧠 MEMORY MATCH</h2>
    <p>Moves: ${moves}</p>
-
    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
     ${symbols.map((s,i)=>`
-     <button
-      class="btn secondary"
-      data-i="${i}"
-      style="height:60px;font-size:24px">
+     <button class="btn secondary" data-i="${i}" style="height:60px;font-size:24px">
       ${matched.includes(i)||selected.includes(i)?s:"❔"}
      </button>
     `).join("")}
    </div>
   `;
 
-  area.querySelectorAll("[data-i]").forEach(b=>
-   b.onclick=()=>pick(Number(b.dataset.i))
-  );
+  area.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>pick(Number(b.dataset.i)));
  }
 
  function pick(i){
@@ -1713,7 +1431,6 @@ function startMemory(){
   if(selected.length===2){
    moves++;
    locked=true;
-
    const [a,b]=selected;
 
    if(symbols[a]===symbols[b]){
@@ -1724,19 +1441,13 @@ function startMemory(){
 
     if(matched.length===symbols.length){
      const points=Math.max(100,1000-moves*50);
-
      area.innerHTML=`
       <h2>YOU WON! 🎉</h2>
       <p>${moves} moves · ${points} points</p>
-      <button class="btn" onclick="submitScore('memory',${points})">
-       SAVE SCORE
-      </button>
-      <button class="btn secondary" onclick="startMemory()">
-       PLAY AGAIN
-      </button>
+      <button class="btn" onclick="submitScore('memory',${points})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startMemory()">PLAY AGAIN</button>
      `;
     }
-
    }else{
     setTimeout(()=>{
      selected=[];
@@ -1784,6 +1495,5 @@ db.auth.onAuthStateChange((_event,session)=>{
  loadLeaderboard();
 })();
 </script>
-
 </body>
 </html>
