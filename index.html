@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,6 +32,26 @@ header{
 nav{display:flex;align-items:center;gap:18px}
 nav a{color:#cbd5e1;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--cyan)}
+.chat-layout{display:grid;grid-template-columns:1fr;gap:12px}
+.chat-messages{height:360px;overflow-y:auto;background:#080b14;border:1px solid #263147;border-radius:9px;padding:12px}
+.chat-message{display:flex;gap:10px;padding:10px 4px;border-bottom:1px solid #1d293b;align-items:flex-start}
+.chat-message:last-child{border-bottom:0}
+.chat-avatar{font-size:22px;flex-shrink:0}
+.chat-message-main{min-width:0;flex:1}
+.chat-message-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.chat-message-name{font-weight:bold;color:#e9d5ff}
+.chat-message-time{font-size:10px;color:var(--muted)}
+.chat-message-text{white-space:pre-wrap;overflow-wrap:anywhere;color:#dbe3f1;margin-top:5px;font-size:13px;line-height:1.5}
+.chat-delete{background:#7f1d1d;color:white;border:0;border-radius:5px;padding:5px 8px;font-size:10px}
+.chat-compose{display:flex;gap:9px;margin-top:12px}
+.chat-compose input{flex:1;min-width:0;padding:12px;background:#141d2e;border:1px solid #334155;color:white;border-radius:8px}
+.xp-progress{height:12px;background:#202b40;border-radius:20px;overflow:hidden;margin:8px 0 14px}
+.xp-progress-fill{height:100%;background:linear-gradient(90deg,#9333ea,#22d3ee);width:0}
+.achievement-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:12px 0}
+.achievement-card{background:#182338;border:1px solid #34445e;border-radius:9px;padding:12px}
+.achievement-card.locked{opacity:.45;filter:grayscale(1)}
+.achievement-icon{font-size:26px}
+.xp-badge{display:inline-block;color:#a5f3fc;background:#164e63;padding:5px 9px;border-radius:6px;font-size:12px;font-weight:bold}
 .btn{
  background:linear-gradient(100deg,#9333ea,#2563eb);
  color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold
@@ -215,6 +234,8 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <a href="#home">Home</a>
   <a href="#games">Games</a>
   <a href="#leaderboard">Leaderboard</a>
+  <a href="#xpLeaderboard">XP Rankings</a>
+  <a href="#chat">Chat</a>
   <a href="#community">Community</a>
   <button class="btn admin-btn" id="adminButton" onclick="openAdmin()" style="display:none">🛡️ ADMIN</button>
   <button class="btn" id="accountButton" onclick="openAccount()">Sign In</button>
@@ -259,6 +280,32 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <div id="leaderboardList"><p class="muted">Loading scores...</p></div>
  </div>
  <p class="muted">Each player appears once per game, using their highest recorded score. Click a player's name to view their profile.</p>
+</section>
+
+<section id="xpLeaderboard">
+ <div class="heading">
+  <div><h2>⭐ XP Rankings</h2><p class="muted">The highest-level GameEz players.</p></div>
+  <button class="btn secondary" onclick="loadXPLeaderboard()">↻ Refresh</button>
+ </div>
+ <div class="panel">
+  <div id="xpLeaderboardList"><p class="muted">Loading XP rankings...</p></div>
+ </div>
+</section>
+
+<section id="chat">
+ <div class="heading">
+  <div><h2>💬 GameEz Global Chat</h2><p class="muted">Talk with other players in real time. Keep it respectful.</p></div>
+  <button class="btn secondary" onclick="loadChatMessages()">↻ Refresh</button>
+ </div>
+ <div class="panel chat-layout">
+  <div id="chatMessages" class="chat-messages" aria-live="polite"><p class="muted">Loading chat...</p></div>
+  <p id="chatStatus" class="muted">Sign in to send messages. Messages are visible to everyone.</p>
+  <div class="chat-compose">
+   <input id="chatInput" maxlength="500" placeholder="Write a message..." onkeydown="if(event.key==='Enter'){event.preventDefault();sendChatMessage()}">
+   <button class="btn" id="sendChatButton" onclick="sendChatMessage()">SEND</button>
+  </div>
+  <p class="muted">Maximum 500 characters per message. Spam and abusive messages may be removed by moderators.</p>
+ </div>
 </section>
 
 <section id="community">
@@ -439,6 +486,8 @@ let isGameEzAdmin=false;
 let adminPlayers=[];
 let adminScores=[];
 let adminBans=[];
+let chatChannel=null;
+let chatLoaded=false;
 
 // ==========================================
 // GAME LIBRARY
@@ -490,7 +539,7 @@ function openAccount(){
   box.innerHTML=`
    <div class="profile-top">
     <div class="avatar">${escapeHTML(currentUser.avatar)}</div>
-    <div><strong>${escapeHTML(currentUser.username)}</strong><p class="muted">${escapeHTML(currentUser.email)}</p></div>
+    <div><strong>${escapeHTML(currentUser.username)}</strong><p class="muted">${escapeHTML(currentUser.email)}</p><span class="xp-badge">⭐ Level ${Number(currentUser.level||1)} · ${Number(currentUser.xp||0).toLocaleString()} XP</span></div>
    </div>
    <button class="btn" onclick="showProfile(currentUser.id)">VIEW MY PROFILE</button>
    <button class="btn secondary" onclick="logout()">LOG OUT</button>
@@ -604,8 +653,15 @@ async function refreshUser(){
   id:user.id,
   email:user.email,
   username:profile?.username||user.user_metadata?.username||"Player",
-  avatar:profile?.avatar_emoji||"🎮"
+  avatar:profile?.avatar_emoji||"🎮",
+  xp:0,
+  level:1
  };
+
+ const {data:playerStats}=await db.from("player_stats")
+  .select("xp,level").eq("user_id",user.id).maybeSingle();
+ currentUser.xp=Number(playerStats?.xp||0);
+ currentUser.level=Number(playerStats?.level||1);
 
  isGameEzAdmin=false;
 
@@ -643,10 +699,14 @@ async function showProfile(userId){
 
  const [
   {data:profile,error:profileError},
-  {data:scores,error:scoreError}
+  {data:scores,error:scoreError},
+  {data:playerStats},
+  {data:earnedAchievements}
  ]=await Promise.all([
   db.from("profiles").select("id,username,avatar_emoji,created_at").eq("id",userId).maybeSingle(),
-  db.from("scores").select("score,game_id,created_at").eq("user_id",userId)
+  db.from("scores").select("score,game_id,created_at").eq("user_id",userId),
+  db.from("player_stats").select("xp,level").eq("user_id",userId).maybeSingle(),
+  db.from("user_achievements").select("unlocked_at,achievements(id,name,description,icon,xp_reward)").eq("user_id",userId).order("unlocked_at",{ascending:false})
  ]);
 
  if(profileError||!profile){
@@ -676,6 +736,15 @@ async function showProfile(userId){
 
  const isOwnProfile=currentUser&&currentUser.id===userId;
  const avatar=profile.avatar_emoji||"🎮";
+ const xp=Number(playerStats?.xp||0);
+ const level=Number(playerStats?.level||Math.floor(xp/100)+1);
+ const xpIntoLevel=xp%100;
+ const xpNeeded=100;
+ const achievementCards=(earnedAchievements||[]).map(item=>{
+  const a=item.achievements;
+  if(!a)return "";
+  return `<div class="achievement-card"><div class="achievement-icon">${escapeHTML(a.icon||"🏅")}</div><strong>${escapeHTML(a.name)}</strong><p class="muted">${escapeHTML(a.description||"Achievement unlocked")}</p><span class="muted">Unlocked ${new Date(item.unlocked_at).toLocaleDateString()}</span></div>`;
+ }).join("");
 
  box.innerHTML=`
   <div class="profile-top">
@@ -683,6 +752,7 @@ async function showProfile(userId){
    <div>
     <h2 style="margin:0">${escapeHTML(profile.username||"Player")}</h2>
     <p class="muted">GameEz Player</p>
+    <span class="xp-badge">⭐ Level ${level} · ${xp.toLocaleString()} XP</span>
     <p class="muted">Joined ${new Date(profile.created_at).toLocaleDateString()}</p>
    </div>
   </div>
@@ -694,11 +764,18 @@ async function showProfile(userId){
    </div>
    <p id="avatarMessage" class="status"></p>
   `:""}
+  <div class="panel" style="margin:18px 0">
+   <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><strong>⭐ Level ${level}</strong><strong>${xpIntoLevel}/${xpNeeded} XP to next level</strong></div>
+   <div class="xp-progress"><div class="xp-progress-fill" style="width:${xpIntoLevel}%"></div></div>
+   <p class="muted">${xp.toLocaleString()} total XP · Earn 10 XP every time a score is saved.</p>
+  </div>
   <div class="stats">
    <div class="stat"><strong>${totalGames}</strong><span>GAMES PLAYED</span></div>
    <div class="stat"><strong>${totalPoints.toLocaleString()}</strong><span>TOTAL POINTS</span></div>
    <div class="stat"><strong>${Object.keys(bestByGame).length}</strong><span>GAMES SCORED IN</span></div>
   </div>
+  <h3>🏅 Achievements (${(earnedAchievements||[]).length})</h3>
+  <div class="achievement-grid">${achievementCards||'<p class="muted">No achievements unlocked yet. Play games to earn your first one!</p>'}</div>
   <h3>🏆 Personal Bests</h3>${bestRows}
  `;
 
@@ -787,6 +864,147 @@ async function loadLeaderboard(){
 }
 
 // ==========================================
+// XP LEADERBOARD
+// ==========================================
+
+async function loadXPLeaderboard(){
+ const box=document.getElementById("xpLeaderboardList");
+ if(!box)return;
+ box.innerHTML='<p class="muted">Loading XP rankings...</p>';
+
+ const {data,error}=await db.from("player_stats")
+  .select("user_id,xp,level,profiles(username,avatar_emoji)")
+  .order("xp",{ascending:false}).limit(20);
+
+ if(error){
+  box.innerHTML='<p class="muted">Could not load XP rankings: '+escapeHTML(error.message)+'</p>';
+  return;
+ }
+ if(!data||!data.length){
+  box.innerHTML='<p class="muted">No XP rankings yet. Save a game score to earn the first XP!</p>';
+  return;
+ }
+
+ box.innerHTML=data.map((p,i)=>`
+  <div class="leader-row">
+   <span style="display:flex;align-items:center;gap:10px">
+    <span class="rank">#${i+1}</span>
+    <span>${escapeHTML(p.profiles?.avatar_emoji||"🎮")}</span>
+    <button class="player-link" onclick="showProfile('${p.user_id}')">${escapeHTML(p.profiles?.username||"Player")}</button>
+   </span>
+   <strong class="leader-score">Level ${Number(p.level||1)} · ${Number(p.xp||0).toLocaleString()} XP</strong>
+  </div>
+ `).join("");
+}
+
+// ==========================================
+// GLOBAL CHAT
+// ==========================================
+
+async function loadChatMessages(){
+ const box=document.getElementById("chatMessages");
+ if(!box)return;
+
+ const {data,error}=await db.from("chat_messages")
+  .select("id,user_id,message,created_at,profiles(username,avatar_emoji)")
+  .order("created_at",{ascending:false}).limit(50);
+
+ if(error){
+  box.innerHTML='<p class="muted">Could not load chat: '+escapeHTML(error.message)+'</p>';
+  return;
+ }
+
+ const messages=(data||[]).reverse();
+ if(!messages.length){
+  box.innerHTML='<p class="muted">No messages yet. Start the conversation!</p>';
+  chatLoaded=true;
+  return;
+ }
+
+ box.innerHTML=messages.map(renderChatMessage).join("");
+ box.scrollTop=box.scrollHeight;
+ chatLoaded=true;
+}
+
+function renderChatMessage(message){
+ const username=message.profiles?.username||"Player";
+ const avatar=message.profiles?.avatar_emoji||"🎮";
+ const time=message.created_at?new Date(message.created_at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}):"";
+ const deleteButton=isGameEzAdmin
+  ?`<button class="chat-delete" onclick="adminDeleteChatMessage('${String(message.id)}')">DELETE</button>`
+  :"";
+
+ return `
+  <div class="chat-message" data-message-id="${escapeHTML(message.id)}">
+   <div class="chat-avatar">${escapeHTML(avatar)}</div>
+   <div class="chat-message-main">
+    <div class="chat-message-top"><span class="chat-message-name">${escapeHTML(username)}</span><span class="chat-message-time">${escapeHTML(time)}</span></div>
+    <div class="chat-message-text">${escapeHTML(message.message)}</div>
+   </div>
+   ${deleteButton}
+  </div>
+ `;
+}
+
+async function sendChatMessage(){
+ const input=document.getElementById("chatInput");
+ const status=document.getElementById("chatStatus");
+ const button=document.getElementById("sendChatButton");
+ const message=input.value.trim();
+
+ if(!currentUser){
+  status.textContent="Please sign in to send chat messages.";
+  openAccount();
+  return;
+ }
+ if(!message)return;
+
+ button.disabled=true;
+ status.textContent="Sending message...";
+
+ const {error}=await db.from("chat_messages").insert({
+  user_id:currentUser.id,
+  message
+ });
+
+ button.disabled=false;
+ if(error){
+  status.textContent=error.message.includes("row-level security")
+   ?"This account may be banned from chat, or chat permissions are not configured."
+   :"Message could not be sent: "+error.message;
+  return;
+ }
+
+ input.value="";
+ status.textContent="Message sent.";
+ await loadChatMessages();
+}
+
+async function adminDeleteChatMessage(messageId){
+ if(!await verifyAdmin()){
+  alert("Admin access denied.");
+  return;
+ }
+ if(!confirm("Delete this chat message?"))return;
+
+ const {error}=await db.from("chat_messages").delete().eq("id",messageId);
+ if(error){
+  alert("Could not delete message: "+error.message);
+  return;
+ }
+ await loadChatMessages();
+}
+
+function startChatRealtime(){
+ if(chatChannel)return;
+ chatChannel=db.channel("gameez-global-chat")
+  .on("postgres_changes",{event:"*",schema:"public",table:"chat_messages"},()=>{
+   loadChatMessages();
+  })
+  .subscribe();
+}
+
+// ==========================================
 // SCORE SUBMISSION
 // ==========================================
 
@@ -821,9 +1039,11 @@ async function submitScore(gameId,score){
   return;
  }
 
- alert("Score saved to the GameEz leaderboard!");
+ await refreshUser();
+ alert("Score saved! You earned 10 XP.");
  document.getElementById("leaderboardGame").value=gameId;
  loadLeaderboard();
+ loadXPLeaderboard();
 }
 
 // ==========================================
@@ -1487,12 +1707,17 @@ db.auth.onAuthStateChange((_event,session)=>{
    isGameEzAdmin=false;
    updateAccountButton();
   }
+  loadChatMessages();
+  loadXPLeaderboard();
  },0);
 });
 
 (async()=>{
  await refreshUser();
  loadLeaderboard();
+ loadXPLeaderboard();
+ loadChatMessages();
+ startChatRealtime();
 })();
 </script>
 </body>
