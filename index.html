@@ -4,696 +4,405 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GameEz | Play Without Limits</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 *{box-sizing:border-box}
-:root{
-  --bg:#080b14;
-  --panel:#111827;
-  --panel2:#171f31;
-  --purple:#a855f7;
-  --cyan:#22d3ee;
-  --text:#f4f5ff;
-  --muted:#9ba7bd;
-}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Arial,sans-serif;
-}
+:root{--bg:#080b14;--panel:#111827;--purple:#a855f7;--cyan:#22d3ee;--muted:#9ba7bd}
+body{margin:0;background:var(--bg);color:#f4f5ff;font-family:Arial,sans-serif}
 button,input{font:inherit}
 button{cursor:pointer}
-header{
-  height:75px;display:flex;align-items:center;
-  justify-content:space-between;padding:0 5%;
-  background:#0d1220;border-bottom:1px solid #263147;
-  position:sticky;top:0;z-index:10;
-}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1px}
-.logo span{color:var(--cyan);text-shadow:0 0 15px var(--cyan)}
-nav{display:flex;gap:25px;align-items:center}
+header{height:72px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:#0d1220;border-bottom:1px solid #263147;position:sticky;top:0;z-index:5}
+.logo{font-size:28px;font-weight:900}.logo span{color:var(--cyan)}
+nav{display:flex;align-items:center;gap:22px}
 nav a{color:#cbd5e1;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--cyan)}
-.btn{
-  background:linear-gradient(100deg,#9333ea,#2563eb);
-  color:white;border:0;border-radius:9px;padding:11px 18px;
-  font-weight:bold;
-}
+.btn{background:linear-gradient(100deg,#9333ea,#2563eb);color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold}
 .btn:hover{filter:brightness(1.2)}
 .secondary{background:#202b40;border:1px solid #34445e}
-.container{width:90%;max-width:1250px;margin:auto}
-.hero{
-  min-height:390px;padding:75px 7%;
-  background:
-  radial-gradient(ellipse at 80% 40%,#5722a855,transparent 45%),
-  radial-gradient(ellipse at 20% 80%,#087caa33,transparent 45%),
-  #101728;
-  border-bottom:1px solid #263147;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:30px;overflow:hidden;
-}
-.hero h1{font-size:clamp(40px,6vw,70px);margin:0 0 15px}
-.hero h1 span{
-  background:linear-gradient(90deg,#c084fc,#22d3ee);
-  background-clip:text;color:transparent;
-}
-.hero p{color:#bac6da;line-height:1.7;max-width:500px}
-.hero-art{font-size:140px;filter:drop-shadow(0 0 35px #9d4edd88)}
+.container{width:90%;max-width:1200px;margin:auto}
+.hero{padding:75px 7%;min-height:360px;display:flex;justify-content:space-between;align-items:center;gap:25px;background:radial-gradient(ellipse at 80% 40%,#5722a855,transparent 45%),radial-gradient(ellipse at 20% 80%,#087caa33,transparent 45%),#101728}
+.hero h1{font-size:clamp(42px,6vw,70px);margin:12px 0}
+.hero h1 span{background:linear-gradient(90deg,#c084fc,#22d3ee);background-clip:text;color:transparent}
+.hero p{color:#bac6da;line-height:1.7;max-width:520px}
+.hero-art{font-size:130px;filter:drop-shadow(0 0 30px #a855f788)}
 section{padding:38px 0}
-.section-heading{
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:22px;gap:15px;flex-wrap:wrap;
-}
-h2{font-size:25px;margin:0}
+.heading{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+h2{margin:0 0 8px}
 .muted{color:var(--muted);font-size:13px}
-.search{
-  width:100%;max-width:350px;padding:13px 15px;
-  background:#141d2e;border:1px solid #334155;
-  color:white;border-radius:9px;outline:none;
-}
-.search:focus{border-color:var(--cyan)}
-.categories{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:22px}
-.category{
-  padding:9px 16px;border:1px solid #34445e;
-  background:#141d2e;color:#cbd5e1;border-radius:30px;
-}
-.category.active,.category:hover{
-  border-color:var(--cyan);color:var(--cyan);
-  background:#123040;
-}
-.games{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:19px;
-}
-.game-card{
-  background:var(--panel);border:1px solid #263147;
-  border-radius:13px;overflow:hidden;transition:.2s;
-}
-.game-card:hover{
-  transform:translateY(-5px);border-color:var(--purple);
-  box-shadow:0 0 22px #9333ea25;
-}
-.game-art{
-  height:145px;display:flex;align-items:center;
-  justify-content:center;font-size:65px;
-  background:linear-gradient(135deg,#282052,#102b42);
-}
-.game-info{padding:16px}
-.game-info h3{margin:0 0 8px}
-.game-info p{color:var(--muted);font-size:12px}
-.game-info .btn{width:100%;margin-top:9px}
-.tag{
-  display:inline-block;background:#282044;color:#d8b4fe;
-  border-radius:5px;padding:5px 8px;font-size:10px;
-}
-.community{
-  background:linear-gradient(120deg,#25134b,#102b43);
-  padding:35px;border:1px solid #493778;
-  border-radius:15px;display:flex;justify-content:space-between;
-  align-items:center;gap:20px;flex-wrap:wrap;
-}
-.community h2{margin-bottom:10px}
-.leaderboard{
-  background:var(--panel);border:1px solid #263147;
-  border-radius:12px;overflow:hidden;
-}
-.leader-row{
-  padding:15px 20px;display:flex;justify-content:space-between;
-  border-bottom:1px solid #263147;
-}
+.search{width:100%;max-width:330px;padding:13px;background:#141d2e;border:1px solid #334155;color:white;border-radius:8px}
+.categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
+.category{padding:9px 15px;border:1px solid #34445e;background:#141d2e;color:#cbd5e1;border-radius:30px}
+.category.active,.category:hover{border-color:var(--cyan);color:var(--cyan)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.game-card{background:var(--panel);border:1px solid #263147;border-radius:12px;overflow:hidden}
+.game-card:hover{border-color:var(--purple);transform:translateY(-3px)}
+.game-art{height:135px;display:grid;place-items:center;font-size:65px;background:linear-gradient(135deg,#282052,#102b42)}
+.game-info{padding:15px}
+.game-info h3{margin:8px 0}
+.game-info p{font-size:12px;color:var(--muted)}
+.game-info button{width:100%;margin-top:8px}
+.tag{font-size:10px;padding:5px 8px;background:#282044;color:#d8b4fe;border-radius:5px}
+.panel{background:var(--panel);border:1px solid #263147;border-radius:12px;padding:20px}
+.leader-row{display:flex;justify-content:space-between;padding:14px;border-bottom:1px solid #263147}
 .leader-row:last-child{border:0}
 .rank{color:var(--cyan);font-weight:bold;margin-right:12px}
-footer{
-  border-top:1px solid #263147;padding:28px 5%;
-  color:var(--muted);text-align:center;font-size:13px;
-}
-.modal{
-  display:none;position:fixed;inset:0;z-index:30;
-  background:#000c;align-items:center;justify-content:center;
-  padding:15px;
-}
+.community{padding:32px;background:linear-gradient(120deg,#25134b,#102b43);border:1px solid #493778;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.modal{display:none;position:fixed;inset:0;background:#000c;z-index:20;align-items:center;justify-content:center;padding:15px}
 .modal.open{display:flex}
-.modal-box{
-  width:100%;max-width:550px;max-height:90vh;overflow:auto;
-  background:#111827;border:1px solid #6542a5;
-  border-radius:15px;padding:25px;
-  box-shadow:0 0 45px #9333ea33;
-}
+.modal-box{width:100%;max-width:500px;max-height:90vh;overflow:auto;background:#111827;border:1px solid #6542a5;border-radius:14px;padding:24px}
 .modal-top{display:flex;justify-content:space-between;align-items:center}
-.close{
-  background:#293449;color:white;border:0;border-radius:7px;
-  padding:8px 12px;
-}
-.modal input{
-  width:100%;padding:12px;margin:8px 0 15px;
-  background:#202b40;border:1px solid #46536a;
-  border-radius:7px;color:white;
-}
+.close{background:#293449;color:white;border:0;border-radius:7px;padding:9px}
+.modal input,.game-area input{width:100%;padding:12px;margin:8px 0 15px;background:#202b40;border:1px solid #46536a;border-radius:7px;color:white}
 .modal label{font-size:13px;color:#cbd5e1}
-.game-area{
-  background:#080b14;border-radius:10px;padding:25px;
-  text-align:center;margin-top:15px;min-height:190px;
-}
-.game-area button{margin:8px}
-.game-area h2{margin:15px}
-.hidden{display:none!important}
-@media(max-width:700px){
-  nav{gap:10px}
-  nav a{font-size:12px}
-  header{padding:0 3%}
-  .hero{padding:55px 7%}
-  .hero-art{font-size:75px}
-}
-@media(max-width:480px){
-  nav a{display:none}
-  .hero-art{display:none}
-}
+.game-area{background:#080b14;border-radius:10px;padding:20px;text-align:center;margin-top:15px;min-height:190px}
+.game-area button{margin:6px}
+.status{font-size:13px;color:var(--cyan);margin:12px 0}
+footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #263147;font-size:13px}
+@media(max-width:650px){nav{gap:10px}nav a{display:none}.hero-art{font-size:75px}.hero{padding:55px 7%}}
 </style>
 </head>
 <body>
-
 <header>
-  <div class="logo">GAME<span>EZ</span></div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#games">Games</a>
-    <a href="#leaderboard">Leaderboard</a>
-    <a href="#community">Community</a>
-    <button class="btn" onclick="openAccount()">Account</button>
-  </nav>
+ <div class="logo">GAME<span>EZ</span></div>
+ <nav>
+  <a href="#home">Home</a><a href="#games">Games</a>
+  <a href="#leaderboard">Leaderboard</a><a href="#community">Community</a>
+  <button class="btn" id="accountButton" onclick="openAccount()">Sign In</button>
+ </nav>
 </header>
 
 <div class="hero" id="home">
-  <div>
-    <div class="tag">WELCOME TO GAMEEZ</div>
-    <h1>PLAY MORE.<br><span>WIN BIGGER.</span></h1>
-    <p>
-      Discover awesome browser games, challenge your friends,
-      climb the leaderboards, and join the GameEz community.
-    </p>
-    <button class="btn" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
-      EXPLORE GAMES →
-    </button>
-  </div>
-  <div class="hero-art">🎮</div>
+ <div>
+  <span class="tag">WELCOME TO GAMEEZ</span>
+  <h1>PLAY MORE.<br><span>WIN BIGGER.</span></h1>
+  <p>Discover browser games, challenge yourself, climb the leaderboards and join the GameEz community.</p>
+  <button class="btn" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">EXPLORE GAMES →</button>
+ </div>
+ <div class="hero-art">🎮</div>
 </div>
 
 <main class="container">
-
 <section id="games">
-  <div class="section-heading">
-    <div>
-      <h2>🎮 Game Library</h2>
-      <p class="muted">Find your next favorite game.</p>
-    </div>
-    <input id="search" class="search" placeholder="🔍 Search games..." oninput="renderGames()">
-  </div>
-
-  <div class="categories" id="categories"></div>
-  <div class="games" id="gamesGrid"></div>
-  <p id="noGames" class="muted hidden">No games found. Try another search.</p>
+ <div class="heading">
+  <div><h2>🎮 Game Library</h2><p class="muted">Choose your next challenge.</p></div>
+  <input class="search" id="search" placeholder="🔍 Search games..." oninput="renderGames()">
+ </div>
+ <div class="categories" id="categories"></div>
+ <div class="games" id="gamesGrid"></div>
+ <p id="noGames" class="muted" hidden>No games found.</p>
 </section>
 
 <section id="leaderboard">
-  <div class="section-heading">
-    <div>
-      <h2>🏆 Leaderboards</h2>
-      <p class="muted">The top players on GameEz.</p>
-    </div>
-  </div>
-  <div class="leaderboard" id="leaderboardList"></div>
-  <p class="muted">Scores are stored locally in this starter version.</p>
+ <div class="heading">
+  <div><h2>🏆 Real Player Leaderboard</h2><p class="muted">Scores from registered GameEz players only.</p></div>
+  <button class="btn secondary" onclick="loadLeaderboard()">↻ Refresh</button>
+ </div>
+ <div class="panel" id="leaderboardList"><p class="muted">Loading real player scores...</p></div>
+ <p class="muted">Only registered accounts appear. No sample players or bots are preloaded.</p>
 </section>
 
 <section id="community">
-  <div class="community">
-    <div>
-      <h2>💬 Join the GameEz Community</h2>
-      <p class="muted">Meet players, share scores, and find people to play with.</p>
-    </div>
-    <a id="discordLink" href="https://discord.com/" target="_blank" rel="noopener noreferrer">
-      <button class="btn">JOIN DISCORD →</button>
-    </a>
-  </div>
+ <div class="community">
+  <div><h2>💬 Join the GameEz Community</h2><p class="muted">Meet players, share scores and find people to play with.</p></div>
+  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer"><button class="btn">JOIN DISCORD →</button></a>
+ </div>
 </section>
-
 </main>
 
 <footer>
-  <div class="logo">GAME<span>EZ</span></div>
-  <p>© 2026 GameEz. Play Without Limits.</p>
-  <p>Made for gamers, by gamers.</p>
+ <div class="logo">GAME<span>EZ</span></div>
+ <p>© 2026 GameEz. Play Without Limits.</p>
 </footer>
 
-<!-- ACCOUNT MODAL -->
 <div class="modal" id="accountModal">
-  <div class="modal-box">
-    <div class="modal-top">
-      <h2>👤 GameEz Account</h2>
-      <button class="close" onclick="closeModal('accountModal')">✕</button>
-    </div>
-    <div id="accountContent"></div>
-  </div>
+ <div class="modal-box">
+  <div class="modal-top"><h2>👤 GameEz Account</h2><button class="close" onclick="closeModal('accountModal')">✕</button></div>
+  <div id="accountContent"></div>
+ </div>
 </div>
 
-<!-- GAME MODAL -->
 <div class="modal" id="gameModal">
-  <div class="modal-box">
-    <div class="modal-top">
-      <h2 id="gameTitle">Game</h2>
-      <button class="close" onclick="closeModal('gameModal')">✕</button>
-    </div>
-    <div class="game-area" id="gameArea"></div>
-  </div>
+ <div class="modal-box">
+  <div class="modal-top"><h2 id="gameTitle">Game</h2><button class="close" onclick="closeModal('gameModal')">✕</button></div>
+  <div class="game-area" id="gameArea"></div>
+ </div>
 </div>
 
 <script>
-// ===============================
-// GAMEEZ SETTINGS
-// ===============================
+// ==========================================
+// GAMEEZ CONNECTION
+// ==========================================
+const SUPABASE_URL = "https://aadceyhpnrpgnjnsepqx.supabase.co";
+const SUPABASE_KEY = "sb_publishable_7_3z855GbffIY3jqJcN9Pg_f87NbNiS";
 
-// Replace this with your actual Discord invite link.
-const DISCORD_INVITE = "https://discord.com/";
+const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
-document.getElementById("discordLink").href = DISCORD_INVITE;
-
-// ===============================
-// GAME LIBRARY
-// ===============================
-
-const games = [
-  {id:"clicker",name:"Neon Clicker",category:"Arcade",emoji:"🟣",
-   description:"Click your way to the top. How many points can you earn?",
-   featured:true},
-  {id:"reaction",name:"Reaction Rush",category:"Arcade",emoji:"⚡",
-   description:"Test your reaction speed and beat your best time.",
-   featured:true},
-  {id:"guess",name:"Number Hunter",category:"Puzzle",emoji:"🔢",
-   description:"Can you figure out the secret number?"},
-  {id:"memory",name:"Memory Match",category:"Puzzle",emoji:"🧠",
-   description:"Match the symbols and test your memory.",
-   featured:true},
-  {id:"coming1",name:"Street Racer",category:"Racing",emoji:"🏎️",
-   description:"A racing game coming soon!"},
-  {id:"coming2",name:"City Simulator",category:"Simulation",emoji:"🏙️",
-   description:"Build and manage your own city."},
-  {id:"coming3",name:"Space Battle",category:"Action",emoji:"🚀",
-   description:"Explore the galaxy in this upcoming game."},
-  {id:"coming4",name:"Zombie Survival",category:"Action",emoji:"🧟",
-   description:"Survive the zombie apocalypse."}
+// ==========================================
+// GAME CATALOG
+// ==========================================
+const games=[
+ {id:"clicker",name:"Neon Clicker",category:"Arcade",emoji:"🟣",description:"Click as fast as you can in 10 seconds!",featured:true},
+ {id:"reaction",name:"Reaction Rush",category:"Arcade",emoji:"⚡",description:"Test your reaction speed.",featured:true},
+ {id:"guess",name:"Number Hunter",category:"Puzzle",emoji:"🔢",description:"Find the secret number.",featured:true},
+ {id:"memory",name:"Memory Match",category:"Puzzle",emoji:"🧠",description:"Match the symbols."},
+ {id:"racer",name:"Street Racer",category:"Racing",emoji:"🏎️",description:"Coming soon!"},
+ {id:"city",name:"City Simulator",category:"Simulation",emoji:"🏙️",description:"Coming soon!"},
+ {id:"space",name:"Space Battle",category:"Action",emoji:"🚀",description:"Coming soon!"},
+ {id:"zombie",name:"Zombie Survival",category:"Action",emoji:"🧟",description:"Coming soon!"}
 ];
-
 const categories=["All","Arcade","Puzzle","Racing","Simulation","Action"];
 let activeCategory="All";
-
-const grid=document.getElementById("gamesGrid");
+let currentUser=null;
 
 function renderCategories(){
-  document.getElementById("categories").innerHTML=categories.map(c=>`
-    <button class="category ${activeCategory===c?'active':''}"
-      onclick="setCategory('${c}')">${c}</button>
-  `).join("");
+ document.getElementById("categories").innerHTML=categories.map(c=>
+ `<button class="category ${activeCategory===c?"active":""}" onclick="setCategory('${c}')">${c}</button>`
+ ).join("");
 }
-
-function setCategory(c){
-  activeCategory=c;
-  renderCategories();
-  renderGames();
-}
-
+function setCategory(c){activeCategory=c;renderCategories();renderGames();}
 function renderGames(){
-  const search=document.getElementById("search").value.toLowerCase();
-
-  const filtered=games.filter(g=>
-    (activeCategory==="All"||g.category===activeCategory) &&
-    (g.name.toLowerCase().includes(search)||
-     g.category.toLowerCase().includes(search)||
-     g.description.toLowerCase().includes(search))
-  );
-
-  grid.innerHTML=filtered.map(g=>`
-    <div class="game-card">
-      <div class="game-art">${g.emoji}</div>
-      <div class="game-info">
-        ${g.featured?'<span class="tag">FEATURED</span>':''}
-        <h3>${g.name}</h3>
-        <p>${g.description}</p>
-        <p>📁 ${g.category}</p>
-        <button class="btn" onclick="launchGame('${g.id}')">
-          ${g.id.startsWith("coming")?"COMING SOON":"PLAY NOW →"}
-        </button>
-      </div>
-    </div>
-  `).join("");
-
-  document.getElementById("noGames").classList.toggle("hidden",filtered.length!==0);
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=games.filter(g=>(activeCategory==="All"||g.category===activeCategory)&&
+ (g.name.toLowerCase().includes(q)||g.category.toLowerCase().includes(q)));
+ document.getElementById("gamesGrid").innerHTML=list.map(g=>`
+ <div class="game-card">
+  <div class="game-art">${g.emoji}</div>
+  <div class="game-info">
+   ${g.featured?'<span class="tag">FEATURED</span>':''}
+   <h3>${g.name}</h3><p>${g.description}</p><p>📁 ${g.category}</p>
+   <button class="btn" onclick="launchGame('${g.id}')">${["racer","city","space","zombie"].includes(g.id)?"COMING SOON":"PLAY NOW →"}</button>
+  </div>
+ </div>`).join("");
+ document.getElementById("noGames").hidden=list.length!==0;
 }
 
-// ===============================
-// ACCOUNT SYSTEM - LOCAL DEMO
-// ===============================
-
-function getUser(){
-  return localStorage.getItem("gameez_user");
-}
-
+// ==========================================
+// AUTHENTICATION
+// ==========================================
 function openAccount(){
-  const content=document.getElementById("accountContent");
-  const user=getUser();
-
-  if(user){
-    content.innerHTML=`
-      <p>Welcome back, <strong>${escapeHTML(user)}</strong>!</p>
-      <p class="muted">You're signed in on this browser.</p>
-      <button class="btn" onclick="logout()">LOG OUT</button>
-    `;
-  }else{
-    content.innerHTML=`
-      <p class="muted">Create a local demo profile or sign in.</p>
-      <label>Username</label>
-      <input id="username" maxlength="20" placeholder="Enter a username">
-      <button class="btn" onclick="login()">CREATE / SIGN IN</button>
-      <p class="muted">This prototype uses a local username only.</p>
-    `;
-  }
-
-  document.getElementById("accountModal").classList.add("open");
+ const box=document.getElementById("accountContent");
+ if(currentUser){
+  box.innerHTML=`<p>Welcome, <strong>${escapeHTML(currentUser.username)}</strong>!</p>
+  <p class="muted">${escapeHTML(currentUser.email)}</p>
+  <button class="btn" onclick="logout()">LOG OUT</button>`;
+ }else{
+  box.innerHTML=`
+  <p class="muted">Create an account or sign in to play and compete.</p>
+  <label>Username (for registration)</label>
+  <input id="username" maxlength="20" placeholder="Choose a username">
+  <label>Email address</label>
+  <input id="email" type="email" placeholder="you@example.com">
+  <label>Password</label>
+  <input id="password" type="password" placeholder="At least 8 characters">
+  <button class="btn" onclick="register()">CREATE ACCOUNT</button>
+  <button class="btn secondary" onclick="login()">SIGN IN</button>
+  <p id="authMessage" class="status"></p>
+  <p class="muted">Registration may require email verification before you can sign in.</p>`;
+ }
+ document.getElementById("accountModal").classList.add("open");
+}
+function authMessage(msg){const el=document.getElementById("authMessage");if(el)el.textContent=msg;}
+function validUsername(s){return /^[a-zA-Z0-9_]{3,20}$/.test(s);}
+async function register(){
+ const username=document.getElementById("username").value.trim();
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ if(!validUsername(username)){authMessage("Username must be 3–20 letters, numbers or underscores.");return;}
+ if(!email||password.length<8){authMessage("Enter a valid email and a password of at least 8 characters.");return;}
+ authMessage("Creating your account...");
+ const {data,error}=await db.auth.signUp({email,password,options:{data:{username}}});
+ if(error){authMessage(error.message);return;}
+ if(data.session){await refreshUser();authMessage("Account created! Welcome to GameEz.");}
+ else{authMessage("Check your email for a verification link. Then sign in.");}
+}
+async function login(){
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ if(!email||!password){authMessage("Enter your email and password.");return;}
+ authMessage("Signing in...");
+ const {error}=await db.auth.signInWithPassword({email,password});
+ if(error){authMessage(error.message);return;}
+ await refreshUser();
+ openAccount();
+}
+async function logout(){
+ await db.auth.signOut();
+ currentUser=null;
+ updateAccountButton();
+ closeModal("accountModal");
+}
+async function refreshUser(){
+ const {data:{user}}=await db.auth.getUser();
+ if(!user){currentUser=null;updateAccountButton();return;}
+ const {data:profile}=await db.from("profiles").select("username").eq("id",user.id).maybeSingle();
+ currentUser={id:user.id,email:user.email,username:profile?.username||"Player"};
+ updateAccountButton();
+}
+function updateAccountButton(){
+ document.getElementById("accountButton").textContent=currentUser?currentUser.username:"Sign In";
 }
 
-function login(){
-  const name=document.getElementById("username").value.trim();
-
-  if(!/^[a-zA-Z0-9_ -]{2,20}$/.test(name)){
-    alert("Use 2–20 letters, numbers, spaces or underscores.");
-    return;
-  }
-
-  localStorage.setItem("gameez_user",name);
-  openAccount();
-  renderLeaderboard();
+// ==========================================
+// REAL ONLINE LEADERBOARD
+// ==========================================
+async function loadLeaderboard(){
+ const box=document.getElementById("leaderboardList");
+ box.innerHTML='<p class="muted">Loading scores...</p>';
+ const {data,error}=await db.from("scores")
+ .select("score,game_id,created_at,profiles(username)")
+ .order("score",{ascending:false}).limit(100);
+ if(error){box.innerHTML='<p class="muted">Could not load leaderboard: '+escapeHTML(error.message)+'</p>';return;}
+ if(!data||!data.length){box.innerHTML='<p class="muted">No real player scores yet. Be the first to play!</p>';return;}
+ box.innerHTML=data.slice(0,10).map((s,i)=>`
+ <div class="leader-row">
+  <span><span class="rank">#${i+1}</span>${escapeHTML(s.profiles?.username||"Player")}</span>
+  <strong>${Number(s.score).toLocaleString()} pts</strong>
+ </div>`).join("");
 }
 
-function logout(){
-  localStorage.removeItem("gameez_user");
-  closeModal("accountModal");
-  renderLeaderboard();
+// Scores are submitted to a server-side Edge Function.
+// It verifies the logged-in user and applies game-specific limits.
+async function submitScore(gameId,score){
+ if(!currentUser){alert("Please create an account or sign in before saving scores.");openAccount();return;}
+ const {data:{session}}=await db.auth.getSession();
+ if(!session){alert("Your session expired. Please sign in again.");return;}
+ const response=await fetch(SUPABASE_URL+"/functions/v1/submit-score",{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "Authorization":"Bearer "+session.access_token,
+   "apikey":SUPABASE_KEY
+  },
+  body:JSON.stringify({game_id:gameId,score})
+ });
+ const result=await response.json().catch(()=>({error:"Unexpected server response"}));
+ if(!response.ok){alert(result.error||"Score could not be saved.");return;}
+ alert("Score saved to the GameEz leaderboard!");
+ loadLeaderboard();
 }
 
-function escapeHTML(str){
-  return str.replace(/[&<>"']/g,c=>({
-    "&":"&amp;","<":"&lt;",">":"&gt;",
-    '"':"&quot;","'":"&#39;"
-  })[c]);
-}
-
-// ===============================
-// LEADERBOARD
-// ===============================
-
-function getScores(){
-  return JSON.parse(localStorage.getItem("gameez_scores")||"[]");
-}
-
-function saveScore(points){
-  const user=getUser();
-  if(!user)return;
-
-  let scores=getScores();
-  scores.push({name:user,score:points});
-  scores.sort((a,b)=>b.score-a.score);
-  scores=scores.slice(0,10);
-
-  localStorage.setItem("gameez_scores",JSON.stringify(scores));
-  renderLeaderboard();
-}
-
-function renderLeaderboard(){
-  const scores=getScores();
-
-  const defaults=[
-    {name:"NeonMaster",score:950},
-    {name:"GameLegend",score:820},
-    {name:"PixelPro",score:700}
-  ];
-
-  const combined=[...defaults,...scores]
-    .sort((a,b)=>b.score-a.score)
-    .slice(0,10);
-
-  document.getElementById("leaderboardList").innerHTML=
-    combined.map((s,i)=>`
-      <div class="leader-row">
-        <span><span class="rank">#${i+1}</span>${escapeHTML(s.name)}</span>
-        <strong>${s.score.toLocaleString()} pts</strong>
-      </div>
-    `).join("");
-}
-
-// ===============================
-// GAME LAUNCHER
-// ===============================
-
+// ==========================================
+// GAMES
+// ==========================================
 function launchGame(id){
-  const game=games.find(g=>g.id===id);
-  if(!game)return;
-
-  if(id.startsWith("coming")){
-    alert("This game is coming soon!");
-    return;
-  }
-
-  document.getElementById("gameTitle").textContent=game.name;
-  document.getElementById("gameModal").classList.add("open");
-
-  if(id==="clicker")startClicker();
-  if(id==="reaction")startReaction();
-  if(id==="guess")startGuess();
-  if(id==="memory")startMemory();
+ if(!["clicker","reaction","guess","memory"].includes(id)){alert("This game is coming soon!");return;}
+ document.getElementById("gameTitle").textContent=games.find(g=>g.id===id).name;
+ document.getElementById("gameModal").classList.add("open");
+ if(id==="clicker")startClicker();
+ if(id==="reaction")startReaction();
+ if(id==="guess")startGuess();
+ if(id==="memory")startMemory();
 }
-
-function closeModal(id){
-  document.getElementById(id).classList.remove("open");
-}
-
-// ===============================
-// GAME 1: NEON CLICKER
-// ===============================
-
 function startClicker(){
-  let score=0;
-
-  document.getElementById("gameArea").innerHTML=`
-    <h2>🟣 NEON CLICKER</h2>
-    <h2 id="clickScore">0</h2>
-    <p>Click the button as fast as you can!</p>
-    <button class="btn" id="clickButton">CLICK ME!</button>
-    <p class="muted">Every click earns one point.</p>
-    <button class="btn secondary" id="clickFinish">SAVE SCORE</button>
-  `;
-
-  document.getElementById("clickButton").onclick=()=>{
-    score++;
-    document.getElementById("clickScore").textContent=score;
-  };
-
-  document.getElementById("clickFinish").onclick=()=>{
-    saveScore(score);
-    alert("You scored "+score+" points!");
-  };
+ let score=0,remaining=10,interval=null,started=false;
+ const area=document.getElementById("gameArea");
+ area.innerHTML=`<h2>🟣 NEON CLICKER</h2><h2 id="clickScore">0</h2><p id="clickTime">10 seconds</p><button class="btn" id="clickButton">START CLICKING!</button>`;
+ document.getElementById("clickButton").onclick=()=>{
+  if(!started){
+   started=true;
+   interval=setInterval(()=>{
+    remaining--;
+    document.getElementById("clickTime").textContent=remaining+" seconds";
+    if(remaining<=0){
+     clearInterval(interval);
+     area.innerHTML=`<h2>TIME'S UP!</h2><p>Your score: ${score}</p><button class="btn" onclick="submitScore('clicker',${score})">SAVE SCORE</button><button class="btn secondary" onclick="startClicker()">PLAY AGAIN</button>`;
+    }
+   },1000);
+  }
+  score++;
+  document.getElementById("clickScore").textContent=score;
+ };
 }
-
-// ===============================
-// GAME 2: REACTION RUSH
-// ===============================
-
 function startReaction(){
-  let start=0;
-  let state="ready";
-  let timer=null;
-
-  const area=document.getElementById("gameArea");
-
-  function reset(){
-    clearTimeout(timer);
-    state="ready";
-    area.innerHTML=`
-      <h2>⚡ REACTION RUSH</h2>
-      <p>Wait for the green signal, then click!</p>
-      <button class="btn" id="reactionButton">START</button>
-    `;
-
-    document.getElementById("reactionButton").onclick=()=>{
-      if(state==="ready"){
-        state="waiting";
-        area.innerHTML=`
-          <h2>WAIT FOR GREEN...</h2>
-          <button class="btn secondary" id="waitButton" style="padding:25px">WAIT...</button>
-        `;
-        document.getElementById("waitButton").onclick=early;
-
-        timer=setTimeout(()=>{
-          if(state!=="waiting")return;
-          state="go";
-          start=performance.now();
-          area.innerHTML=`
-            <h2 style="color:#22c55e">🟢 CLICK NOW!</h2>
-            <button class="btn" id="goButton" style="padding:25px">CLICK!</button>
-          `;
-          document.getElementById("goButton").onclick=finish;
-        },1000+Math.random()*3500);
-      }
-    };
-  }
-
-  function early(){
+ let state="ready",timer,start;
+ const area=document.getElementById("gameArea");
+ function reset(){
+  clearTimeout(timer);state="ready";
+  area.innerHTML=`<h2>⚡ REACTION RUSH</h2><p>Wait for green, then click!</p><button class="btn" id="reactionStart">START</button>`;
+  document.getElementById("reactionStart").onclick=()=>{
+   state="waiting";
+   area.innerHTML=`<h2>WAIT...</h2><button class="btn secondary" id="waitButton">WAIT</button>`;
+   document.getElementById("waitButton").onclick=()=>{
     if(state!=="waiting")return;
-    clearTimeout(timer);
-    state="ready";
-    area.innerHTML=`
-      <h2>❌ TOO EARLY!</h2>
-      <button class="btn" id="retry">TRY AGAIN</button>
-    `;
-    document.getElementById("retry").onclick=reset;
-  }
-
-  function finish(){
-    if(state!=="go")return;
-    const time=Math.round(performance.now()-start);
-    state="finished";
-    saveScore(Math.max(1,1000-time));
-    area.innerHTML=`
-      <h2>⚡ ${time} MS</h2>
-      <p>Your reaction time!</p>
-      <button class="btn" id="again">PLAY AGAIN</button>
-    `;
-    document.getElementById("again").onclick=reset;
-  }
-
-  reset();
-}
-
-// ===============================
-// GAME 3: NUMBER HUNTER
-// ===============================
-
-function startGuess(){
-  let secret=Math.floor(Math.random()*100)+1;
-  let tries=0;
-
-  document.getElementById("gameArea").innerHTML=`
-    <h2>🔢 NUMBER HUNTER</h2>
-    <p>Guess the secret number between 1 and 100.</p>
-    <input id="guessInput" type="number" min="1" max="100"
-      placeholder="Enter your guess">
-    <button class="btn" id="guessButton">GUESS</button>
-    <p id="guessMessage">You have 10 attempts!</p>
-  `;
-
-  document.getElementById("guessButton").onclick=()=>{
-    const value=Number(document.getElementById("guessInput").value);
-    const message=document.getElementById("guessMessage");
-
-    if(!Number.isInteger(value)||value<1||value>100){
-      message.textContent="Enter a number from 1 to 100.";
-      return;
-    }
-
-    tries++;
-
-    if(value===secret){
-      const points=Math.max(100,1100-tries*100);
-      message.textContent="🎉 YOU WON! "+points+" points!";
-      saveScore(points);
-      document.getElementById("guessButton").disabled=true;
-    }else if(tries>=10){
-      message.textContent="Game over! The number was "+secret+".";
-      document.getElementById("guessButton").disabled=true;
-    }else{
-      message.textContent=(value<secret?"⬆️ Too low!":"⬇️ Too high!")+
-        " Attempts left: "+(10-tries);
-    }
+    clearTimeout(timer);state="ready";area.innerHTML=`<h2>TOO EARLY!</h2><button class="btn" onclick="startReaction()">TRY AGAIN</button>`;
+   };
+   timer=setTimeout(()=>{
+    if(state!=="waiting")return;
+    state="go";start=performance.now();
+    area.innerHTML=`<h2 style="color:#22c55e">🟢 CLICK NOW!</h2><button class="btn" id="goButton">CLICK!</button>`;
+    document.getElementById("goButton").onclick=()=>{
+     if(state!=="go")return;
+     state="done";
+     const ms=Math.round(performance.now()-start);
+     const points=Math.max(1,1000-ms);
+     area.innerHTML=`<h2>${ms} MS</h2><p>${points} points</p><button class="btn" onclick="submitScore('reaction',${points})">SAVE SCORE</button><button class="btn secondary" onclick="startReaction()">AGAIN</button>`;
+    };
+   },1200+Math.random()*2500);
   };
+ }
+ reset();
 }
-
-// ===============================
-// GAME 4: MEMORY MATCH
-// ===============================
-
+function startGuess(){
+ let secret=Math.floor(Math.random()*100)+1,tries=0;
+ const area=document.getElementById("gameArea");
+ area.innerHTML=`<h2>🔢 NUMBER HUNTER</h2><p>Guess a number between 1 and 100. You have 10 tries.</p><input id="guessInput" type="number" min="1" max="100" placeholder="Your guess"><button class="btn" id="guessButton">GUESS</button><p id="guessMessage"></p>`;
+ document.getElementById("guessButton").onclick=()=>{
+  const value=Number(document.getElementById("guessInput").value);
+  const msg=document.getElementById("guessMessage");
+  if(!Number.isInteger(value)||value<1||value>100){msg.textContent="Enter a number from 1 to 100.";return;}
+  tries++;
+  if(value===secret){
+   const points=Math.max(100,1100-tries*100);
+   msg.textContent="You won! "+points+" points!";
+   document.getElementById("guessButton").disabled=true;
+   const b=document.createElement("button");b.className="btn";b.textContent="SAVE SCORE";b.onclick=()=>submitScore("guess",points);area.appendChild(b);
+  }else if(tries>=10){msg.textContent="Game over! The number was "+secret+".";document.getElementById("guessButton").disabled=true;}
+  else msg.textContent=(value<secret?"Too low! ⬆️":"Too high! ⬇️")+" Attempts left: "+(10-tries);
+ };
+}
 function startMemory(){
-  const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"];
-  const cards=[...symbols].sort(()=>Math.random()-.5);
-  let selected=[];
-  let matched=[];
-  let moves=0;
-  let locked=false;
-
-  const area=document.getElementById("gameArea");
-
-  function draw(){
-    area.innerHTML=`
-      <h2>🧠 MEMORY MATCH</h2>
-      <p>Moves: ${moves}</p>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:9px">
-        ${cards.map((c,i)=>`
-          <button class="btn secondary" data-index="${i}"
-            style="height:65px;font-size:25px">
-            ${matched.includes(i)||selected.includes(i)?c:"❔"}
-          </button>
-        `).join("")}
-      </div>
-    `;
-
-    area.querySelectorAll("[data-index]").forEach(btn=>{
-      btn.onclick=()=>pick(Number(btn.dataset.index));
-    });
-  }
-
-  function pick(i){
-    if(locked||matched.includes(i)||selected.includes(i))return;
-
-    selected.push(i);
-    draw();
-
-    if(selected.length===2){
-      moves++;
-      locked=true;
-      const [a,b]=selected;
-
-      if(cards[a]===cards[b]){
-        matched.push(a,b);
-        selected=[];
-        locked=false;
-        draw();
-
-        if(matched.length===cards.length){
-          const points=Math.max(100,1000-moves*50);
-          area.innerHTML=`
-            <h2>🎉 YOU WON!</h2>
-            <p>Moves: ${moves}</p>
-            <p>Score: ${points}</p>
-            <button class="btn" onclick="saveScore(${points});startMemory()">
-              PLAY AGAIN
-            </button>
-          `;
-        }
-      }else{
-        setTimeout(()=>{
-          selected=[];
-          locked=false;
-          draw();
-        },800);
-      }
+ const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"].sort(()=>Math.random()-.5);
+ let selected=[],matched=[],moves=0,locked=false;
+ const area=document.getElementById("gameArea");
+ function draw(){
+  area.innerHTML=`<h2>🧠 MEMORY MATCH</h2><p>Moves: ${moves}</p><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">${symbols.map((s,i)=>`<button class="btn secondary" data-i="${i}" style="height:60px;font-size:24px">${matched.includes(i)||selected.includes(i)?s:"❔"}</button>`).join("")}</div>`;
+  area.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>pick(Number(b.dataset.i)));
+ }
+ function pick(i){
+  if(locked||matched.includes(i)||selected.includes(i))return;
+  selected.push(i);draw();
+  if(selected.length===2){
+   moves++;locked=true;
+   const [a,b]=selected;
+   if(symbols[a]===symbols[b]){
+    matched.push(a,b);selected=[];locked=false;draw();
+    if(matched.length===symbols.length){
+     const points=Math.max(100,1000-moves*50);
+     area.innerHTML=`<h2>YOU WON! 🎉</h2><p>${moves} moves · ${points} points</p><button class="btn" onclick="submitScore('memory',${points})">SAVE SCORE</button><button class="btn secondary" onclick="startMemory()">PLAY AGAIN</button>`;
     }
+   }else setTimeout(()=>{selected=[];locked=false;draw();},800);
   }
-
-  draw();
+ }
+ draw();
 }
 
-// ===============================
-// INITIALIZE WEBSITE
-// ===============================
+// ==========================================
+// UTILITIES AND STARTUP
+// ==========================================
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function closeModal(id){document.getElementById(id).classList.remove("open");}
+renderCategories();renderGames();
 
-renderCategories();
-renderGames();
-renderLeaderboard();
+db.auth.onAuthStateChange((_event,session)=>{
+ setTimeout(async()=>{
+  if(session)await refreshUser();
+  else{currentUser=null;updateAccountButton();}
+ },0);
+});
+(async()=>{
+ await refreshUser();
+ loadLeaderboard();
+})();
 </script>
 </body>
 </html>
