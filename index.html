@@ -9,10 +9,16 @@
 <style>
 *{box-sizing:border-box}
 :root{
- --bg:#080b14;--panel:#111827;--purple:#a855f7;
- --cyan:#22d3ee;--muted:#9ba7bd;
+ --bg:#080b14;
+ --panel:#111827;
+ --purple:#a855f7;
+ --cyan:#22d3ee;
+ --muted:#9ba7bd;
 }
-body{margin:0;background:var(--bg);color:#f4f5ff;font-family:Arial,sans-serif}
+body{
+ margin:0;background:var(--bg);color:#f4f5ff;
+ font-family:Arial,sans-serif
+}
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
 header{
@@ -46,7 +52,10 @@ nav a:hover{color:var(--cyan)}
 .achievement-card.locked{opacity:.45;filter:grayscale(1)}
 .achievement-icon{font-size:26px}
 .xp-badge{display:inline-block;color:#a5f3fc;background:#164e63;padding:5px 9px;border-radius:6px;font-size:12px;font-weight:bold}
-.btn{background:linear-gradient(100deg,#9333ea,#2563eb);color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold}
+.btn{
+ background:linear-gradient(100deg,#9333ea,#2563eb);
+ color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold
+}
 .btn:hover{filter:brightness(1.2)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 .secondary{background:#202b40;border:1px solid #34445e}
@@ -56,62 +65,164 @@ nav a:hover{color:var(--cyan)}
 .hero{
  padding:75px 7%;min-height:360px;display:flex;
  justify-content:space-between;align-items:center;gap:25px;
- background:radial-gradient(ellipse at 80% 40%,#5722a855,transparent 45%),
+ background:
+ radial-gradient(ellipse at 80% 40%,#5722a855,transparent 45%),
  radial-gradient(ellipse at 20% 80%,#087caa33,transparent 45%),#101728
 }
 .hero h1{font-size:clamp(42px,6vw,70px);margin:12px 0}
-.hero h1 span{background:linear-gradient(90deg,#c084fc,#22d3ee);background-clip:text;color:transparent}
+.hero h1 span{
+ background:linear-gradient(90deg,#c084fc,#22d3ee);
+ background-clip:text;color:transparent
+}
 .hero p{color:#bac6da;line-height:1.7;max-width:520px}
 .hero-art{font-size:130px;filter:drop-shadow(0 0 30px #a855f788)}
 section{padding:38px 0}
-.heading{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+.heading{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:15px;flex-wrap:wrap;margin-bottom:20px
+}
 h2{margin:0 0 8px}
 .muted{color:var(--muted);font-size:13px}
-.search{width:100%;max-width:330px;padding:13px;background:#141d2e;border:1px solid #334155;color:white;border-radius:8px}
+.search{
+ width:100%;max-width:330px;padding:13px;background:#141d2e;
+ border:1px solid #334155;color:white;border-radius:8px
+}
 .categories{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:20px}
-.category{padding:9px 15px;border:1px solid #34445e;background:#141d2e;color:#cbd5e1;border-radius:30px}
+.category{
+ padding:9px 15px;border:1px solid #34445e;background:#141d2e;
+ color:#cbd5e1;border-radius:30px
+}
 .category.active,.category:hover{border-color:var(--cyan);color:var(--cyan)}
 .games{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
-.game-card{background:var(--panel);border:1px solid #263147;border-radius:12px;overflow:hidden;transition:.2s}
+.game-card{
+ background:var(--panel);border:1px solid #263147;
+ border-radius:12px;overflow:hidden;transition:.2s
+}
 .game-card:hover{border-color:var(--purple);transform:translateY(-3px)}
-.game-art{height:135px;display:grid;place-items:center;font-size:65px;background:linear-gradient(135deg,#282052,#102b42)}
+.game-art{
+ height:135px;display:grid;place-items:center;font-size:65px;
+ background:linear-gradient(135deg,#282052,#102b42)
+}
 .game-info{padding:15px}
 .game-info h3{margin:8px 0}
 .game-info p{font-size:12px;color:var(--muted)}
 .game-info button{width:100%;margin-top:8px}
 .tag{font-size:10px;padding:5px 8px;background:#282044;color:#d8b4fe;border-radius:5px}
 .panel{background:var(--panel);border:1px solid #263147;border-radius:12px;padding:20px}
-.leader-row{display:flex;justify-content:space-between;align-items:center;padding:14px;border-bottom:1px solid #263147;gap:10px}
+.leader-row{
+ display:flex;justify-content:space-between;align-items:center;
+ padding:14px;border-bottom:1px solid #263147;gap:10px
+}
 .leader-row:last-child{border:0}
 .rank{color:var(--cyan);font-weight:bold;margin-right:12px}
 .leader-score{color:var(--cyan);font-weight:bold}
-.leader-select{min-width:210px;padding:12px;background:#141d2e;border:1px solid #46536a;color:white;border-radius:8px}
-.player-link{border:0;background:none;color:#e9d5ff;padding:0;text-align:left;font-weight:bold}
+.leader-select{
+ min-width:210px;padding:12px;background:#141d2e;
+ border:1px solid #46536a;color:white;border-radius:8px
+}
+.player-link{
+ border:0;background:none;color:#e9d5ff;padding:0;
+ text-align:left;font-weight:bold
+}
 .player-link:hover{color:var(--cyan);text-decoration:underline}
-.avatar{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;background:#282044;border:2px solid #a855f7;font-size:30px;flex-shrink:0}
+.avatar{
+ width:54px;height:54px;border-radius:50%;display:grid;
+ place-items:center;background:#282044;border:2px solid #a855f7;
+ font-size:30px;flex-shrink:0
+}
 .profile-top{display:flex;align-items:center;gap:15px;margin:18px 0}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
-.stat{background:#182338;border:1px solid #2d3b53;padding:15px;border-radius:9px;text-align:center}
+.stat{
+ background:#182338;border:1px solid #2d3b53;
+ padding:15px;border-radius:9px;text-align:center
+}
 .stat strong{display:block;font-size:23px;color:var(--cyan);margin-bottom:5px}
 .stat span{font-size:11px;color:var(--muted)}
 .avatar-picker{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
-.avatar-choice{width:43px;height:43px;font-size:23px;border-radius:9px;border:1px solid #46536a;background:#202b40}
+.avatar-choice{
+ width:43px;height:43px;font-size:23px;border-radius:9px;
+ border:1px solid #46536a;background:#202b40
+}
 .avatar-choice.selected{border:2px solid var(--cyan);background:#283b55}
-.community{padding:32px;background:linear-gradient(120deg,#25134b,#102b43);border:1px solid #493778;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.modal{display:none;position:fixed;inset:0;background:#000c;z-index:20;align-items:center;justify-content:center;padding:15px}
+.community{
+ padding:32px;background:linear-gradient(120deg,#25134b,#102b43);
+ border:1px solid #493778;border-radius:14px;
+ display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap
+}
+.modal{
+ display:none;position:fixed;inset:0;background:#000c;z-index:20;
+ align-items:center;justify-content:center;padding:15px
+}
 .modal.open{display:flex}
-.modal-box{width:100%;max-width:550px;max-height:90vh;overflow:auto;background:#111827;border:1px solid #6542a5;border-radius:14px;padding:24px}
+.modal-box{
+ width:100%;max-width:550px;max-height:90vh;overflow:auto;
+ background:#111827;border:1px solid #6542a5;border-radius:14px;padding:24px
+}
 .modal-box.wide{max-width:1100px}
 .modal-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .close{background:#293449;color:white;border:0;border-radius:7px;padding:9px}
-.modal input,.modal select,.modal textarea,.game-area input{width:100%;padding:12px;margin:8px 0 15px;background:#202b40;border:1px solid #46536a;border-radius:7px;color:white}
+.modal input,.modal select,.modal textarea,.game-area input{
+ width:100%;padding:12px;margin:8px 0 15px;background:#202b40;
+ border:1px solid #46536a;border-radius:7px;color:white
+}
 .modal textarea{min-height:90px;resize:vertical}
 .modal label{font-size:13px;color:#cbd5e1}
-.game-area{background:#080b14;border-radius:10px;padding:20px;text-align:center;margin-top:15px;min-height:190px}
+.game-area{
+ background:#080b14;border-radius:10px;padding:20px;
+ text-align:center;margin-top:15px;min-height:190px
+}
 .game-area button{margin:6px}
 .status{font-size:13px;color:var(--cyan);margin:12px 0}
 .best-row{display:flex;justify-content:space-between;gap:10px;padding:11px 4px;border-bottom:1px solid #263147}
 .best-row:last-child{border:0}
+
+/* ADMIN DASHBOARD */
+.admin-header{
+ display:flex;justify-content:space-between;align-items:center;
+ flex-wrap:wrap;gap:12px;margin:18px 0
+}
+.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
+.admin-stat{background:#182338;border:1px solid #34445e;border-radius:10px;padding:17px}
+.admin-stat strong{display:block;font-size:26px;color:var(--cyan);margin-bottom:5px}
+.admin-stat span{font-size:12px;color:var(--muted)}
+.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
+.admin-tab{
+ background:#202b40;border:1px solid #46536a;color:#cbd5e1;
+ padding:10px 15px;border-radius:7px
+}
+.admin-tab.active{border-color:var(--cyan);color:var(--cyan)}
+.admin-search{
+ width:100%;padding:12px;margin:10px 0 15px;background:#202b40;
+ border:1px solid #46536a;border-radius:7px;color:white
+}
+.admin-table-wrap{overflow-x:auto;border:1px solid #263147;border-radius:9px}
+.admin-table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px}
+.admin-table th,.admin-table td{text-align:left;padding:12px;border-bottom:1px solid #263147}
+.admin-table th{color:var(--cyan);background:#182338}
+.admin-table tr:last-child td{border-bottom:0}
+.admin-table td{color:#dbe3f1}
+.admin-empty{padding:20px;color:var(--muted);text-align:center}
+.admin-note{
+ padding:12px;background:#172b3c;border:1px solid #24516a;
+ border-radius:8px;color:#bae6fd;font-size:12px;margin:15px 0
+}
+.admin-section{display:none}
+.admin-section.active{display:block}
+.admin-delete,.small-danger,.small-action{
+ padding:7px 10px;border:0;border-radius:6px;color:white;font-size:12px;margin:2px
+}
+.admin-delete,.small-danger{background:#7f1d1d}
+.small-action{background:#174c68}
+.ban-pill{font-size:11px;color:#fecaca;background:#571c28;padding:5px 8px;border-radius:5px}
+.good-pill{font-size:11px;color:#bbf7d0;background:#14532d;padding:5px 8px;border-radius:5px}
+.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
+footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #263147;font-size:13px}
+@media(max-width:750px){
+ nav{gap:8px}nav a{display:none}.hero-art{font-size:75px}
+ .hero{padding:55px 7%}.stats,.admin-stats{grid-template-columns:repeat(2,1fr)}
+ .modal-box{padding:17px}
+}
+@media(max-width:430px){.stats,.admin-stats{grid-template-columns:1fr}}
 
 /* DAILY REWARDS */
 .daily-reward-panel{background:linear-gradient(120deg,#25134b,#102b43);border:1px solid #493778;border-radius:14px;padding:20px}
@@ -125,39 +236,11 @@ h2{margin:0 0 8px}
 .daily-day strong{display:block;font-size:19px;margin-bottom:5px}
 .daily-day.done{background:#164e63;border-color:#22d3ee;color:#cffafe}
 .daily-day.current{border:2px solid #a855f7;color:#e9d5ff}
-
-/* ADMIN DASHBOARD */
-.admin-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin:18px 0}
-.admin-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:20px 0}
-.admin-stat{background:#182338;border:1px solid #34445e;border-radius:10px;padding:17px}
-.admin-stat strong{display:block;font-size:26px;color:var(--cyan);margin-bottom:5px}
-.admin-stat span{font-size:12px;color:var(--muted)}
-.admin-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}
-.admin-tab{background:#202b40;border:1px solid #46536a;color:#cbd5e1;padding:10px 15px;border-radius:7px}
-.admin-tab.active{border-color:var(--cyan);color:var(--cyan)}
-.admin-search{width:100%;padding:12px;margin:10px 0 15px;background:#202b40;border:1px solid #46536a;border-radius:7px;color:white}
-.admin-table-wrap{overflow-x:auto;border:1px solid #263147;border-radius:9px}
-.admin-table{width:100%;border-collapse:collapse;min-width:650px;font-size:13px}
-.admin-table th,.admin-table td{text-align:left;padding:12px;border-bottom:1px solid #263147}
-.admin-table th{color:var(--cyan);background:#182338}
-.admin-table tr:last-child td{border-bottom:0}
-.admin-table td{color:#dbe3f1}
-.admin-empty{padding:20px;color:var(--muted);text-align:center}
-.admin-note{padding:12px;background:#172b3c;border:1px solid #24516a;border-radius:8px;color:#bae6fd;font-size:12px;margin:15px 0}
-.admin-section{display:none}
-.admin-section.active{display:block}
-.admin-delete,.small-danger,.small-action{padding:7px 10px;border:0;border-radius:6px;color:white;font-size:12px;margin:2px}
-.admin-delete,.small-danger{background:#7f1d1d}
-.small-action{background:#174c68}
-.ban-pill{font-size:11px;color:#fecaca;background:#571c28;padding:5px 8px;border-radius:5px}
-.good-pill{font-size:11px;color:#bbf7d0;background:#14532d;padding:5px 8px;border-radius:5px}
-.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
-footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #263147;font-size:13px}
-@media(max-width:750px){nav{gap:8px}nav a{display:none}.hero-art{font-size:75px}.hero{padding:55px 7%}.stats,.admin-stats{grid-template-columns:repeat(2,1fr)}.modal-box{padding:17px}}
 @media(max-width:600px){.daily-reward-grid{grid-template-columns:1fr}.daily-streak-track{gap:4px}.daily-day{padding:9px 2px;font-size:9px}}
-@media(max-width:430px){.stats,.admin-stats{grid-template-columns:1fr}}
+
 </style>
 </head>
+
 <body>
 
 <header>
@@ -220,7 +303,9 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <div><h2>⭐ XP Rankings</h2><p class="muted">The highest-level GameEz players.</p></div>
   <button class="btn secondary" onclick="loadXPLeaderboard()">↻ Refresh</button>
  </div>
- <div class="panel"><div id="xpLeaderboardList"><p class="muted">Loading XP rankings...</p></div></div>
+ <div class="panel">
+  <div id="xpLeaderboardList"><p class="muted">Loading XP rankings...</p></div>
+ </div>
 </section>
 
 <section id="dailyRewards">
@@ -230,11 +315,7 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  </div>
  <div class="daily-reward-panel">
   <div class="daily-reward-top">
-   <div>
-    <span class="tag">DAILY LOGIN BONUS</span>
-    <h2 id="dailyRewardHeadline" style="margin-top:12px">Sign in to get rewards!</h2>
-    <p id="dailyRewardMessage" class="muted">Your daily rewards are waiting.</p>
-   </div>
+   <div><span class="tag">DAILY LOGIN BONUS</span><h2 id="dailyRewardHeadline" style="margin-top:12px">Sign in to get rewards!</h2><p id="dailyRewardMessage" class="muted">Your daily rewards are waiting.</p></div>
    <button class="btn" id="dailyClaimButton" onclick="claimDailyReward()" disabled>CLAIM DAILY REWARD</button>
   </div>
   <div class="daily-reward-grid">
@@ -242,8 +323,7 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
    <div class="daily-reward-stat"><strong id="dailyTotalClaims">0</strong><span>🎁 TOTAL CLAIMS</span></div>
    <div class="daily-reward-stat"><strong id="dailyCountdown">—</strong><span>⏰ NEXT RESET (UTC)</span></div>
   </div>
-  <h3>🏆 Weekly Streak Progress</h3>
-  <div id="dailyStreakTrack" class="daily-streak-track"></div>
+  <h3>🏆 Weekly Streak Progress</h3><div id="dailyStreakTrack" class="daily-streak-track"></div>
   <p id="dailyRewardStatus" class="status">Sign in to claim your daily reward.</p>
   <p class="muted">Rewards increase by 5 XP each consecutive day, starting at 25 XP. Every 7th consecutive day earns an additional 100 XP. Your streak resets if you miss a day. Rewards reset at midnight UTC.</p>
  </div>
@@ -273,7 +353,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 </section>
 </main>
 
-<footer><div class="logo">GAME<span>EZ</span></div><p>© 2026 GameEz. Play Without Limits.</p></footer>
+<footer>
+ <div class="logo">GAME<span>EZ</span></div>
+ <p>© 2026 GameEz. Play Without Limits.</p>
+</footer>
 
 <!-- ACCOUNT MODAL -->
 <div class="modal" id="accountModal">
@@ -307,8 +390,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <input type="hidden" id="banTargetId">
   <label for="banDuration">Ban duration</label>
   <select id="banDuration">
-   <option value="1h">1 hour</option><option value="24h">24 hours</option>
-   <option value="7d">7 days</option><option value="30d">30 days</option>
+   <option value="1h">1 hour</option>
+   <option value="24h">24 hours</option>
+   <option value="7d">7 days</option>
+   <option value="30d">30 days</option>
    <option value="permanent">Permanent</option>
   </select>
   <label for="banReason">Reason for ban</label>
@@ -329,22 +414,30 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
    <div><h2>🛡️ GameEz Admin Dashboard</h2><p class="muted">Owner control panel</p></div>
    <button class="close" onclick="closeModal('adminModal')">✕</button>
   </div>
-  <div class="admin-note">Owner-only dashboard. Ban actions are processed through your secured Supabase Edge Function. Score deletions are permanent.</div>
+
+  <div class="admin-note">
+   Owner-only dashboard. Ban actions are processed through your secured Supabase Edge Function. Score deletions are permanent.
+  </div>
+
   <div class="admin-header">
    <div><strong id="adminWelcome">Administrator</strong><p class="muted">GameEz control center</p></div>
    <button class="btn secondary" onclick="loadAdminDashboard()">↻ Refresh Dashboard</button>
   </div>
+
   <div class="admin-stats">
    <div class="admin-stat"><strong id="adminPlayerCount">—</strong><span>PLAYERS LOADED</span></div>
    <div class="admin-stat"><strong id="adminScoreCount">—</strong><span>SCORES LOADED</span></div>
    <div class="admin-stat"><strong id="adminBanCount">—</strong><span>ACTIVE BANS</span></div>
    <div class="admin-stat"><strong>4</strong><span>PLAYABLE GAMES</span></div>
   </div>
+
   <div class="admin-tabs">
    <button class="admin-tab active" onclick="showAdminTab('players',this)">👥 Players</button>
    <button class="admin-tab" onclick="showAdminTab('scores',this)">🏆 Scores</button>
    <button class="admin-tab" onclick="showAdminTab('bans',this)">🚫 Moderation History</button>
   </div>
+
+  <!-- PLAYERS -->
   <div id="adminPlayersSection" class="admin-section active">
    <h3>Player Management</h3>
    <p class="muted">Search accounts, inspect profiles, and manage player bans.</p>
@@ -356,6 +449,8 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
     </table>
    </div>
   </div>
+
+  <!-- SCORES -->
   <div id="adminScoresSection" class="admin-section">
    <h3>Leaderboard Management</h3>
    <p class="muted">Review scores and remove individual leaderboard entries.</p>
@@ -367,6 +462,8 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
     </table>
    </div>
   </div>
+
+  <!-- MODERATION HISTORY -->
   <div id="adminBansSection" class="admin-section">
    <h3>Moderation History</h3>
    <p class="muted">Review active bans, expired bans, and bans that have been lifted.</p>
@@ -378,6 +475,1373 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
     </table>
    </div>
   </div>
+
   <p class="muted" id="adminStatus"></p>
  </div>
 </div>
+
+<script>
+// ==========================================
+// SUPABASE CONNECTION
+// ==========================================
+
+const SUPABASE_URL="https://aadceyhpnrpgnjnsepqx.supabase.co";
+const SUPABASE_KEY="sb_publishable_7_3z855GbffIY3jqJcN9Pg_f87NbNiS";
+const GAMEEZ_OWNER_ID="a3ea315e-c551-4212-9f49-363b3b392f95";
+
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+
+// ==========================================
+// GAME DATA
+// ==========================================
+
+const games=[
+ {id:"clicker",name:"Neon Clicker",category:"Arcade",emoji:"🟣",description:"Click as fast as you can in 10 seconds!",featured:true},
+ {id:"reaction",name:"Reaction Rush",category:"Arcade",emoji:"⚡",description:"Test your reaction speed.",featured:true},
+ {id:"guess",name:"Number Hunter",category:"Puzzle",emoji:"🔢",description:"Find the secret number.",featured:true},
+ {id:"memory",name:"Memory Match",category:"Puzzle",emoji:"🧠",description:"Match the symbols."},
+ {id:"racer",name:"Street Racer",category:"Racing",emoji:"🏎️",description:"Coming soon!"},
+ {id:"city",name:"City Simulator",category:"Simulation",emoji:"🏙️",description:"Coming soon!"},
+ {id:"space",name:"Space Battle",category:"Action",emoji:"🚀",description:"Coming soon!"},
+ {id:"zombie",name:"Zombie Survival",category:"Action",emoji:"🧟",description:"Coming soon!"}
+];
+
+const categories=["All","Arcade","Puzzle","Racing","Simulation","Action"];
+
+const gameNames={
+ clicker:"🟣 Neon Clicker",
+ reaction:"⚡ Reaction Rush",
+ guess:"🔢 Number Hunter",
+ memory:"🧠 Memory Match"
+};
+
+const avatars=["🎮","👾","🚀","🐉","🦊","🐼","🐸","🤖","👻","🐺","🦄","🔥","⚡","🧙","🦖","🐱"];
+
+let activeCategory="All";
+let currentUser=null;
+let isGameEzAdmin=false;
+let adminPlayers=[];
+let adminScores=[];
+let adminBans=[];
+let chatChannel=null;
+let chatLoaded=false;
+let dailyCountdownTimer=null;
+
+// ==========================================
+// GAME LIBRARY
+// ==========================================
+
+function renderCategories(){
+ document.getElementById("categories").innerHTML=categories.map(c=>
+  `<button class="category ${activeCategory===c?"active":""}" onclick="setCategory('${c}')">${c}</button>`
+ ).join("");
+}
+
+function setCategory(c){
+ activeCategory=c;
+ renderCategories();
+ renderGames();
+}
+
+function renderGames(){
+ const q=document.getElementById("search").value.toLowerCase();
+ const list=games.filter(g=>
+  (activeCategory==="All"||g.category===activeCategory)&&
+  (g.name.toLowerCase().includes(q)||g.category.toLowerCase().includes(q))
+ );
+
+ document.getElementById("gamesGrid").innerHTML=list.map(g=>`
+  <div class="game-card">
+   <div class="game-art">${g.emoji}</div>
+   <div class="game-info">
+    ${g.featured?'<span class="tag">FEATURED</span>':''}
+    <h3>${g.name}</h3><p>${g.description}</p><p>📁 ${g.category}</p>
+    <button class="btn" onclick="launchGame('${g.id}')">
+     ${["racer","city","space","zombie"].includes(g.id)?"COMING SOON":"PLAY NOW →"}
+    </button>
+   </div>
+  </div>
+ `).join("");
+
+ document.getElementById("noGames").hidden=list.length!==0;
+}
+
+// ==========================================
+// ACCOUNT AND AUTHENTICATION
+// ==========================================
+
+function openAccount(){
+ const box=document.getElementById("accountContent");
+
+ if(currentUser){
+  box.innerHTML=`
+   <div class="profile-top">
+    <div class="avatar">${escapeHTML(currentUser.avatar)}</div>
+    <div><strong>${escapeHTML(currentUser.username)}</strong><p class="muted">${escapeHTML(currentUser.email)}</p><span class="xp-badge">⭐ Level ${Number(currentUser.level||1)} · ${Number(currentUser.xp||0).toLocaleString()} XP</span></div>
+   </div>
+   <button class="btn" onclick="showProfile(currentUser.id)">VIEW MY PROFILE</button>
+   <button class="btn secondary" onclick="logout()">LOG OUT</button>
+  `;
+ }else{
+  box.innerHTML=`
+   <p class="muted">Create an account or sign in to play and compete.</p>
+   <label>Username (for registration)</label>
+   <input id="username" maxlength="20" placeholder="Choose a username">
+   <label>Email address</label>
+   <input id="email" type="email" placeholder="you@example.com">
+   <label>Password</label>
+   <input id="password" type="password" placeholder="At least 8 characters">
+   <button class="btn" onclick="register()">CREATE ACCOUNT</button>
+   <button class="btn secondary" onclick="login()">SIGN IN</button>
+   <p id="authMessage" class="status"></p>
+   <p class="muted">Registration may require email verification before you can sign in.</p>
+  `;
+ }
+
+ document.getElementById("accountModal").classList.add("open");
+}
+
+ function authMessage(msg){
+ const el=document.getElementById("authMessage");
+ if(el)el.textContent=msg;
+}
+
+function validUsername(s){
+ return /^[a-zA-Z0-9_]{3,20}$/.test(s);
+}
+
+async function register(){
+ const username=document.getElementById("username").value.trim();
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+
+ if(!validUsername(username)){
+  authMessage("Username must be 3–20 letters, numbers or underscores.");
+  return;
+ }
+ if(!email||password.length<8){
+  authMessage("Enter a valid email and a password of at least 8 characters.");
+  return;
+ }
+
+ authMessage("Creating your account...");
+
+ const {data,error}=await db.auth.signUp({
+  email,password,
+  options:{
+   data:{username},
+   emailRedirectTo:"https://jonespeyton300-cloud.github.io/GameEz-Website/"
+  }
+ });
+
+ if(error){authMessage(error.message);return;}
+
+ if(data.session){
+  await refreshUser();
+  authMessage("Account created! Welcome to GameEz.");
+ }else{
+  authMessage("Check your email for a verification link. Then sign in.");
+ }
+}
+
+async function login(){
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+
+ if(!email||!password){authMessage("Enter your email and password.");return;}
+
+ authMessage("Signing in...");
+
+ const {error}=await db.auth.signInWithPassword({email,password});
+
+ if(error){authMessage(error.message);return;}
+
+ await refreshUser();
+ openAccount();
+}
+
+async function logout(){
+ await db.auth.signOut();
+ currentUser=null;
+ isGameEzAdmin=false;
+ updateAccountButton();
+ closeModal("accountModal");
+ closeModal("profileModal");
+ closeModal("adminModal");
+ loadDailyRewardStatus();
+}
+
+async function refreshUser(){
+ const {data:{user},error:userError}=await db.auth.getUser();
+
+ if(userError||!user){
+  currentUser=null;
+  isGameEzAdmin=false;
+  updateAccountButton();
+  loadDailyRewardStatus();
+  return;
+ }
+
+ const {data:profile,error:profileError}=await db.from("profiles")
+  .select("username,avatar_emoji")
+  .eq("id",user.id)
+  .maybeSingle();
+
+ if(profileError)console.error("Profile lookup:",profileError.message);
+
+ currentUser={
+  id:user.id,
+  email:user.email,
+  username:profile?.username||user.user_metadata?.username||"Player",
+  avatar:profile?.avatar_emoji||"🎮",
+  xp:0,
+  level:1
+ };
+
+ const {data:playerStats}=await db.from("player_stats")
+  .select("xp,level").eq("user_id",user.id).maybeSingle();
+ currentUser.xp=Number(playerStats?.xp||0);
+ currentUser.level=Number(playerStats?.level||1);
+
+ isGameEzAdmin=false;
+
+ if(user.id===GAMEEZ_OWNER_ID){
+  const {data:adminRecord,error:adminError}=await db.from("gameez_admins")
+   .select("user_id").eq("user_id",user.id).maybeSingle();
+
+  if(adminError)console.error("Admin lookup:",adminError.message);
+  isGameEzAdmin=!!adminRecord;
+ }
+
+ updateAccountButton();
+ loadDailyRewardStatus();
+}
+
+function updateAccountButton(){
+ const accountButton=document.getElementById("accountButton");
+ const adminButton=document.getElementById("adminButton");
+
+ if(accountButton)accountButton.textContent=currentUser?currentUser.username:"Sign In";
+ if(adminButton)adminButton.style.display=isGameEzAdmin?"inline-block":"none";
+}
+
+// ==========================================
+// PLAYER PROFILES
+// ==========================================
+
+async function showProfile(userId){
+ closeModal("accountModal");
+
+ const modal=document.getElementById("profileModal");
+ const box=document.getElementById("profileContent");
+
+ modal.classList.add("open");
+ box.innerHTML='<p class="muted">Loading player profile...</p>';
+
+ const [
+  {data:profile,error:profileError},
+  {data:scores,error:scoreError},
+  {data:playerStats},
+  {data:earnedAchievements}
+ ]=await Promise.all([
+  db.from("profiles").select("id,username,avatar_emoji,created_at").eq("id",userId).maybeSingle(),
+  db.from("scores").select("score,game_id,created_at").eq("user_id",userId),
+  db.from("player_stats").select("xp,level").eq("user_id",userId).maybeSingle(),
+  db.from("user_achievements").select("unlocked_at,achievements(id,name,description,icon,xp_reward)").eq("user_id",userId).order("unlocked_at",{ascending:false})
+ ]);
+
+ if(profileError||!profile){
+  box.innerHTML='<p class="muted">Could not find this player profile.</p>';
+  return;
+ }
+
+ if(scoreError){
+  box.innerHTML='<p class="muted">Could not load player statistics: '+escapeHTML(scoreError.message)+'</p>';
+  return;
+ }
+
+ const rows=scores||[];
+ const totalGames=rows.length;
+ const totalPoints=rows.reduce((sum,s)=>sum+Number(s.score||0),0);
+ const bestByGame={};
+
+ rows.forEach(s=>{
+  if(!bestByGame[s.game_id]||Number(s.score)>Number(bestByGame[s.game_id])){
+   bestByGame[s.game_id]=Number(s.score);
+  }
+ });
+
+ const bestRows=Object.entries(gameNames).map(([id,name])=>`
+  <div class="best-row"><span>${name}</span><strong>${bestByGame[id]===undefined?"—":bestByGame[id].toLocaleString()+" pts"}</strong></div>
+ `).join("");
+
+ const isOwnProfile=currentUser&&currentUser.id===userId;
+ const avatar=profile.avatar_emoji||"🎮";
+ const xp=Number(playerStats?.xp||0);
+ const level=Number(playerStats?.level||Math.floor(xp/100)+1);
+ const xpIntoLevel=xp%100;
+ const xpNeeded=100;
+ const achievementCards=(earnedAchievements||[]).map(item=>{
+  const a=item.achievements;
+  if(!a)return "";
+  return `<div class="achievement-card"><div class="achievement-icon">${escapeHTML(a.icon||"🏅")}</div><strong>${escapeHTML(a.name)}</strong><p class="muted">${escapeHTML(a.description||"Achievement unlocked")}</p><span class="muted">Unlocked ${new Date(item.unlocked_at).toLocaleDateString()}</span></div>`;
+ }).join("");
+
+ box.innerHTML=`
+  <div class="profile-top">
+   <div class="avatar" id="profileAvatar">${escapeHTML(avatar)}</div>
+   <div>
+    <h2 style="margin:0">${escapeHTML(profile.username||"Player")}</h2>
+    <p class="muted">GameEz Player</p>
+    <span class="xp-badge">⭐ Level ${level} · ${xp.toLocaleString()} XP</span>
+    <p class="muted">Joined ${new Date(profile.created_at).toLocaleDateString()}</p>
+   </div>
+  </div>
+  ${isOwnProfile?`
+   <h3>Choose your avatar</h3>
+   <p class="muted">Pick an emoji to represent your player profile.</p>
+   <div class="avatar-picker">
+    ${avatars.map(a=>`<button class="avatar-choice ${a===avatar?"selected":""}" onclick="updateAvatar('${a}')" title="Choose ${a}">${a}</button>`).join("")}
+   </div>
+   <p id="avatarMessage" class="status"></p>
+  `:""}
+  <div class="panel" style="margin:18px 0">
+   <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><strong>⭐ Level ${level}</strong><strong>${xpIntoLevel}/${xpNeeded} XP to next level</strong></div>
+   <div class="xp-progress"><div class="xp-progress-fill" style="width:${xpIntoLevel}%"></div></div>
+   <p class="muted">${xp.toLocaleString()} total XP · Earn 10 XP every time a score is saved.</p>
+  </div>
+  <div class="stats">
+   <div class="stat"><strong>${totalGames}</strong><span>GAMES PLAYED</span></div>
+   <div class="stat"><strong>${totalPoints.toLocaleString()}</strong><span>TOTAL POINTS</span></div>
+   <div class="stat"><strong>${Object.keys(bestByGame).length}</strong><span>GAMES SCORED IN</span></div>
+  </div>
+  <h3>🏅 Achievements (${(earnedAchievements||[]).length})</h3>
+  <div class="achievement-grid">${achievementCards||'<p class="muted">No achievements unlocked yet. Play games to earn your first one!</p>'}</div>
+  <h3>🏆 Personal Bests</h3>${bestRows}
+ `;
+
+ if(isOwnProfile)currentUser.avatar=avatar;
+}
+
+async function updateAvatar(avatar){
+ if(!currentUser)return;
+ const message=document.getElementById("avatarMessage");
+ if(message)message.textContent="Saving avatar...";
+
+ const {error}=await db.from("profiles")
+  .update({avatar_emoji:avatar})
+  .eq("id",currentUser.id);
+
+ if(error){
+  if(message)message.textContent="Could not save avatar: "+error.message;
+  return;
+ }
+
+ currentUser.avatar=avatar;
+ await showProfile(currentUser.id);
+}
+
+// ==========================================
+// MODAL UTILITIES
+// ==========================================
+
+function closeModal(id){
+ document.getElementById(id).classList.remove("open");
+}
+
+document.querySelectorAll(".modal").forEach(modal=>{
+ modal.addEventListener("click",event=>{
+  if(event.target===modal)modal.classList.remove("open");
+ });
+});
+
+// ==========================================
+// GAME LEADERBOARD
+// ==========================================
+
+async function loadLeaderboard(){
+ const box=document.getElementById("leaderboardList");
+ const selectedGame=document.getElementById("leaderboardGame").value;
+
+ document.getElementById("leaderboardTitle").textContent=(gameNames[selectedGame]||"Game")+" Rankings";
+ box.innerHTML='<p class="muted">Loading scores...</p>';
+
+ const {data,error}=await db.from("scores")
+  .select("user_id,score,game_id,created_at,profiles(username,avatar_emoji)")
+  .eq("game_id",selectedGame)
+  .order("score",{ascending:false})
+  .limit(500);
+
+ if(error){
+  box.innerHTML='<p class="muted">Could not load leaderboard: '+escapeHTML(error.message)+'</p>';
+  return;
+ }
+
+ if(!data||!data.length){
+  box.innerHTML='<p class="muted">No scores for this game yet. Be the first to play!</p>';
+  return;
+ }
+
+ const bestScores=new Map();
+
+ data.forEach(entry=>{
+  const old=bestScores.get(entry.user_id);
+  if(!old||Number(entry.score)>Number(old.score))bestScores.set(entry.user_id,entry);
+ });
+
+ const rankings=Array.from(bestScores.values())
+  .sort((a,b)=>Number(b.score)-Number(a.score)).slice(0,10);
+
+ box.innerHTML=rankings.map((s,i)=>`
+  <div class="leader-row">
+   <span style="display:flex;align-items:center;gap:9px">
+    <span class="rank">#${i+1}</span>
+    <span>${escapeHTML(s.profiles?.avatar_emoji||"🎮")}</span>
+    <button class="player-link" onclick="showProfile('${s.user_id}')">${escapeHTML(s.profiles?.username||"Player")}</button>
+   </span>
+   <strong class="leader-score">${Number(s.score).toLocaleString()} pts</strong>
+  </div>
+ `).join("");
+}
+
+// ==========================================
+// XP LEADERBOARD
+// ==========================================
+
+async function loadXPLeaderboard(){
+ const box=document.getElementById("xpLeaderboardList");
+ if(!box)return;
+ box.innerHTML='<p class="muted">Loading XP rankings...</p>';
+
+ const {data,error}=await db.from("player_stats")
+  .select("user_id,xp,level,profiles(username,avatar_emoji)")
+  .order("xp",{ascending:false}).limit(20);
+
+ if(error){
+  box.innerHTML='<p class="muted">Could not load XP rankings: '+escapeHTML(error.message)+'</p>';
+  return;
+ }
+ if(!data||!data.length){
+  box.innerHTML='<p class="muted">No XP rankings yet. Save a game score to earn the first XP!</p>';
+  return;
+ }
+
+ box.innerHTML=data.map((p,i)=>`
+  <div class="leader-row">
+   <span style="display:flex;align-items:center;gap:10px">
+    <span class="rank">#${i+1}</span>
+    <span>${escapeHTML(p.profiles?.avatar_emoji||"🎮")}</span>
+    <button class="player-link" onclick="showProfile('${p.user_id}')">${escapeHTML(p.profiles?.username||"Player")}</button>
+   </span>
+   <strong class="leader-score">Level ${Number(p.level||1)} · ${Number(p.xp||0).toLocaleString()} XP</strong>
+  </div>
+ `).join("");
+}
+
+// ==========================================
+// DAILY REWARDS
+// ==========================================
+
+function renderDailyStreak(streak){
+ const track=document.getElementById("dailyStreakTrack");
+ if(!track)return;
+ const progress=streak>0?(streak%7||7):0;
+ track.innerHTML=Array.from({length:7},(_,i)=>{
+  const day=i+1,done=day<=progress;
+  return `<div class="daily-day ${done?"done":""} ${day===progress?"current":""}"><strong>${done?"✓":day}</strong>DAY ${day}<br>${20+5*day} XP${day===7?"<br>+100 BONUS":""}</div>`;
+ }).join("");
+}
+
+function updateDailyCountdown(nextClaimAt){
+ if(dailyCountdownTimer)clearInterval(dailyCountdownTimer);
+ const el=document.getElementById("dailyCountdown");
+ if(!el)return;
+ function tick(){
+  const ms=new Date(nextClaimAt).getTime()-Date.now();
+  if(ms<=0){el.textContent="00:00:00";return;}
+  const h=Math.floor(ms/3600000),m=Math.floor(ms%3600000/60000),sec=Math.floor(ms%60000/1000);
+  el.textContent=[h,m,sec].map(n=>String(n).padStart(2,"0")).join(":");
+ }
+ tick();dailyCountdownTimer=setInterval(tick,1000);
+}
+
+async function loadDailyRewardStatus(){
+ const headline=document.getElementById("dailyRewardHeadline");
+ const message=document.getElementById("dailyRewardMessage");
+ const button=document.getElementById("dailyClaimButton");
+ const status=document.getElementById("dailyRewardStatus");
+ if(!headline||!button)return;
+ if(dailyCountdownTimer){clearInterval(dailyCountdownTimer);dailyCountdownTimer=null;}
+ if(!currentUser){
+  headline.textContent="Sign in to get rewards!";
+  message.textContent="Create an account or sign in to start earning daily XP.";
+  status.textContent="You must be signed in to claim rewards.";
+  button.disabled=true;button.textContent="SIGN IN TO CLAIM";
+  document.getElementById("dailyStreak").textContent="0";
+  document.getElementById("dailyTotalClaims").textContent="0";
+  document.getElementById("dailyCountdown").textContent="—";
+  renderDailyStreak(0);return;
+ }
+ button.disabled=true;button.textContent="LOADING...";status.textContent="Loading your reward status...";
+ const {data,error}=await db.rpc("get_daily_reward_status");
+ if(error){
+  headline.textContent="Rewards unavailable";message.textContent="Could not load your daily rewards.";
+  status.textContent="Daily Rewards error: "+error.message;button.textContent="TRY AGAIN";button.disabled=false;return;
+ }
+ const reward=data||{},streak=Number(reward.streak||0),claimed=!!reward.claimed_today;
+ document.getElementById("dailyStreak").textContent=streak;
+ document.getElementById("dailyTotalClaims").textContent=Number(reward.total_claims||0);
+ renderDailyStreak(streak);
+ if(reward.next_claim_at)updateDailyCountdown(reward.next_claim_at);
+ if(claimed){
+  headline.textContent="Reward already claimed! 🎉";
+  message.textContent="Your next daily reward will be available after the UTC reset.";
+  status.textContent="Come back tomorrow to continue your streak.";
+  button.textContent="CLAIMED TODAY ✓";button.disabled=true;
+ }else{
+  const next=streak+1,base=20+5*next,bonus=next%7===0?100:0;
+  headline.textContent="Your next reward is ready! 🎁";
+  message.textContent=`Claim ${base} XP${bonus?" plus a 100 XP weekly bonus":""}! Your next streak day will be Day ${next}.`;
+  status.textContent="Your daily reward is ready to claim.";
+  button.textContent=`CLAIM ${base+bonus} XP`;button.disabled=false;
+ }
+}
+
+async function claimDailyReward(){
+ const button=document.getElementById("dailyClaimButton"),status=document.getElementById("dailyRewardStatus");
+ if(!currentUser){status.textContent="Please sign in before claiming rewards.";openAccount();return;}
+ button.disabled=true;button.textContent="CLAIMING...";status.textContent="Processing your daily reward...";
+ const {data,error}=await db.rpc("claim_daily_reward");
+ if(error){status.textContent="Could not claim reward: "+error.message;button.disabled=false;button.textContent="TRY AGAIN";return;}
+ const result=data||{};
+ if(!result.success){status.textContent=result.message||"You have already claimed today's reward.";await loadDailyRewardStatus();return;}
+ const total=Number(result.xp_awarded||0),streak=Number(result.streak||0);
+ status.textContent=`🎉 You earned ${total} XP${Number(result.weekly_bonus||0)?" including the 100 XP weekly bonus":""}!`;
+ await refreshUser();await loadXPLeaderboard();await loadDailyRewardStatus();
+}
+
+// ==========================================
+// GLOBAL CHAT
+// ==========================================
+
+async function loadChatMessages(){
+ const box=document.getElementById("chatMessages");
+ if(!box)return;
+
+ const {data,error}=await db.from("chat_messages")
+  .select("id,user_id,message,created_at,profiles(username,avatar_emoji)")
+  .order("created_at",{ascending:false}).limit(50);
+
+ if(error){
+  box.innerHTML='<p class="muted">Could not load chat: '+escapeHTML(error.message)+'</p>';
+  return;
+ }
+
+ const messages=(data||[]).reverse();
+ if(!messages.length){
+  box.innerHTML='<p class="muted">No messages yet. Start the conversation!</p>';
+  chatLoaded=true;
+  return;
+ }
+
+ box.innerHTML=messages.map(renderChatMessage).join("");
+ box.scrollTop=box.scrollHeight;
+ chatLoaded=true;
+}
+
+function renderChatMessage(message){
+ const username=message.profiles?.username||"Player";
+ const avatar=message.profiles?.avatar_emoji||"🎮";
+ const time=message.created_at?new Date(message.created_at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}):"";
+ const deleteButton=isGameEzAdmin
+  ?`<button class="chat-delete" onclick="adminDeleteChatMessage('${String(message.id)}')">DELETE</button>`
+  :"";
+
+ return `
+  <div class="chat-message" data-message-id="${escapeHTML(message.id)}">
+   <div class="chat-avatar">${escapeHTML(avatar)}</div>
+   <div class="chat-message-main">
+    <div class="chat-message-top"><span class="chat-message-name">${escapeHTML(username)}</span><span class="chat-message-time">${escapeHTML(time)}</span></div>
+    <div class="chat-message-text">${escapeHTML(message.message)}</div>
+   </div>
+   ${deleteButton}
+  </div>
+ `;
+}
+
+async function sendChatMessage(){
+ const input=document.getElementById("chatInput");
+ const status=document.getElementById("chatStatus");
+ const button=document.getElementById("sendChatButton");
+ const message=input.value.trim();
+
+ if(!currentUser){
+  status.textContent="Please sign in to send chat messages.";
+  openAccount();
+  return;
+ }
+ if(!message)return;
+
+ button.disabled=true;
+ status.textContent="Sending message...";
+
+ const {error}=await db.from("chat_messages").insert({
+  user_id:currentUser.id,
+  message
+ });
+
+ button.disabled=false;
+ if(error){
+  status.textContent=error.message.includes("row-level security")
+   ?"This account may be banned from chat, or chat permissions are not configured."
+   :"Message could not be sent: "+error.message;
+  return;
+ }
+
+ input.value="";
+ status.textContent="Message sent.";
+ await loadChatMessages();
+}
+
+async function adminDeleteChatMessage(messageId){
+ if(!await verifyAdmin()){
+  alert("Admin access denied.");
+  return;
+ }
+ if(!confirm("Delete this chat message?"))return;
+
+ const {error}=await db.from("chat_messages").delete().eq("id",messageId);
+ if(error){
+  alert("Could not delete message: "+error.message);
+  return;
+ }
+ await loadChatMessages();
+}
+
+function startChatRealtime(){
+ if(chatChannel)return;
+ chatChannel=db.channel("gameez-global-chat")
+  .on("postgres_changes",{event:"*",schema:"public",table:"chat_messages"},()=>{
+   loadChatMessages();
+  })
+  .subscribe();
+}
+
+// ==========================================
+// SCORE SUBMISSION
+// ==========================================
+
+async function submitScore(gameId,score){
+ if(!currentUser){
+  alert("Please create an account or sign in before saving scores.");
+  openAccount();
+  return;
+ }
+
+ const {data:{session}}=await db.auth.getSession();
+
+ if(!session){
+  alert("Your session expired. Please sign in again.");
+  return;
+ }
+
+ const response=await fetch(SUPABASE_URL+"/functions/v1/submit-score",{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "Authorization":"Bearer "+session.access_token,
+   "apikey":SUPABASE_KEY
+  },
+  body:JSON.stringify({game_id:gameId,score})
+ });
+
+ const result=await response.json().catch(()=>({error:"Unexpected server response"}));
+
+ if(!response.ok){
+  alert(result.error||"Score could not be saved.");
+  return;
+ }
+
+ await refreshUser();
+ alert("Score saved! You earned 10 XP.");
+ document.getElementById("leaderboardGame").value=gameId;
+ loadLeaderboard();
+ loadXPLeaderboard();
+}
+
+// ==========================================
+// ADMIN SECURITY
+// ==========================================
+
+async function verifyAdmin(){
+ if(!currentUser||currentUser.id!==GAMEEZ_OWNER_ID||!isGameEzAdmin)return false;
+
+ const {data:{user},error:userError}=await db.auth.getUser();
+ if(userError||!user||user.id!==GAMEEZ_OWNER_ID)return false;
+
+ const {data:adminRecord,error:adminError}=await db.from("gameez_admins")
+  .select("user_id").eq("user_id",user.id).maybeSingle();
+
+ return !adminError&&!!adminRecord;
+}
+
+async function openAdmin(){
+ if(!await verifyAdmin()){
+  alert("Access denied. Administrator verification failed.");
+  return;
+ }
+
+ document.getElementById("adminModal").classList.add("open");
+ document.getElementById("adminWelcome").textContent="Welcome, "+currentUser.username;
+ await loadAdminDashboard();
+}
+
+// ==========================================
+// ADMIN DASHBOARD DATA
+ // ==========================================
+
+async function loadAdminDashboard(){
+ if(!await verifyAdmin()){
+  alert("Admin access denied.");
+  closeModal("adminModal");
+  return;
+ }
+
+ const status=document.getElementById("adminStatus");
+ status.textContent="Loading dashboard data...";
+
+ document.getElementById("adminPlayersBody").innerHTML='<tr><td colspan="6" class="admin-empty">Loading players...</td></tr>';
+ document.getElementById("adminScoresBody").innerHTML='<tr><td colspan="5" class="admin-empty">Loading scores...</td></tr>';
+ document.getElementById("adminBansBody").innerHTML='<tr><td colspan="7" class="admin-empty">Loading moderation history...</td></tr>';
+
+ const [
+  {data:players,error:playerError},
+  {data:scores,error:scoreError},
+  {data:bans,error:banError}
+ ]=await Promise.all([
+  db.from("profiles").select("id,username,avatar_emoji,created_at").order("created_at",{ascending:false}).limit(1000),
+  db.from("scores").select("id,user_id,game_id,score,created_at,profiles(username)").order("created_at",{ascending:false}).limit(1000),
+  db.from("player_bans").select("id,user_id,banned_by,reason,ban_type,expires_at,is_active,created_at,lifted_at,lifted_by").order("created_at",{ascending:false}).limit(1000)
+ ]);
+
+ adminPlayers=playerError?[]:(players||[]);
+ adminScores=scoreError?[]:(scores||[]);
+ adminBans=banError?[]:(bans||[]);
+
+ if(playerError)status.textContent="Player loading error: "+playerError.message;
+ else if(scoreError)status.textContent="Score loading error: "+scoreError.message;
+ else if(banError)status.textContent="Moderation loading error: "+banError.message;
+
+ document.getElementById("adminPlayerCount").textContent=adminPlayers.length.toLocaleString();
+ document.getElementById("adminScoreCount").textContent=adminScores.length.toLocaleString();
+ document.getElementById("adminBanCount").textContent=getActiveBans().length.toLocaleString();
+
+ renderAdminPlayers();
+ renderAdminScores();
+ renderAdminBans();
+
+ if(!playerError&&!scoreError&&!banError){
+  status.textContent="Dashboard loaded. Showing up to 1,000 players, scores, and moderation records.";
+ }
+}
+
+function getActiveBans(){
+ const now=Date.now();
+ return adminBans.filter(b=>{
+  if(!b.is_active)return false;
+  if(b.expires_at&&new Date(b.expires_at).getTime()<=now)return false;
+  return true;
+ });
+}
+
+function findActiveBan(userId){
+ const now=Date.now();
+ return adminBans.find(b=>
+  b.user_id===userId&&
+  b.is_active&&
+  (!b.expires_at||new Date(b.expires_at).getTime()>now)
+ );
+}
+
+// ==========================================
+// ADMIN PLAYER TABLE
+// ==========================================
+
+function renderAdminPlayers(){
+ const body=document.getElementById("adminPlayersBody");
+
+ if(!adminPlayers.length){
+  body.innerHTML='<tr><td colspan="6" class="admin-empty">No players found.</td></tr>';
+  return;
+ }
+
+ body.innerHTML=adminPlayers.map(player=>{
+  const ban=findActiveBan(player.id);
+  const status=ban?'<span class="ban-pill">BANNED</span>':'<span class="good-pill">ACTIVE</span>';
+
+  const action=ban
+   ?`<button class="small-action" onclick="adminUnban('${player.id}')">UNBAN</button>`
+   :`<button class="small-danger" onclick="openBanModal('${player.id}')">BAN</button>`;
+
+  return `
+   <tr class="admin-player-row" data-search="${escapeHTML((player.username||"").toLowerCase()+" "+player.id.toLowerCase())}">
+    <td><strong>${escapeHTML(player.username||"Player")}</strong></td>
+    <td>${escapeHTML(player.id)}</td>
+    <td>${escapeHTML(player.avatar_emoji||"🎮")}</td>
+    <td>${player.created_at?new Date(player.created_at).toLocaleDateString():"—"}</td>
+    <td>${status}</td>
+    <td>
+     <button class="small-action" onclick="showProfile('${player.id}')">PROFILE</button>
+     ${action}
+    </td>
+   </tr>
+  `;
+ }).join("");
+
+ filterAdminTables();
+}
+
+// ==========================================
+// ADMIN SCORE TABLE
+// ==========================================
+
+function renderAdminScores(){
+ const body=document.getElementById("adminScoresBody");
+
+ if(!adminScores.length){
+  body.innerHTML='<tr><td colspan="5" class="admin-empty">No scores found.</td></tr>';
+  return;
+ }
+
+ body.innerHTML=adminScores.map(score=>{
+  const username=score.profiles?.username||"Unknown Player";
+  const gameName=gameNames[score.game_id]||score.game_id;
+
+  return `
+   <tr class="admin-score-row" data-search="${escapeHTML(username.toLowerCase()+" "+gameName.toLowerCase()+" "+String(score.score)+" "+String(score.user_id).toLowerCase())}">
+    <td>${escapeHTML(username)}</td>
+    <td>${escapeHTML(gameName)}</td>
+    <td><strong>${Number(score.score).toLocaleString()}</strong></td>
+    <td>${score.created_at?new Date(score.created_at).toLocaleDateString():"—"}</td>
+    <td><button class="admin-delete" onclick="adminDeleteScore('${String(score.id)}')">DELETE</button></td>
+   </tr>
+  `;
+ }).join("");
+
+ filterAdminTables();
+}
+
+// ==========================================
+// MODERATION HISTORY TABLE
+// ==========================================
+
+function renderAdminBans(){
+ const body=document.getElementById("adminBansBody");
+
+ if(!adminBans.length){
+  body.innerHTML='<tr><td colspan="7" class="admin-empty">No moderation records yet.</td></tr>';
+  return;
+ }
+
+ const playerMap=new Map(adminPlayers.map(p=>[p.id,p.username||"Player"]));
+
+ body.innerHTML=adminBans.map(ban=>{
+  const username=playerMap.get(ban.user_id)||"Unknown Player";
+  const expired=ban.expires_at&&new Date(ban.expires_at).getTime()<=Date.now();
+  const active=ban.is_active&&!expired;
+  const status=active
+   ?'<span class="ban-pill">ACTIVE</span>'
+   :expired
+    ?'<span class="good-pill">EXPIRED</span>'
+    :'<span class="good-pill">LIFTED</span>';
+
+  const duration=ban.ban_type==="permanent"?"Permanent":formatDuration(ban.created_at,ban.expires_at);
+  const action=active
+   ?`<button class="small-action" onclick="adminUnban('${ban.user_id}')">UNBAN</button>`
+   :"—";
+
+  return `
+   <tr class="admin-ban-row" data-search="${escapeHTML((username+" "+ban.reason+" "+ban.user_id+" "+ban.ban_type).toLowerCase())}">
+    <td>${escapeHTML(username)}</td>
+    <td>${escapeHTML(ban.reason)}</td>
+    <td>${escapeHTML(duration)}</td>
+    <td>${ban.created_at?new Date(ban.created_at).toLocaleString():"—"}</td>
+    <td>${ban.expires_at?new Date(ban.expires_at).toLocaleString():"Never"}</td>
+    <td>${status}</td>
+    <td>${action}</td>
+   </tr>
+  `;
+ }).join("");
+
+ filterAdminTables();
+}
+
+function formatDuration(start,end){
+ if(!end)return "Permanent";
+ const hours=Math.max(0,Math.round((new Date(end)-new Date(start))/3600000));
+ if(hours<24)return hours+" hour(s)";
+ const days=Math.round(hours/24);
+ return days+" day(s)";
+}
+
+// ==========================================
+// ADMIN TABS AND SEARCH
+// ==========================================
+
+function showAdminTab(tab,button){
+ document.querySelectorAll(".admin-tab").forEach(b=>b.classList.remove("active"));
+ document.querySelectorAll(".admin-section").forEach(s=>s.classList.remove("active"));
+
+ button.classList.add("active");
+
+ const section=document.getElementById(
+  tab==="players"?"adminPlayersSection":
+  tab==="scores"?"adminScoresSection":"adminBansSection"
+ );
+ section.classList.add("active");
+}
+
+function filterAdminTables(){
+ const playerSearch=(document.getElementById("adminPlayerSearch")?.value||"").toLowerCase();
+ const scoreSearch=(document.getElementById("adminScoreSearch")?.value||"").toLowerCase();
+ const banSearch=(document.getElementById("adminBanSearch")?.value||"").toLowerCase();
+
+ document.querySelectorAll(".admin-player-row").forEach(row=>{
+  row.style.display=row.dataset.search.includes(playerSearch)?"":"none";
+ });
+ document.querySelectorAll(".admin-score-row").forEach(row=>{
+  row.style.display=row.dataset.search.includes(scoreSearch)?"":"none";
+ });
+ document.querySelectorAll(".admin-ban-row").forEach(row=>{
+  row.style.display=row.dataset.search.includes(banSearch)?"":"none";
+ });
+}
+
+// ==========================================
+// SECURE EDGE FUNCTION REQUEST
+// ==========================================
+
+async function callModerationFunction(payload){
+ if(!await verifyAdmin()){
+  throw new Error("Administrator verification failed.");
+ }
+
+ const {data:{session},error:sessionError}=await db.auth.getSession();
+
+ if(sessionError||!session){
+  throw new Error("Your login session has expired. Sign in again.");
+ }
+
+ const response=await fetch(SUPABASE_URL+"/functions/v1/admin-manage-player",{
+  method:"POST",
+  headers:{
+   "Content-Type":"application/json",
+   "Authorization":"Bearer "+session.access_token,
+   "apikey":SUPABASE_KEY
+  },
+  body:JSON.stringify(payload)
+ });
+
+ const result=await response.json().catch(()=>({error:"Unexpected server response."}));
+
+ if(!response.ok||!result.success){
+  throw new Error(result.error||"The moderation request failed.");
+ }
+
+ return result;
+}
+
+// ==========================================
+// BAN PLAYER
+// ==========================================
+
+function openBanModal(userId){
+ if(!isGameEzAdmin||!currentUser||currentUser.id!==GAMEEZ_OWNER_ID){
+  alert("Admin access denied.");
+  return;
+ }
+
+ const player=adminPlayers.find(p=>p.id===userId);
+
+ if(!player){
+  alert("Player could not be found.");
+  return;
+ }
+
+ if(userId===GAMEEZ_OWNER_ID){
+  alert("You cannot ban your own owner account.");
+  return;
+ }
+
+ document.getElementById("banTargetId").value=userId;
+ document.getElementById("banTargetName").textContent="Banning: "+(player.username||"Player");
+ document.getElementById("banDuration").value="24h";
+ document.getElementById("banReason").value="";
+ document.getElementById("banMessage").textContent="";
+ document.getElementById("confirmBanButton").disabled=false;
+ document.getElementById("banModal").classList.add("open");
+}
+
+async function confirmBan(){
+ const targetUserId=document.getElementById("banTargetId").value;
+ const duration=document.getElementById("banDuration").value;
+ const reason=document.getElementById("banReason").value.trim();
+ const message=document.getElementById("banMessage");
+ const button=document.getElementById("confirmBanButton");
+
+ if(!reason){
+  message.textContent="You must enter a reason for the ban.";
+  return;
+ }
+
+ if(reason.length>500){
+  message.textContent="The reason must be 500 characters or fewer.";
+  return;
+ }
+
+ if(!confirm("Are you sure you want to ban this player?"))return;
+
+ button.disabled=true;
+ message.textContent="Applying ban...";
+
+ try{
+  const result=await callModerationFunction({
+   action:"ban",
+   targetUserId,
+   duration,
+   reason
+  });
+
+  message.textContent=result.message||"Player banned successfully.";
+  await loadAdminDashboard();
+
+  setTimeout(()=>closeModal("banModal"),900);
+ }catch(error){
+  message.textContent=error.message;
+  button.disabled=false;
+ }
+}
+
+// ==========================================
+// UNBAN PLAYER
+// ==========================================
+
+async function adminUnban(targetUserId){
+ if(!await verifyAdmin()){
+  alert("Admin access denied.");
+  return;
+ }
+
+ const player=adminPlayers.find(p=>p.id===targetUserId);
+ const username=player?.username||"this player";
+
+ if(!confirm("Are you sure you want to unban "+username+"?"))return;
+
+ const status=document.getElementById("adminStatus");
+ status.textContent="Removing ban...";
+
+ try{
+  const result=await callModerationFunction({
+   action:"unban",
+   targetUserId
+  });
+
+  status.textContent=result.message||"Player unbanned successfully.";
+  await loadAdminDashboard();
+ }catch(error){
+  status.textContent="Unban failed: "+error.message;
+  alert(error.message);
+ }
+}
+
+// ==========================================
+// DELETE LEADERBOARD SCORE
+// ==========================================
+
+async function adminDeleteScore(scoreId){
+ if(!await verifyAdmin()){
+  alert("You are not authorized to delete scores.");
+  return;
+ }
+
+ const confirmed=confirm(
+  "Are you sure you want to permanently delete this score?\n\nThis cannot be undone."
+ );
+ if(!confirmed)return;
+
+ const status=document.getElementById("adminStatus");
+ status.textContent="Deleting score...";
+
+ // scores.id is BIGINT in the existing database.
+ const {error}=await db.from("scores").delete().eq("id",scoreId);
+
+ if(error){
+  status.textContent="Could not delete score: "+error.message;
+  alert("Score deletion failed: "+error.message);
+  return;
+ }
+
+ status.textContent="Score deleted successfully.";
+ await loadAdminDashboard();
+ await loadLeaderboard();
+}
+
+// ==========================================
+// GAMES
+// ==========================================
+
+function launchGame(id){
+ if(!["clicker","reaction","guess","memory"].includes(id)){
+  alert("This game is coming soon!");
+  return;
+ }
+
+ document.getElementById("gameTitle").textContent=games.find(g=>g.id===id).name;
+ document.getElementById("gameModal").classList.add("open");
+
+ if(id==="clicker")startClicker();
+ if(id==="reaction")startReaction();
+ if(id==="guess")startGuess();
+ if(id==="memory")startMemory();
+}
+
+// ==========================================
+// NEON CLICKER
+// ==========================================
+
+function startClicker(){
+ let score=0,remaining=10,interval=null,started=false;
+ const area=document.getElementById("gameArea");
+
+ area.innerHTML=`
+  <h2>🟣 NEON CLICKER</h2>
+  <h2 id="clickScore">0</h2>
+  <p id="clickTime">10 seconds</p>
+  <button class="btn" id="clickButton">START CLICKING!</button>
+ `;
+
+ document.getElementById("clickButton").onclick=()=>{
+  if(!started){
+   started=true;
+   interval=setInterval(()=>{
+    remaining--;
+    document.getElementById("clickTime").textContent=remaining+" seconds";
+
+    if(remaining<=0){
+     clearInterval(interval);
+     area.innerHTML=`
+      <h2>TIME'S UP!</h2>
+      <p>Your score: ${score}</p>
+      <button class="btn" onclick="submitScore('clicker',${score})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startClicker()">PLAY AGAIN</button>
+     `;
+    }
+   },1000);
+  }
+
+  score++;
+  document.getElementById("clickScore").textContent=score;
+ };
+}
+
+// ==========================================
+// REACTION RUSH
+// ==========================================
+
+function startReaction(){
+ let state="ready",timer,start;
+ const area=document.getElementById("gameArea");
+
+ area.innerHTML=`
+  <h2>⚡ REACTION RUSH</h2>
+  <p>Wait for green, then click!</p>
+  <button class="btn" id="reactionStart">START</button>
+ `;
+
+ document.getElementById("reactionStart").onclick=()=>{
+  state="waiting";
+
+  area.innerHTML=`<h2>WAIT...</h2><button class="btn secondary" id="waitButton">WAIT</button>`;
+
+  document.getElementById("waitButton").onclick=()=>{
+   if(state!=="waiting")return;
+   clearTimeout(timer);
+   state="ready";
+   area.innerHTML=`<h2>TOO EARLY!</h2><button class="btn" onclick="startReaction()">TRY AGAIN</button>`;
+  };
+
+  timer=setTimeout(()=>{
+   if(state!=="waiting")return;
+   state="go";
+   start=performance.now();
+
+   area.innerHTML=`<h2 style="color:#22c55e">🟢 CLICK NOW!</h2><button class="btn" id="goButton">CLICK!</button>`;
+
+   document.getElementById("goButton").onclick=()=>{
+    if(state!=="go")return;
+    state="done";
+
+    const ms=Math.round(performance.now()-start);
+    const points=Math.max(1,1000-ms);
+
+    area.innerHTML=`
+     <h2>${ms} MS</h2><p>${points} points</p>
+     <button class="btn" onclick="submitScore('reaction',${points})">SAVE SCORE</button>
+     <button class="btn secondary" onclick="startReaction()">AGAIN</button>
+    `;
+   };
+  },1200+Math.random()*2500);
+ };
+}
+
+// ==========================================
+// NUMBER HUNTER
+// ==========================================
+
+function startGuess(){
+ let secret=Math.floor(Math.random()*100)+1,tries=0;
+ const area=document.getElementById("gameArea");
+
+ area.innerHTML=`
+  <h2>🔢 NUMBER HUNTER</h2>
+  <p>Guess a number between 1 and 100. You have 10 tries.</p>
+  <input id="guessInput" type="number" min="1" max="100" placeholder="Your guess">
+  <button class="btn" id="guessButton">GUESS</button>
+  <p id="guessMessage"></p>
+ `;
+
+ document.getElementById("guessButton").onclick=()=>{
+  const value=Number(document.getElementById("guessInput").value);
+  const msg=document.getElementById("guessMessage");
+
+  if(!Number.isInteger(value)||value<1||value>100){
+   msg.textContent="Enter a number from 1 to 100.";
+   return;
+  }
+
+  tries++;
+
+  if(value===secret){
+   const points=Math.max(100,1100-tries*100);
+   msg.textContent="You won! "+points+" points!";
+   document.getElementById("guessButton").disabled=true;
+
+   const b=document.createElement("button");
+   b.className="btn";b.textContent="SAVE SCORE";
+   b.onclick=()=>submitScore("guess",points);
+   area.appendChild(b);
+
+  }else if(tries>=10){
+   msg.textContent="Game over! The number was "+secret+".";
+   document.getElementById("guessButton").disabled=true;
+  }else{
+   msg.textContent=(value<secret?"Too low! ⬆️":"Too high! ⬇️")+" Attempts left: "+(10-tries);
+  }
+ };
+}
+
+// ==========================================
+// MEMORY MATCH
+// ==========================================
+
+function startMemory(){
+ const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"].sort(()=>Math.random()-.5);
+ let selected=[],matched=[],moves=0,locked=false;
+ const area=document.getElementById("gameArea");
+
+ function draw(){
+  area.innerHTML=`
+   <h2>🧠 MEMORY MATCH</h2>
+   <p>Moves: ${moves}</p>
+   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+    ${symbols.map((s,i)=>`
+     <button class="btn secondary" data-i="${i}" style="height:60px;font-size:24px">
+      ${matched.includes(i)||selected.includes(i)?s:"❔"}
+     </button>
+    `).join("")}
+   </div>
+  `;
+
+  area.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>pick(Number(b.dataset.i)));
+ }
+
+ function pick(i){
+  if(locked||matched.includes(i)||selected.includes(i))return;
+
+  selected.push(i);
+  draw();
+
+  if(selected.length===2){
+   moves++;
+   locked=true;
+   const [a,b]=selected;
+
+   if(symbols[a]===symbols[b]){
+    matched.push(a,b);
+    selected=[];
+    locked=false;
+    draw();
+
+    if(matched.length===symbols.length){
+     const points=Math.max(100,1000-moves*50);
+     area.innerHTML=`
+      <h2>YOU WON! 🎉</h2>
+      <p>${moves} moves · ${points} points</p>
+      <button class="btn" onclick="submitScore('memory',${points})">SAVE SCORE</button>
+      <button class="btn secondary" onclick="startMemory()">PLAY AGAIN</button>
+     `;
+    }
+   }else{
+    setTimeout(()=>{
+     selected=[];
+     locked=false;
+     draw();
+    },800);
+   }
+  }
+ }
+
+ draw();
+}
+
+// ==========================================
+// UTILITIES AND STARTUP
+// ==========================================
+
+function escapeHTML(s){
+ return String(s).replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[c]));
+}
+
+renderCategories();
+renderGames();
+
+db.auth.onAuthStateChange((_event,session)=>{
+ setTimeout(async()=>{
+  if(session){
+   await refreshUser();
+  }else{
+   currentUser=null;
+   isGameEzAdmin=false;
+   updateAccountButton();
+  }
+  loadChatMessages();
+  loadXPLeaderboard();
+ },0);
+});
+
+(async()=>{
+ await refreshUser();
+ loadLeaderboard();
+ loadXPLeaderboard();
+ loadChatMessages();
+ startChatRealtime();
+})();
+</script>
+</body>
+</html>
