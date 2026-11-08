@@ -32,26 +32,6 @@ header{
 nav{display:flex;align-items:center;gap:18px}
 nav a{color:#cbd5e1;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--cyan)}
-.chat-layout{display:grid;grid-template-columns:1fr;gap:12px}
-.chat-messages{height:360px;overflow-y:auto;background:#080b14;border:1px solid #263147;border-radius:9px;padding:12px}
-.chat-message{display:flex;gap:10px;padding:10px 4px;border-bottom:1px solid #1d293b;align-items:flex-start}
-.chat-message:last-child{border-bottom:0}
-.chat-avatar{font-size:22px;flex-shrink:0}
-.chat-message-main{min-width:0;flex:1}
-.chat-message-top{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.chat-message-name{font-weight:bold;color:#e9d5ff}
-.chat-message-time{font-size:10px;color:var(--muted)}
-.chat-message-text{white-space:pre-wrap;overflow-wrap:anywhere;color:#dbe3f1;margin-top:5px;font-size:13px;line-height:1.5}
-.chat-delete{background:#7f1d1d;color:white;border:0;border-radius:5px;padding:5px 8px;font-size:10px}
-.chat-compose{display:flex;gap:9px;margin-top:12px}
-.chat-compose input{flex:1;min-width:0;padding:12px;background:#141d2e;border:1px solid #334155;color:white;border-radius:8px}
-.xp-progress{height:12px;background:#202b40;border-radius:20px;overflow:hidden;margin:8px 0 14px}
-.xp-progress-fill{height:100%;background:linear-gradient(90deg,#9333ea,#22d3ee);width:0}
-.achievement-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin:12px 0}
-.achievement-card{background:#182338;border:1px solid #34445e;border-radius:9px;padding:12px}
-.achievement-card.locked{opacity:.45;filter:grayscale(1)}
-.achievement-icon{font-size:26px}
-.xp-badge{display:inline-block;color:#a5f3fc;background:#164e63;padding:5px 9px;border-radius:6px;font-size:12px;font-weight:bold}
 .btn{
  background:linear-gradient(100deg,#9333ea,#2563eb);
  color:white;border:0;border-radius:8px;padding:12px 18px;font-weight:bold
@@ -176,6 +156,49 @@ h2{margin:0 0 8px}
 .best-row{display:flex;justify-content:space-between;gap:10px;padding:11px 4px;border-bottom:1px solid #263147}
 .best-row:last-child{border:0}
 
+/* DAILY REWARDS */
+.daily-reward-panel{
+ background:linear-gradient(135deg,#21143d,#102b43);
+ border:1px solid #60409a;border-radius:14px;padding:22px
+}
+.daily-reward-top{
+ display:flex;align-items:center;justify-content:space-between;
+ gap:18px;flex-wrap:wrap
+}
+.daily-reward-top h3{font-size:24px;margin:10px 0}
+.daily-reward-grid{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:12px;margin:20px 0
+}
+.daily-reward-stat{
+ background:#0b1424;border:1px solid #34445e;
+ border-radius:10px;padding:16px;text-align:center
+}
+.daily-reward-stat strong{
+ display:block;color:var(--cyan);font-size:25px;margin-bottom:5px
+}
+.daily-reward-stat span{font-size:11px;color:var(--muted)}
+.daily-streak-track{
+ display:grid;grid-template-columns:repeat(7,minmax(0,1fr));
+ gap:8px;margin:18px 0
+}
+.daily-day{
+ background:#111827;border:1px solid #34445e;
+ border-radius:9px;text-align:center;padding:12px 4px;
+ color:#9ba7bd;font-size:12px
+}
+.daily-day strong{display:block;font-size:21px;margin-bottom:5px}
+.daily-day.done{background:#123b35;border-color:#22c55e;color:#bbf7d0}
+.daily-day.today{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan)}
+.daily-reward-footnote{font-size:12px;color:var(--muted);line-height:1.6}
+
+@media(max-width:600px){
+ .daily-reward-grid{grid-template-columns:1fr}
+ .daily-streak-track{gap:4px}
+ .daily-day{padding:9px 2px;font-size:10px}
+ .daily-day strong{font-size:17px}
+}
+
 /* ADMIN DASHBOARD */
 .admin-header{
  display:flex;justify-content:space-between;align-items:center;
@@ -217,6 +240,7 @@ h2{margin:0 0 8px}
 .good-pill{font-size:11px;color:#bbf7d0;background:#14532d;padding:5px 8px;border-radius:5px}
 .modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}
 footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #263147;font-size:13px}
+
 @media(max-width:750px){
  nav{gap:8px}nav a{display:none}.hero-art{font-size:75px}
  .hero{padding:55px 7%}.stats,.admin-stats{grid-template-columns:repeat(2,1fr)}
@@ -234,8 +258,7 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   <a href="#home">Home</a>
   <a href="#games">Games</a>
   <a href="#leaderboard">Leaderboard</a>
-  <a href="#xpLeaderboard">XP Rankings</a>
-  <a href="#chat">Chat</a>
+  <a href="#dailyRewards">Daily Rewards</a>
   <a href="#community">Community</a>
   <button class="btn admin-btn" id="adminButton" onclick="openAdmin()" style="display:none">🛡️ ADMIN</button>
   <button class="btn" id="accountButton" onclick="openAccount()">Sign In</button>
@@ -253,6 +276,7 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 </div>
 
 <main class="container">
+
 <section id="games">
  <div class="heading">
   <div><h2>🎮 Game Library</h2><p class="muted">Choose your next challenge.</p></div>
@@ -282,38 +306,74 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
  <p class="muted">Each player appears once per game, using their highest recorded score. Click a player's name to view their profile.</p>
 </section>
 
-<section id="xpLeaderboard">
+<!-- DAILY REWARDS -->
+<section id="dailyRewards">
  <div class="heading">
-  <div><h2>⭐ XP Rankings</h2><p class="muted">The highest-level GameEz players.</p></div>
-  <button class="btn secondary" onclick="loadXPLeaderboard()">↻ Refresh</button>
- </div>
- <div class="panel">
-  <div id="xpLeaderboardList"><p class="muted">Loading XP rankings...</p></div>
- </div>
-</section>
-
-<section id="chat">
- <div class="heading">
-  <div><h2>💬 GameEz Global Chat</h2><p class="muted">Talk with other players in real time. Keep it respectful.</p></div>
-  <button class="btn secondary" onclick="loadChatMessages()">↻ Refresh</button>
- </div>
- <div class="panel chat-layout">
-  <div id="chatMessages" class="chat-messages" aria-live="polite"><p class="muted">Loading chat...</p></div>
-  <p id="chatStatus" class="muted">Sign in to send messages. Messages are visible to everyone.</p>
-  <div class="chat-compose">
-   <input id="chatInput" maxlength="500" placeholder="Write a message..." onkeydown="if(event.key==='Enter'){event.preventDefault();sendChatMessage()}">
-   <button class="btn" id="sendChatButton" onclick="sendChatMessage()">SEND</button>
+  <div>
+   <h2>🎁 Daily Rewards</h2>
+   <p class="muted">Come back every day to build your streak and earn XP.</p>
   </div>
-  <p class="muted">Maximum 500 characters per message. Spam and abusive messages may be removed by moderators.</p>
+  <button class="btn secondary" onclick="loadDailyRewardStatus()">↻ Refresh</button>
+ </div>
+
+ <div class="daily-reward-panel">
+  <div class="daily-reward-top">
+   <div>
+    <span class="tag">DAILY LOGIN BONUS</span>
+    <h3 id="dailyRewardHeadline">Sign in to claim your reward</h3>
+    <p id="dailyRewardMessage" class="muted">Your daily streak starts when you claim your first reward.</p>
+   </div>
+   <button class="btn" id="dailyClaimButton" onclick="claimDailyReward()" disabled>CLAIM DAILY REWARD</button>
+  </div>
+
+  <div class="daily-reward-grid">
+   <div class="daily-reward-stat">
+    <strong id="dailyStreak">0</strong>
+    <span>DAY STREAK</span>
+   </div>
+   <div class="daily-reward-stat">
+    <strong id="dailyTotalClaims">0</strong>
+    <span>TOTAL CLAIMS</span>
+   </div>
+   <div class="daily-reward-stat">
+    <strong id="dailyCountdown">—</strong>
+    <span>UNTIL NEXT CLAIM (UTC)</span>
+   </div>
+  </div>
+
+  <h3>🔥 Your 7-Day Streak</h3>
+  <div id="dailyStreakTrack" class="daily-streak-track">
+   <div class="daily-day"><strong>🎁</strong>Day 1</div>
+   <div class="daily-day"><strong>🎁</strong>Day 2</div>
+   <div class="daily-day"><strong>🎁</strong>Day 3</div>
+   <div class="daily-day"><strong>🎁</strong>Day 4</div>
+   <div class="daily-day"><strong>🎁</strong>Day 5</div>
+   <div class="daily-day"><strong>🎁</strong>Day 6</div>
+   <div class="daily-day"><strong>🏆</strong>Day 7</div>
+  </div>
+
+  <p id="dailyRewardStatus" class="status">Sign in to see your daily reward status.</p>
+  <p class="daily-reward-footnote">
+   Rewards increase by 5 XP each consecutive day, starting at 25 XP.
+   Every 7th consecutive claim earns an extra 100 XP.
+   The daily reset happens at midnight UTC.
+   Missing a full UTC day resets your streak.
+  </p>
  </div>
 </section>
 
 <section id="community">
  <div class="community">
-  <div><h2>💬 Join the GameEz Community</h2><p class="muted">Meet players, share scores and find people to play with.</p></div>
-  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer"><button class="btn">JOIN DISCORD →</button></a>
+  <div>
+   <h2>💬 Join the GameEz Community</h2>
+   <p class="muted">Meet players, share scores and find people to play with.</p>
+  </div>
+  <a href="https://discord.gg/ThyqY6JYbf" target="_blank" rel="noopener noreferrer">
+   <button class="btn">JOIN DISCORD →</button>
+  </a>
  </div>
 </section>
+
 </main>
 
 <footer>
@@ -324,7 +384,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 <!-- ACCOUNT MODAL -->
 <div class="modal" id="accountModal">
  <div class="modal-box">
-  <div class="modal-top"><h2>👤 GameEz Account</h2><button class="close" onclick="closeModal('accountModal')">✕</button></div>
+  <div class="modal-top">
+   <h2>👤 GameEz Account</h2>
+   <button class="close" onclick="closeModal('accountModal')">✕</button>
+  </div>
   <div id="accountContent"></div>
  </div>
 </div>
@@ -332,7 +395,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 <!-- PROFILE MODAL -->
 <div class="modal" id="profileModal">
  <div class="modal-box">
-  <div class="modal-top"><h2>🎮 Player Profile</h2><button class="close" onclick="closeModal('profileModal')">✕</button></div>
+  <div class="modal-top">
+   <h2>🎮 Player Profile</h2>
+   <button class="close" onclick="closeModal('profileModal')">✕</button>
+  </div>
   <div id="profileContent"><p class="muted">Loading profile...</p></div>
  </div>
 </div>
@@ -340,7 +406,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 <!-- GAME MODAL -->
 <div class="modal" id="gameModal">
  <div class="modal-box">
-  <div class="modal-top"><h2 id="gameTitle">Game</h2><button class="close" onclick="closeModal('gameModal')">✕</button></div>
+  <div class="modal-top">
+   <h2 id="gameTitle">Game</h2>
+   <button class="close" onclick="closeModal('gameModal')">✕</button>
+  </div>
   <div class="game-area" id="gameArea"></div>
  </div>
 </div>
@@ -348,7 +417,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 <!-- BAN PLAYER MODAL -->
 <div class="modal" id="banModal">
  <div class="modal-box">
-  <div class="modal-top"><h2>🚫 Ban Player</h2><button class="close" onclick="closeModal('banModal')">✕</button></div>
+  <div class="modal-top">
+   <h2>🚫 Ban Player</h2>
+   <button class="close" onclick="closeModal('banModal')">✕</button>
+  </div>
   <p class="muted" id="banTargetName">Select a player</p>
   <input type="hidden" id="banTargetId">
   <label for="banDuration">Ban duration</label>
@@ -374,7 +446,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
 <div class="modal" id="adminModal">
  <div class="modal-box wide">
   <div class="modal-top">
-   <div><h2>🛡️ GameEz Admin Dashboard</h2><p class="muted">Owner control panel</p></div>
+   <div>
+    <h2>🛡️ GameEz Admin Dashboard</h2>
+    <p class="muted">Owner control panel</p>
+   </div>
    <button class="close" onclick="closeModal('adminModal')">✕</button>
   </div>
 
@@ -383,7 +458,10 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
   </div>
 
   <div class="admin-header">
-   <div><strong id="adminWelcome">Administrator</strong><p class="muted">GameEz control center</p></div>
+   <div>
+    <strong id="adminWelcome">Administrator</strong>
+    <p class="muted">GameEz control center</p>
+   </div>
    <button class="btn secondary" onclick="loadAdminDashboard()">↻ Refresh Dashboard</button>
   </div>
 
@@ -407,7 +485,9 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
    <input class="admin-search" id="adminPlayerSearch" placeholder="Search players by username or ID..." oninput="filterAdminTables()">
    <div class="admin-table-wrap">
     <table class="admin-table">
-     <thead><tr><th>Username</th><th>Player ID</th><th>Avatar</th><th>Joined</th><th>Status</th><th>Actions</th></tr></thead>
+     <thead>
+      <tr><th>Username</th><th>Player ID</th><th>Avatar</th><th>Joined</th><th>Status</th><th>Actions</th></tr>
+     </thead>
      <tbody id="adminPlayersBody"><tr><td colspan="6" class="admin-empty">Loading players...</td></tr></tbody>
     </table>
    </div>
@@ -420,7 +500,9 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
    <input class="admin-search" id="adminScoreSearch" placeholder="Search scores, players, or games..." oninput="filterAdminTables()">
    <div class="admin-table-wrap">
     <table class="admin-table">
-     <thead><tr><th>Player</th><th>Game</th><th>Score</th><th>Date</th><th>Action</th></tr></thead>
+     <thead>
+      <tr><th>Player</th><th>Game</th><th>Score</th><th>Date</th><th>Action</th></tr>
+     </thead>
      <tbody id="adminScoresBody"><tr><td colspan="5" class="admin-empty">Loading scores...</td></tr></tbody>
     </table>
    </div>
@@ -433,7 +515,9 @@ footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #2
    <input class="admin-search" id="adminBanSearch" placeholder="Search moderation history..." oninput="filterAdminTables()">
    <div class="admin-table-wrap">
     <table class="admin-table">
-     <thead><tr><th>Player</th><th>Reason</th><th>Duration</th><th>Issued</th><th>Expires</th><th>Status</th><th>Action</th></tr></thead>
+     <thead>
+      <tr><th>Player</th><th>Reason</th><th>Duration</th><th>Issued</th><th>Expires</th><th>Status</th><th>Action</th></tr>
+     </thead>
      <tbody id="adminBansBody"><tr><td colspan="7" class="admin-empty">Loading moderation history...</td></tr></tbody>
     </table>
    </div>
@@ -486,8 +570,8 @@ let isGameEzAdmin=false;
 let adminPlayers=[];
 let adminScores=[];
 let adminBans=[];
-let chatChannel=null;
-let chatLoaded=false;
+let dailyRewardStatusData=null;
+let dailyCountdownTimer=null;
 
 // ==========================================
 // GAME LIBRARY
@@ -539,7 +623,7 @@ function openAccount(){
   box.innerHTML=`
    <div class="profile-top">
     <div class="avatar">${escapeHTML(currentUser.avatar)}</div>
-    <div><strong>${escapeHTML(currentUser.username)}</strong><p class="muted">${escapeHTML(currentUser.email)}</p><span class="xp-badge">⭐ Level ${Number(currentUser.level||1)} · ${Number(currentUser.xp||0).toLocaleString()} XP</span></div>
+    <div><strong>${escapeHTML(currentUser.username)}</strong><p class="muted">${escapeHTML(currentUser.email)}</p></div>
    </div>
    <button class="btn" onclick="showProfile(currentUser.id)">VIEW MY PROFILE</button>
    <button class="btn secondary" onclick="logout()">LOG OUT</button>
@@ -639,6 +723,7 @@ async function refreshUser(){
   currentUser=null;
   isGameEzAdmin=false;
   updateAccountButton();
+  loadDailyRewardStatus();
   return;
  }
 
@@ -653,15 +738,8 @@ async function refreshUser(){
   id:user.id,
   email:user.email,
   username:profile?.username||user.user_metadata?.username||"Player",
-  avatar:profile?.avatar_emoji||"🎮",
-  xp:0,
-  level:1
+  avatar:profile?.avatar_emoji||"🎮"
  };
-
- const {data:playerStats}=await db.from("player_stats")
-  .select("xp,level").eq("user_id",user.id).maybeSingle();
- currentUser.xp=Number(playerStats?.xp||0);
- currentUser.level=Number(playerStats?.level||1);
 
  isGameEzAdmin=false;
 
@@ -674,6 +752,7 @@ async function refreshUser(){
  }
 
  updateAccountButton();
+ loadDailyRewardStatus();
 }
 
 function updateAccountButton(){
@@ -682,6 +761,187 @@ function updateAccountButton(){
 
  if(accountButton)accountButton.textContent=currentUser?currentUser.username:"Sign In";
  if(adminButton)adminButton.style.display=isGameEzAdmin?"inline-block":"none";
+}
+
+// ==========================================
+// DAILY REWARDS
+// ==========================================
+
+function renderDailyStreak(streak){
+ const track=document.getElementById("dailyStreakTrack");
+ if(!track)return;
+
+ const progress=streak>0&&streak%7===0?7:streak%7;
+
+ track.innerHTML=Array.from({length:7},(_,i)=>{
+  const day=i+1;
+  const done=day<=progress;
+
+  return `
+   <div class="daily-day ${done?"done":""}">
+    <strong>${done?"✓":(day===7?"🏆":"🎁")}</strong>
+    Day ${day}${day===7?"<br>+100 XP":""}
+   </div>
+  `;
+ }).join("");
+}
+
+function updateDailyCountdown(){
+ const el=document.getElementById("dailyCountdown");
+ if(!el)return;
+
+ const next=dailyRewardStatusData?.next_claim_at;
+
+ if(!next){
+  el.textContent="—";
+  return;
+ }
+
+ const ms=Math.max(0,new Date(next).getTime()-Date.now());
+
+ if(!Number.isFinite(ms)){
+  el.textContent="—";
+  return;
+ }
+
+ const hours=Math.floor(ms/3600000);
+ const minutes=Math.floor((ms%3600000)/60000);
+ const seconds=Math.floor((ms%60000)/1000);
+
+ el.textContent=[hours,minutes,seconds]
+  .map(n=>String(n).padStart(2,"0"))
+  .join(":");
+}
+
+async function loadDailyRewardStatus(){
+ const button=document.getElementById("dailyClaimButton");
+ const headline=document.getElementById("dailyRewardHeadline");
+ const message=document.getElementById("dailyRewardMessage");
+ const status=document.getElementById("dailyRewardStatus");
+
+ if(!button||!headline||!message||!status)return;
+
+ if(!currentUser){
+  dailyRewardStatusData=null;
+
+  button.disabled=true;
+  button.textContent="SIGN IN TO CLAIM";
+
+  headline.textContent="Sign in to claim your reward";
+  message.textContent="Your daily streak starts when you claim your first reward.";
+  status.textContent="You must be signed in to claim daily XP.";
+
+  document.getElementById("dailyStreak").textContent="0";
+  document.getElementById("dailyTotalClaims").textContent="0";
+
+  renderDailyStreak(0);
+
+  if(dailyCountdownTimer){
+   clearInterval(dailyCountdownTimer);
+   dailyCountdownTimer=null;
+  }
+
+  updateDailyCountdown();
+  return;
+ }
+
+ button.disabled=true;
+ button.textContent="LOADING...";
+ status.textContent="Checking your daily reward...";
+
+ const {data,error}=await db.rpc("get_daily_reward_status");
+
+ if(error){
+  button.disabled=true;
+  button.textContent="REWARDS UNAVAILABLE";
+
+  headline.textContent="Daily rewards need setup";
+  message.textContent="The daily reward database functions have not been installed yet.";
+  status.textContent="Supabase error: "+error.message+
+   ". Run the Daily Rewards SQL setup before using this feature.";
+
+  return;
+ }
+
+ dailyRewardStatusData=data||{};
+
+ const streak=Number(dailyRewardStatusData.streak||0);
+ const claims=Number(dailyRewardStatusData.total_claims||0);
+ const claimed=!!dailyRewardStatusData.claimed_today;
+
+ document.getElementById("dailyStreak").textContent=streak.toLocaleString();
+ document.getElementById("dailyTotalClaims").textContent=claims.toLocaleString();
+
+ renderDailyStreak(streak);
+
+ if(claimed){
+  button.disabled=true;
+  button.textContent="REWARD CLAIMED ✓";
+
+  headline.textContent="Today's reward is claimed!";
+  message.textContent="Great job keeping your GameEz streak alive.";
+  status.textContent="You've already claimed today's reward. Come back after the UTC reset.";
+ }else{
+  button.disabled=false;
+  button.textContent="🎁 CLAIM DAILY REWARD";
+
+  headline.textContent=streak>0?
+   "Keep your streak going!":
+   "Your first reward is waiting!";
+
+  message.textContent=streak>0?
+   `Your next claim continues your ${streak}-day streak.`:
+   "Claim today to start earning daily XP.";
+
+  status.textContent="Your daily reward is ready to claim.";
+ }
+
+ if(dailyCountdownTimer)clearInterval(dailyCountdownTimer);
+
+ updateDailyCountdown();
+ dailyCountdownTimer=setInterval(updateDailyCountdown,1000);
+}
+
+async function claimDailyReward(){
+ if(!currentUser){
+  openAccount();
+  return;
+ }
+
+ const button=document.getElementById("dailyClaimButton");
+ const status=document.getElementById("dailyRewardStatus");
+
+ button.disabled=true;
+ button.textContent="CLAIMING...";
+ status.textContent="Claiming your daily XP...";
+
+ const {data,error}=await db.rpc("claim_daily_reward");
+
+ if(error){
+  status.textContent="Could not claim reward: "+error.message;
+  button.disabled=false;
+  button.textContent="TRY AGAIN";
+  return;
+ }
+
+ const result=data||{};
+
+ if(!result.success){
+  status.textContent=result.message||"Today's reward has already been claimed.";
+  await loadDailyRewardStatus();
+  return;
+ }
+
+ const base=Number(result.xp_awarded||0);
+ const bonus=Number(result.weekly_bonus||0);
+
+ status.textContent=
+  `Reward claimed! +${base} XP`+
+  `${bonus?` plus a ${bonus} XP 7-day streak bonus`:""}.`+
+  ` Your total XP is ${Number(result.total_xp||0).toLocaleString()}.`;
+
+ await refreshUser();
+ await loadDailyRewardStatus();
 }
 
 // ==========================================
@@ -699,14 +959,15 @@ async function showProfile(userId){
 
  const [
   {data:profile,error:profileError},
-  {data:scores,error:scoreError},
-  {data:playerStats},
-  {data:earnedAchievements}
+  {data:scores,error:scoreError}
  ]=await Promise.all([
-  db.from("profiles").select("id,username,avatar_emoji,created_at").eq("id",userId).maybeSingle(),
-  db.from("scores").select("score,game_id,created_at").eq("user_id",userId),
-  db.from("player_stats").select("xp,level").eq("user_id",userId).maybeSingle(),
-  db.from("user_achievements").select("unlocked_at,achievements(id,name,description,icon,xp_reward)").eq("user_id",userId).order("unlocked_at",{ascending:false})
+  db.from("profiles")
+   .select("id,username,avatar_emoji,created_at")
+   .eq("id",userId).maybeSingle(),
+
+  db.from("scores")
+   .select("score,game_id,created_at")
+   .eq("user_id",userId)
  ]);
 
  if(profileError||!profile){
@@ -715,36 +976,37 @@ async function showProfile(userId){
  }
 
  if(scoreError){
-  box.innerHTML='<p class="muted">Could not load player statistics: '+escapeHTML(scoreError.message)+'</p>';
+  box.innerHTML='<p class="muted">Could not load player statistics: '+
+   escapeHTML(scoreError.message)+'</p>';
   return;
  }
 
  const rows=scores||[];
  const totalGames=rows.length;
- const totalPoints=rows.reduce((sum,s)=>sum+Number(s.score||0),0);
+
+ const totalPoints=rows.reduce(
+  (sum,s)=>sum+Number(s.score||0),0
+ );
+
  const bestByGame={};
 
  rows.forEach(s=>{
-  if(!bestByGame[s.game_id]||Number(s.score)>Number(bestByGame[s.game_id])){
+  if(!bestByGame[s.game_id]||
+     Number(s.score)>Number(bestByGame[s.game_id])){
    bestByGame[s.game_id]=Number(s.score);
   }
  });
 
  const bestRows=Object.entries(gameNames).map(([id,name])=>`
-  <div class="best-row"><span>${name}</span><strong>${bestByGame[id]===undefined?"—":bestByGame[id].toLocaleString()+" pts"}</strong></div>
+  <div class="best-row">
+   <span>${name}</span>
+   <strong>${bestByGame[id]===undefined?
+    "—":bestByGame[id].toLocaleString()+" pts"}</strong>
+  </div>
  `).join("");
 
  const isOwnProfile=currentUser&&currentUser.id===userId;
  const avatar=profile.avatar_emoji||"🎮";
- const xp=Number(playerStats?.xp||0);
- const level=Number(playerStats?.level||Math.floor(xp/100)+1);
- const xpIntoLevel=xp%100;
- const xpNeeded=100;
- const achievementCards=(earnedAchievements||[]).map(item=>{
-  const a=item.achievements;
-  if(!a)return "";
-  return `<div class="achievement-card"><div class="achievement-icon">${escapeHTML(a.icon||"🏅")}</div><strong>${escapeHTML(a.name)}</strong><p class="muted">${escapeHTML(a.description||"Achievement unlocked")}</p><span class="muted">Unlocked ${new Date(item.unlocked_at).toLocaleDateString()}</span></div>`;
- }).join("");
 
  box.innerHTML=`
   <div class="profile-top">
@@ -752,31 +1014,45 @@ async function showProfile(userId){
    <div>
     <h2 style="margin:0">${escapeHTML(profile.username||"Player")}</h2>
     <p class="muted">GameEz Player</p>
-    <span class="xp-badge">⭐ Level ${level} · ${xp.toLocaleString()} XP</span>
     <p class="muted">Joined ${new Date(profile.created_at).toLocaleDateString()}</p>
    </div>
   </div>
+
   ${isOwnProfile?`
    <h3>Choose your avatar</h3>
    <p class="muted">Pick an emoji to represent your player profile.</p>
+
    <div class="avatar-picker">
-    ${avatars.map(a=>`<button class="avatar-choice ${a===avatar?"selected":""}" onclick="updateAvatar('${a}')" title="Choose ${a}">${a}</button>`).join("")}
+    ${avatars.map(a=>`
+     <button
+      class="avatar-choice ${a===avatar?"selected":""}"
+      onclick="updateAvatar('${a}')"
+      title="Choose ${a}">
+      ${a}
+     </button>
+    `).join("")}
    </div>
+
    <p id="avatarMessage" class="status"></p>
   `:""}
-  <div class="panel" style="margin:18px 0">
-   <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><strong>⭐ Level ${level}</strong><strong>${xpIntoLevel}/${xpNeeded} XP to next level</strong></div>
-   <div class="xp-progress"><div class="xp-progress-fill" style="width:${xpIntoLevel}%"></div></div>
-   <p class="muted">${xp.toLocaleString()} total XP · Earn 10 XP every time a score is saved.</p>
-  </div>
+
   <div class="stats">
-   <div class="stat"><strong>${totalGames}</strong><span>GAMES PLAYED</span></div>
-   <div class="stat"><strong>${totalPoints.toLocaleString()}</strong><span>TOTAL POINTS</span></div>
-   <div class="stat"><strong>${Object.keys(bestByGame).length}</strong><span>GAMES SCORED IN</span></div>
+   <div class="stat">
+    <strong>${totalGames}</strong>
+    <span>GAMES PLAYED</span>
+   </div>
+   <div class="stat">
+    <strong>${totalPoints.toLocaleString()}</strong>
+    <span>TOTAL POINTS</span>
+   </div>
+   <div class="stat">
+    <strong>${Object.keys(bestByGame).length}</strong>
+    <span>GAMES SCORED IN</span>
+   </div>
   </div>
-  <h3>🏅 Achievements (${(earnedAchievements||[]).length})</h3>
-  <div class="achievement-grid">${achievementCards||'<p class="muted">No achievements unlocked yet. Play games to earn your first one!</p>'}</div>
-  <h3>🏆 Personal Bests</h3>${bestRows}
+
+  <h3>🏆 Personal Bests</h3>
+  ${bestRows}
  `;
 
  if(isOwnProfile)currentUser.avatar=avatar;
@@ -784,7 +1060,9 @@ async function showProfile(userId){
 
 async function updateAvatar(avatar){
  if(!currentUser)return;
+
  const message=document.getElementById("avatarMessage");
+
  if(message)message.textContent="Saving avatar...";
 
  const {error}=await db.from("profiles")
@@ -822,7 +1100,9 @@ async function loadLeaderboard(){
  const box=document.getElementById("leaderboardList");
  const selectedGame=document.getElementById("leaderboardGame").value;
 
- document.getElementById("leaderboardTitle").textContent=(gameNames[selectedGame]||"Game")+" Rankings";
+ document.getElementById("leaderboardTitle").textContent=
+  (gameNames[selectedGame]||"Game")+" Rankings";
+
  box.innerHTML='<p class="muted">Loading scores...</p>';
 
  const {data,error}=await db.from("scores")
@@ -832,7 +1112,8 @@ async function loadLeaderboard(){
   .limit(500);
 
  if(error){
-  box.innerHTML='<p class="muted">Could not load leaderboard: '+escapeHTML(error.message)+'</p>';
+  box.innerHTML='<p class="muted">Could not load leaderboard: '+
+   escapeHTML(error.message)+'</p>';
   return;
  }
 
@@ -845,163 +1126,28 @@ async function loadLeaderboard(){
 
  data.forEach(entry=>{
   const old=bestScores.get(entry.user_id);
-  if(!old||Number(entry.score)>Number(old.score))bestScores.set(entry.user_id,entry);
+
+  if(!old||Number(entry.score)>Number(old.score)){
+   bestScores.set(entry.user_id,entry);
+  }
  });
 
  const rankings=Array.from(bestScores.values())
-  .sort((a,b)=>Number(b.score)-Number(a.score)).slice(0,10);
+  .sort((a,b)=>Number(b.score)-Number(a.score))
+  .slice(0,10);
 
  box.innerHTML=rankings.map((s,i)=>`
   <div class="leader-row">
    <span style="display:flex;align-items:center;gap:9px">
     <span class="rank">#${i+1}</span>
     <span>${escapeHTML(s.profiles?.avatar_emoji||"🎮")}</span>
-    <button class="player-link" onclick="showProfile('${s.user_id}')">${escapeHTML(s.profiles?.username||"Player")}</button>
+    <button class="player-link" onclick="showProfile('${s.user_id}')">
+     ${escapeHTML(s.profiles?.username||"Player")}
+    </button>
    </span>
    <strong class="leader-score">${Number(s.score).toLocaleString()} pts</strong>
   </div>
  `).join("");
-}
-
-// ==========================================
-// XP LEADERBOARD
-// ==========================================
-
-async function loadXPLeaderboard(){
- const box=document.getElementById("xpLeaderboardList");
- if(!box)return;
- box.innerHTML='<p class="muted">Loading XP rankings...</p>';
-
- const {data,error}=await db.from("player_stats")
-  .select("user_id,xp,level,profiles(username,avatar_emoji)")
-  .order("xp",{ascending:false}).limit(20);
-
- if(error){
-  box.innerHTML='<p class="muted">Could not load XP rankings: '+escapeHTML(error.message)+'</p>';
-  return;
- }
- if(!data||!data.length){
-  box.innerHTML='<p class="muted">No XP rankings yet. Save a game score to earn the first XP!</p>';
-  return;
- }
-
- box.innerHTML=data.map((p,i)=>`
-  <div class="leader-row">
-   <span style="display:flex;align-items:center;gap:10px">
-    <span class="rank">#${i+1}</span>
-    <span>${escapeHTML(p.profiles?.avatar_emoji||"🎮")}</span>
-    <button class="player-link" onclick="showProfile('${p.user_id}')">${escapeHTML(p.profiles?.username||"Player")}</button>
-   </span>
-   <strong class="leader-score">Level ${Number(p.level||1)} · ${Number(p.xp||0).toLocaleString()} XP</strong>
-  </div>
- `).join("");
-}
-
-// ==========================================
-// GLOBAL CHAT
-// ==========================================
-
-async function loadChatMessages(){
- const box=document.getElementById("chatMessages");
- if(!box)return;
-
- const {data,error}=await db.from("chat_messages")
-  .select("id,user_id,message,created_at,profiles(username,avatar_emoji)")
-  .order("created_at",{ascending:false}).limit(50);
-
- if(error){
-  box.innerHTML='<p class="muted">Could not load chat: '+escapeHTML(error.message)+'</p>';
-  return;
- }
-
- const messages=(data||[]).reverse();
- if(!messages.length){
-  box.innerHTML='<p class="muted">No messages yet. Start the conversation!</p>';
-  chatLoaded=true;
-  return;
- }
-
- box.innerHTML=messages.map(renderChatMessage).join("");
- box.scrollTop=box.scrollHeight;
- chatLoaded=true;
-}
-
-function renderChatMessage(message){
- const username=message.profiles?.username||"Player";
- const avatar=message.profiles?.avatar_emoji||"🎮";
- const time=message.created_at?new Date(message.created_at).toLocaleTimeString([], {hour:"numeric",minute:"2-digit"}):"";
- const deleteButton=isGameEzAdmin
-  ?`<button class="chat-delete" onclick="adminDeleteChatMessage('${String(message.id)}')">DELETE</button>`
-  :"";
-
- return `
-  <div class="chat-message" data-message-id="${escapeHTML(message.id)}">
-   <div class="chat-avatar">${escapeHTML(avatar)}</div>
-   <div class="chat-message-main">
-    <div class="chat-message-top"><span class="chat-message-name">${escapeHTML(username)}</span><span class="chat-message-time">${escapeHTML(time)}</span></div>
-    <div class="chat-message-text">${escapeHTML(message.message)}</div>
-   </div>
-   ${deleteButton}
-  </div>
- `;
-}
-
-async function sendChatMessage(){
- const input=document.getElementById("chatInput");
- const status=document.getElementById("chatStatus");
- const button=document.getElementById("sendChatButton");
- const message=input.value.trim();
-
- if(!currentUser){
-  status.textContent="Please sign in to send chat messages.";
-  openAccount();
-  return;
- }
- if(!message)return;
-
- button.disabled=true;
- status.textContent="Sending message...";
-
- const {error}=await db.from("chat_messages").insert({
-  user_id:currentUser.id,
-  message
- });
-
- button.disabled=false;
- if(error){
-  status.textContent=error.message.includes("row-level security")
-   ?"This account may be banned from chat, or chat permissions are not configured."
-   :"Message could not be sent: "+error.message;
-  return;
- }
-
- input.value="";
- status.textContent="Message sent.";
- await loadChatMessages();
-}
-
-async function adminDeleteChatMessage(messageId){
- if(!await verifyAdmin()){
-  alert("Admin access denied.");
-  return;
- }
- if(!confirm("Delete this chat message?"))return;
-
- const {error}=await db.from("chat_messages").delete().eq("id",messageId);
- if(error){
-  alert("Could not delete message: "+error.message);
-  return;
- }
- await loadChatMessages();
-}
-
-function startChatRealtime(){
- if(chatChannel)return;
- chatChannel=db.channel("gameez-global-chat")
-  .on("postgres_changes",{event:"*",schema:"public",table:"chat_messages"},()=>{
-   loadChatMessages();
-  })
-  .subscribe();
 }
 
 // ==========================================
@@ -1022,28 +1168,32 @@ async function submitScore(gameId,score){
   return;
  }
 
- const response=await fetch(SUPABASE_URL+"/functions/v1/submit-score",{
-  method:"POST",
-  headers:{
-   "Content-Type":"application/json",
-   "Authorization":"Bearer "+session.access_token,
-   "apikey":SUPABASE_KEY
-  },
-  body:JSON.stringify({game_id:gameId,score})
- });
+ const response=await fetch(
+  SUPABASE_URL+"/functions/v1/submit-score",
+  {
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json",
+    "Authorization":"Bearer "+session.access_token,
+    "apikey":SUPABASE_KEY
+   },
+   body:JSON.stringify({game_id:gameId,score})
+  }
+ );
 
- const result=await response.json().catch(()=>({error:"Unexpected server response"}));
+ const result=await response.json().catch(
+  ()=>({error:"Unexpected server response"})
+ );
 
  if(!response.ok){
   alert(result.error||"Score could not be saved.");
   return;
  }
 
- await refreshUser();
- alert("Score saved! You earned 10 XP.");
+ alert("Score saved to the GameEz leaderboard!");
+
  document.getElementById("leaderboardGame").value=gameId;
  loadLeaderboard();
- loadXPLeaderboard();
 }
 
 // ==========================================
@@ -1051,13 +1201,18 @@ async function submitScore(gameId,score){
 // ==========================================
 
 async function verifyAdmin(){
- if(!currentUser||currentUser.id!==GAMEEZ_OWNER_ID||!isGameEzAdmin)return false;
+ if(!currentUser||
+    currentUser.id!==GAMEEZ_OWNER_ID||
+    !isGameEzAdmin)return false;
 
  const {data:{user},error:userError}=await db.auth.getUser();
+
  if(userError||!user||user.id!==GAMEEZ_OWNER_ID)return false;
 
  const {data:adminRecord,error:adminError}=await db.from("gameez_admins")
-  .select("user_id").eq("user_id",user.id).maybeSingle();
+  .select("user_id")
+  .eq("user_id",user.id)
+  .maybeSingle();
 
  return !adminError&&!!adminRecord;
 }
@@ -1069,7 +1224,9 @@ async function openAdmin(){
  }
 
  document.getElementById("adminModal").classList.add("open");
- document.getElementById("adminWelcome").textContent="Welcome, "+currentUser.username;
+ document.getElementById("adminWelcome").textContent=
+  "Welcome, "+currentUser.username;
+
  await loadAdminDashboard();
 }
 
@@ -1087,18 +1244,34 @@ async function loadAdminDashboard(){
  const status=document.getElementById("adminStatus");
  status.textContent="Loading dashboard data...";
 
- document.getElementById("adminPlayersBody").innerHTML='<tr><td colspan="6" class="admin-empty">Loading players...</td></tr>';
- document.getElementById("adminScoresBody").innerHTML='<tr><td colspan="5" class="admin-empty">Loading scores...</td></tr>';
- document.getElementById("adminBansBody").innerHTML='<tr><td colspan="7" class="admin-empty">Loading moderation history...</td></tr>';
+ document.getElementById("adminPlayersBody").innerHTML=
+  '<tr><td colspan="6" class="admin-empty">Loading players...</td></tr>';
+
+ document.getElementById("adminScoresBody").innerHTML=
+  '<tr><td colspan="5" class="admin-empty">Loading scores...</td></tr>';
+
+ document.getElementById("adminBansBody").innerHTML=
+  '<tr><td colspan="7" class="admin-empty">Loading moderation history...</td></tr>';
 
  const [
   {data:players,error:playerError},
   {data:scores,error:scoreError},
   {data:bans,error:banError}
  ]=await Promise.all([
-  db.from("profiles").select("id,username,avatar_emoji,created_at").order("created_at",{ascending:false}).limit(1000),
-  db.from("scores").select("id,user_id,game_id,score,created_at,profiles(username)").order("created_at",{ascending:false}).limit(1000),
-  db.from("player_bans").select("id,user_id,banned_by,reason,ban_type,expires_at,is_active,created_at,lifted_at,lifted_by").order("created_at",{ascending:false}).limit(1000)
+  db.from("profiles")
+   .select("id,username,avatar_emoji,created_at")
+   .order("created_at",{ascending:false})
+   .limit(1000),
+
+  db.from("scores")
+   .select("id,user_id,game_id,score,created_at,profiles(username)")
+   .order("created_at",{ascending:false})
+   .limit(1000),
+
+  db.from("player_bans")
+   .select("id,user_id,banned_by,reason,ban_type,expires_at,is_active,created_at,lifted_at,lifted_by")
+   .order("created_at",{ascending:false})
+   .limit(1000)
  ]);
 
  adminPlayers=playerError?[]:(players||[]);
@@ -1109,30 +1282,40 @@ async function loadAdminDashboard(){
  else if(scoreError)status.textContent="Score loading error: "+scoreError.message;
  else if(banError)status.textContent="Moderation loading error: "+banError.message;
 
- document.getElementById("adminPlayerCount").textContent=adminPlayers.length.toLocaleString();
- document.getElementById("adminScoreCount").textContent=adminScores.length.toLocaleString();
- document.getElementById("adminBanCount").textContent=getActiveBans().length.toLocaleString();
+ document.getElementById("adminPlayerCount").textContent=
+  adminPlayers.length.toLocaleString();
+
+ document.getElementById("adminScoreCount").textContent=
+  adminScores.length.toLocaleString();
+
+ document.getElementById("adminBanCount").textContent=
+  getActiveBans().length.toLocaleString();
 
  renderAdminPlayers();
  renderAdminScores();
  renderAdminBans();
 
  if(!playerError&&!scoreError&&!banError){
-  status.textContent="Dashboard loaded. Showing up to 1,000 players, scores, and moderation records.";
+  status.textContent=
+   "Dashboard loaded. Showing up to 1,000 players, scores, and moderation records.";
  }
 }
 
 function getActiveBans(){
  const now=Date.now();
+
  return adminBans.filter(b=>{
   if(!b.is_active)return false;
+
   if(b.expires_at&&new Date(b.expires_at).getTime()<=now)return false;
+
   return true;
  });
 }
 
 function findActiveBan(userId){
  const now=Date.now();
+
  return adminBans.find(b=>
   b.user_id===userId&&
   b.is_active&&
@@ -1148,20 +1331,25 @@ function renderAdminPlayers(){
  const body=document.getElementById("adminPlayersBody");
 
  if(!adminPlayers.length){
-  body.innerHTML='<tr><td colspan="6" class="admin-empty">No players found.</td></tr>';
+  body.innerHTML=
+   '<tr><td colspan="6" class="admin-empty">No players found.</td></tr>';
   return;
  }
 
  body.innerHTML=adminPlayers.map(player=>{
   const ban=findActiveBan(player.id);
-  const status=ban?'<span class="ban-pill">BANNED</span>':'<span class="good-pill">ACTIVE</span>';
+
+  const status=ban?
+   '<span class="ban-pill">BANNED</span>':
+   '<span class="good-pill">ACTIVE</span>';
 
   const action=ban
    ?`<button class="small-action" onclick="adminUnban('${player.id}')">UNBAN</button>`
    :`<button class="small-danger" onclick="openBanModal('${player.id}')">BAN</button>`;
 
   return `
-   <tr class="admin-player-row" data-search="${escapeHTML((player.username||"").toLowerCase()+" "+player.id.toLowerCase())}">
+   <tr class="admin-player-row"
+    data-search="${escapeHTML((player.username||"").toLowerCase()+" "+player.id.toLowerCase())}">
     <td><strong>${escapeHTML(player.username||"Player")}</strong></td>
     <td>${escapeHTML(player.id)}</td>
     <td>${escapeHTML(player.avatar_emoji||"🎮")}</td>
@@ -1186,7 +1374,8 @@ function renderAdminScores(){
  const body=document.getElementById("adminScoresBody");
 
  if(!adminScores.length){
-  body.innerHTML='<tr><td colspan="5" class="admin-empty">No scores found.</td></tr>';
+  body.innerHTML=
+   '<tr><td colspan="5" class="admin-empty">No scores found.</td></tr>';
   return;
  }
 
@@ -1195,12 +1384,15 @@ function renderAdminScores(){
   const gameName=gameNames[score.game_id]||score.game_id;
 
   return `
-   <tr class="admin-score-row" data-search="${escapeHTML(username.toLowerCase()+" "+gameName.toLowerCase()+" "+String(score.score)+" "+String(score.user_id).toLowerCase())}">
+   <tr class="admin-score-row"
+    data-search="${escapeHTML(username.toLowerCase()+" "+gameName.toLowerCase()+" "+String(score.score)+" "+String(score.user_id).toLowerCase())}">
     <td>${escapeHTML(username)}</td>
     <td>${escapeHTML(gameName)}</td>
     <td><strong>${Number(score.score).toLocaleString()}</strong></td>
     <td>${score.created_at?new Date(score.created_at).toLocaleDateString():"—"}</td>
-    <td><button class="admin-delete" onclick="adminDeleteScore('${String(score.id)}')">DELETE</button></td>
+    <td>
+     <button class="admin-delete" onclick="adminDeleteScore('${String(score.id)}')">DELETE</button>
+    </td>
    </tr>
   `;
  }).join("");
@@ -1216,29 +1408,40 @@ function renderAdminBans(){
  const body=document.getElementById("adminBansBody");
 
  if(!adminBans.length){
-  body.innerHTML='<tr><td colspan="7" class="admin-empty">No moderation records yet.</td></tr>';
+  body.innerHTML=
+   '<tr><td colspan="7" class="admin-empty">No moderation records yet.</td></tr>';
   return;
  }
 
- const playerMap=new Map(adminPlayers.map(p=>[p.id,p.username||"Player"]));
+ const playerMap=new Map(
+  adminPlayers.map(p=>[p.id,p.username||"Player"])
+ );
 
  body.innerHTML=adminBans.map(ban=>{
   const username=playerMap.get(ban.user_id)||"Unknown Player";
-  const expired=ban.expires_at&&new Date(ban.expires_at).getTime()<=Date.now();
+
+  const expired=ban.expires_at&&
+   new Date(ban.expires_at).getTime()<=Date.now();
+
   const active=ban.is_active&&!expired;
+
   const status=active
    ?'<span class="ban-pill">ACTIVE</span>'
    :expired
     ?'<span class="good-pill">EXPIRED</span>'
     :'<span class="good-pill">LIFTED</span>';
 
-  const duration=ban.ban_type==="permanent"?"Permanent":formatDuration(ban.created_at,ban.expires_at);
+  const duration=ban.ban_type==="permanent"
+   ?"Permanent"
+   :formatDuration(ban.created_at,ban.expires_at);
+
   const action=active
    ?`<button class="small-action" onclick="adminUnban('${ban.user_id}')">UNBAN</button>`
    :"—";
 
   return `
-   <tr class="admin-ban-row" data-search="${escapeHTML((username+" "+ban.reason+" "+ban.user_id+" "+ban.ban_type).toLowerCase())}">
+   <tr class="admin-ban-row"
+    data-search="${escapeHTML((username+" "+ban.reason+" "+ban.user_id+" "+ban.ban_type).toLowerCase())}">
     <td>${escapeHTML(username)}</td>
     <td>${escapeHTML(ban.reason)}</td>
     <td>${escapeHTML(duration)}</td>
@@ -1255,8 +1458,14 @@ function renderAdminBans(){
 
 function formatDuration(start,end){
  if(!end)return "Permanent";
- const hours=Math.max(0,Math.round((new Date(end)-new Date(start))/3600000));
+
+ const hours=Math.max(
+  0,
+  Math.round((new Date(end)-new Date(start))/3600000)
+ );
+
  if(hours<24)return hours+" hour(s)";
+
  const days=Math.round(hours/24);
  return days+" day(s)";
 }
@@ -1266,29 +1475,44 @@ function formatDuration(start,end){
 // ==========================================
 
 function showAdminTab(tab,button){
- document.querySelectorAll(".admin-tab").forEach(b=>b.classList.remove("active"));
- document.querySelectorAll(".admin-section").forEach(s=>s.classList.remove("active"));
+ document.querySelectorAll(".admin-tab")
+  .forEach(b=>b.classList.remove("active"));
+
+ document.querySelectorAll(".admin-section")
+  .forEach(s=>s.classList.remove("active"));
 
  button.classList.add("active");
 
  const section=document.getElementById(
   tab==="players"?"adminPlayersSection":
-  tab==="scores"?"adminScoresSection":"adminBansSection"
+  tab==="scores"?"adminScoresSection":
+  "adminBansSection"
  );
+
  section.classList.add("active");
 }
 
 function filterAdminTables(){
- const playerSearch=(document.getElementById("adminPlayerSearch")?.value||"").toLowerCase();
- const scoreSearch=(document.getElementById("adminScoreSearch")?.value||"").toLowerCase();
- const banSearch=(document.getElementById("adminBanSearch")?.value||"").toLowerCase();
+ const playerSearch=(
+  document.getElementById("adminPlayerSearch")?.value||""
+ ).toLowerCase();
+
+ const scoreSearch=(
+  document.getElementById("adminScoreSearch")?.value||""
+ ).toLowerCase();
+
+ const banSearch=(
+  document.getElementById("adminBanSearch")?.value||""
+ ).toLowerCase();
 
  document.querySelectorAll(".admin-player-row").forEach(row=>{
   row.style.display=row.dataset.search.includes(playerSearch)?"":"none";
  });
+
  document.querySelectorAll(".admin-score-row").forEach(row=>{
   row.style.display=row.dataset.search.includes(scoreSearch)?"":"none";
  });
+
  document.querySelectorAll(".admin-ban-row").forEach(row=>{
   row.style.display=row.dataset.search.includes(banSearch)?"":"none";
  });
@@ -1309,17 +1533,22 @@ async function callModerationFunction(payload){
   throw new Error("Your login session has expired. Sign in again.");
  }
 
- const response=await fetch(SUPABASE_URL+"/functions/v1/admin-manage-player",{
-  method:"POST",
-  headers:{
-   "Content-Type":"application/json",
-   "Authorization":"Bearer "+session.access_token,
-   "apikey":SUPABASE_KEY
-  },
-  body:JSON.stringify(payload)
- });
+ const response=await fetch(
+  SUPABASE_URL+"/functions/v1/admin-manage-player",
+  {
+   method:"POST",
+   headers:{
+    "Content-Type":"application/json",
+    "Authorization":"Bearer "+session.access_token,
+    "apikey":SUPABASE_KEY
+   },
+   body:JSON.stringify(payload)
+  }
+ );
 
- const result=await response.json().catch(()=>({error:"Unexpected server response."}));
+ const result=await response.json().catch(
+  ()=>({error:"Unexpected server response."})
+ );
 
  if(!response.ok||!result.success){
   throw new Error(result.error||"The moderation request failed.");
@@ -1351,11 +1580,15 @@ function openBanModal(userId){
  }
 
  document.getElementById("banTargetId").value=userId;
- document.getElementById("banTargetName").textContent="Banning: "+(player.username||"Player");
+
+ document.getElementById("banTargetName").textContent=
+  "Banning: "+(player.username||"Player");
+
  document.getElementById("banDuration").value="24h";
  document.getElementById("banReason").value="";
  document.getElementById("banMessage").textContent="";
  document.getElementById("confirmBanButton").disabled=false;
+
  document.getElementById("banModal").classList.add("open");
 }
 
@@ -1390,6 +1623,7 @@ async function confirmBan(){
   });
 
   message.textContent=result.message||"Player banned successfully.";
+
   await loadAdminDashboard();
 
   setTimeout(()=>closeModal("banModal"),900);
@@ -1424,6 +1658,7 @@ async function adminUnban(targetUserId){
   });
 
   status.textContent=result.message||"Player unbanned successfully.";
+
   await loadAdminDashboard();
  }catch(error){
   status.textContent="Unban failed: "+error.message;
@@ -1444,6 +1679,7 @@ async function adminDeleteScore(scoreId){
  const confirmed=confirm(
   "Are you sure you want to permanently delete this score?\n\nThis cannot be undone."
  );
+
  if(!confirmed)return;
 
  const status=document.getElementById("adminStatus");
@@ -1459,6 +1695,7 @@ async function adminDeleteScore(scoreId){
  }
 
  status.textContent="Score deleted successfully.";
+
  await loadAdminDashboard();
  await loadLeaderboard();
 }
@@ -1473,7 +1710,9 @@ function launchGame(id){
   return;
  }
 
- document.getElementById("gameTitle").textContent=games.find(g=>g.id===id).name;
+ document.getElementById("gameTitle").textContent=
+  games.find(g=>g.id===id).name;
+
  document.getElementById("gameModal").classList.add("open");
 
  if(id==="clicker")startClicker();
@@ -1500,12 +1739,16 @@ function startClicker(){
  document.getElementById("clickButton").onclick=()=>{
   if(!started){
    started=true;
+
    interval=setInterval(()=>{
     remaining--;
-    document.getElementById("clickTime").textContent=remaining+" seconds";
+
+    document.getElementById("clickTime").textContent=
+     remaining+" seconds";
 
     if(remaining<=0){
      clearInterval(interval);
+
      area.innerHTML=`
       <h2>TIME'S UP!</h2>
       <p>Your score: ${score}</p>
@@ -1517,6 +1760,7 @@ function startClicker(){
   }
 
   score++;
+
   document.getElementById("clickScore").textContent=score;
  };
 }
@@ -1538,31 +1782,45 @@ function startReaction(){
  document.getElementById("reactionStart").onclick=()=>{
   state="waiting";
 
-  area.innerHTML=`<h2>WAIT...</h2><button class="btn secondary" id="waitButton">WAIT</button>`;
+  area.innerHTML=`
+   <h2>WAIT...</h2>
+   <button class="btn secondary" id="waitButton">WAIT</button>
+  `;
 
   document.getElementById("waitButton").onclick=()=>{
    if(state!=="waiting")return;
+
    clearTimeout(timer);
    state="ready";
-   area.innerHTML=`<h2>TOO EARLY!</h2><button class="btn" onclick="startReaction()">TRY AGAIN</button>`;
+
+   area.innerHTML=`
+    <h2>TOO EARLY!</h2>
+    <button class="btn" onclick="startReaction()">TRY AGAIN</button>
+   `;
   };
 
   timer=setTimeout(()=>{
    if(state!=="waiting")return;
+
    state="go";
    start=performance.now();
 
-   area.innerHTML=`<h2 style="color:#22c55e">🟢 CLICK NOW!</h2><button class="btn" id="goButton">CLICK!</button>`;
+   area.innerHTML=`
+    <h2 style="color:#22c55e">🟢 CLICK NOW!</h2>
+    <button class="btn" id="goButton">CLICK!</button>
+   `;
 
    document.getElementById("goButton").onclick=()=>{
     if(state!=="go")return;
+
     state="done";
 
     const ms=Math.round(performance.now()-start);
     const points=Math.max(1,1000-ms);
 
     area.innerHTML=`
-     <h2>${ms} MS</h2><p>${points} points</p>
+     <h2>${ms} MS</h2>
+     <p>${points} points</p>
      <button class="btn" onclick="submitScore('reaction',${points})">SAVE SCORE</button>
      <button class="btn secondary" onclick="startReaction()">AGAIN</button>
     `;
@@ -1600,19 +1858,25 @@ function startGuess(){
 
   if(value===secret){
    const points=Math.max(100,1100-tries*100);
+
    msg.textContent="You won! "+points+" points!";
+
    document.getElementById("guessButton").disabled=true;
 
    const b=document.createElement("button");
-   b.className="btn";b.textContent="SAVE SCORE";
+   b.className="btn";
+   b.textContent="SAVE SCORE";
    b.onclick=()=>submitScore("guess",points);
+
    area.appendChild(b);
 
   }else if(tries>=10){
    msg.textContent="Game over! The number was "+secret+".";
    document.getElementById("guessButton").disabled=true;
   }else{
-   msg.textContent=(value<secret?"Too low! ⬆️":"Too high! ⬇️")+" Attempts left: "+(10-tries);
+   msg.textContent=
+    (value<secret?"Too low! ⬆️":"Too high! ⬇️")+
+    " Attempts left: "+(10-tries);
   }
  };
 }
@@ -1622,14 +1886,18 @@ function startGuess(){
 // ==========================================
 
 function startMemory(){
- const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"].sort(()=>Math.random()-.5);
+ const symbols=["🎮","🚀","👾","⚡","🎮","🚀","👾","⚡"]
+  .sort(()=>Math.random()-.5);
+
  let selected=[],matched=[],moves=0,locked=false;
+
  const area=document.getElementById("gameArea");
 
  function draw(){
   area.innerHTML=`
    <h2>🧠 MEMORY MATCH</h2>
    <p>Moves: ${moves}</p>
+
    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
     ${symbols.map((s,i)=>`
      <button class="btn secondary" data-i="${i}" style="height:60px;font-size:24px">
@@ -1639,7 +1907,9 @@ function startMemory(){
    </div>
   `;
 
-  area.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>pick(Number(b.dataset.i)));
+  area.querySelectorAll("[data-i]").forEach(
+   b=>b.onclick=()=>pick(Number(b.dataset.i))
+  );
  }
 
  function pick(i){
@@ -1651,16 +1921,19 @@ function startMemory(){
   if(selected.length===2){
    moves++;
    locked=true;
+
    const [a,b]=selected;
 
    if(symbols[a]===symbols[b]){
     matched.push(a,b);
     selected=[];
     locked=false;
+
     draw();
 
     if(matched.length===symbols.length){
      const points=Math.max(100,1000-moves*50);
+
      area.innerHTML=`
       <h2>YOU WON! 🎉</h2>
       <p>${moves} moves · ${points} points</p>
@@ -1668,6 +1941,7 @@ function startMemory(){
       <button class="btn secondary" onclick="startMemory()">PLAY AGAIN</button>
      `;
     }
+
    }else{
     setTimeout(()=>{
      selected=[];
@@ -1706,18 +1980,15 @@ db.auth.onAuthStateChange((_event,session)=>{
    currentUser=null;
    isGameEzAdmin=false;
    updateAccountButton();
+   loadDailyRewardStatus();
   }
-  loadChatMessages();
-  loadXPLeaderboard();
  },0);
 });
 
 (async()=>{
  await refreshUser();
  loadLeaderboard();
- loadXPLeaderboard();
- loadChatMessages();
- startChatRealtime();
+ loadDailyRewardStatus();
 })();
 </script>
 </body>
